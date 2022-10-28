@@ -32,14 +32,14 @@ class NewsController {
 
   Future<bool> handleLaunchUrl(Uri url) async {
     // final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final bool canLaunch = await canLaunchUrl(url);
+    // final bool canLaunch = await canLaunchUrl(url);
 
-    if (!canLaunch) {
-      // scaffoldMessenger.showSnackBar(
-      //     const SnackBar(content: Text("Couldn't launch the article")));
-      // return;
-      return false;
-    }
+    // if (!canLaunch) {
+    //   // scaffoldMessenger.showSnackBar(
+    //   //     const SnackBar(content: Text("Couldn't launch the article")));
+    //   // return;
+    //   return false;
+    // }
 
     await launchUrl(url);
     return true;

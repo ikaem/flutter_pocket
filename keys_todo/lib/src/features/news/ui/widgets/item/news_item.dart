@@ -74,7 +74,7 @@ class _NewsItemState extends State<NewsItem>
     if (!launched) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Couldn't launch the article"),
+          content: Text("Couldn't launch the bla"),
         ),
       );
     }
