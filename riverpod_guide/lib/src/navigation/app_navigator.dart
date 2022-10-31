@@ -6,6 +6,8 @@ import 'package:riverpod_guide/src/screens/consumer_widget.dart';
 import 'package:riverpod_guide/src/screens/future_provider_screen.dart';
 import 'package:riverpod_guide/src/screens/home_screen.dart';
 import 'package:riverpod_guide/src/screens/provider_screen.dart';
+import 'package:riverpod_guide/src/screens/scoped_provider_screen.dart';
+import 'package:riverpod_guide/src/screens/select_state_field_screen.dart';
 import 'package:riverpod_guide/src/screens/state_notifier_provider.dart';
 import 'package:riverpod_guide/src/screens/state_provider_screen.dart';
 import 'package:riverpod_guide/src/screens/stream_provider_screen.dart';
@@ -27,6 +29,11 @@ class AppNavigator {
           case ConsumerStatefulWidgetScreen.routeName:
             {
               return const ConsumerStatefulWidgetScreen();
+            }
+
+          case SelectStateFieldScreen.routeName:
+            {
+              return const SelectStateFieldScreen();
             }
 
           // providers
@@ -58,6 +65,11 @@ class AppNavigator {
           case ChangeNotifierProviderScreen.routeName:
             {
               return const ChangeNotifierProviderScreen();
+            }
+
+          case ScopedProvidersScreen.routeName:
+            {
+              return const ScopedProvidersScreen();
             }
 
           // default

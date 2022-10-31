@@ -4,6 +4,7 @@ import 'package:sandbox/src/screens/automatic_keep_alive_client_mixin_screen.dar
 import 'package:sandbox/src/screens/home_screen.dart';
 import 'package:sandbox/src/screens/intrinsic_width_height.dart';
 import 'package:sandbox/src/screens/keys_screen.dart';
+import 'package:sandbox/src/screens/single_child_scroll_view_screen.dart';
 import 'package:sandbox/src/screens/text_span_screen.dart';
 import 'package:sandbox/src/screens/topics_list_screen.dart';
 import 'package:sandbox/src/screens/will_pop_scope_screen.dart';
@@ -28,6 +29,8 @@ class AppRouter {
             return TextSpanScreen();
           case AutomaticKeepAliveClientMixinScreen.routeName:
             return const AutomaticKeepAliveClientMixinScreen();
+          case SingleChildScrollViewScreen.routeName:
+            return const SingleChildScrollViewScreen();
           case HomeScreen.routeName:
           default:
             return const HomeScreen();

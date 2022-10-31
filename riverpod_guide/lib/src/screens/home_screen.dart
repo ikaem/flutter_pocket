@@ -5,6 +5,8 @@ import 'package:riverpod_guide/src/screens/consumer_stateful_widget.dart';
 import 'package:riverpod_guide/src/screens/consumer_widget.dart';
 import 'package:riverpod_guide/src/screens/future_provider_screen.dart';
 import 'package:riverpod_guide/src/screens/provider_screen.dart';
+import 'package:riverpod_guide/src/screens/scoped_provider_screen.dart';
+import 'package:riverpod_guide/src/screens/select_state_field_screen.dart';
 import 'package:riverpod_guide/src/screens/state_notifier_provider.dart';
 import 'package:riverpod_guide/src/screens/state_provider_screen.dart';
 import 'package:riverpod_guide/src/screens/stream_provider_screen.dart';
@@ -40,6 +42,12 @@ class HomeScreen extends StatelessWidget {
                   .pushNamed(ConsumerStatefulWidgetScreen.routeName);
             },
             child: const Text("ConsumerStatefulWidget"),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(SelectStateFieldScreen.routeName);
+            },
+            child: const Text("Select provider property screen"),
           ),
           Text(
             "Providers",
@@ -83,6 +91,12 @@ class HomeScreen extends StatelessWidget {
             },
             child: const Text("Change Notifier Provider"),
           ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(ScopedProvidersScreen.routeName);
+            },
+            child: const Text("Scoped Providers Screen"),
+          )
         ],
       ),
     );

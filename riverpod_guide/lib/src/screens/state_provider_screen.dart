@@ -15,11 +15,15 @@ class StateProviderScreen extends ConsumerWidget {
       showCounterSnackbar(context, next.state);
     });
 
-    return ElevatedButton(
-      onPressed: () {
-        increment(ref);
-      },
-      child: Text("Increment from $counter"),
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            increment(ref);
+          },
+          child: Text("Increment from $counter"),
+        ),
+      ),
     );
   }
 

@@ -1,0 +1,6 @@
+{
+  "appTitle": "dependency_injection",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
