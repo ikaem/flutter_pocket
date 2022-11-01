@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/src/screens/animated_cross_fade_screen.dart';
 import 'package:sandbox/src/screens/automatic_keep_alive_client_mixin_screen.dart';
+import 'package:sandbox/src/screens/enums_screen.dart';
+import 'package:sandbox/src/screens/focus_node_screen.dart';
 import 'package:sandbox/src/screens/home_screen.dart';
 import 'package:sandbox/src/screens/intrinsic_width_height.dart';
 import 'package:sandbox/src/screens/keys_screen.dart';
+import 'package:sandbox/src/screens/layout_builder_screen.dart';
 import 'package:sandbox/src/screens/single_child_scroll_view_screen.dart';
+import 'package:sandbox/src/screens/stack_screen.dart';
 import 'package:sandbox/src/screens/text_span_screen.dart';
 import 'package:sandbox/src/screens/topics_list_screen.dart';
 import 'package:sandbox/src/screens/will_pop_scope_screen.dart';
@@ -31,6 +35,14 @@ class AppRouter {
             return const AutomaticKeepAliveClientMixinScreen();
           case SingleChildScrollViewScreen.routeName:
             return const SingleChildScrollViewScreen();
+          case EnumsScreen.routeName:
+            return const EnumsScreen();
+          case FocusNodeScreen.routeName:
+            return const FocusNodeScreen();
+          case LayoutBuilderScreen.routeName:
+            return const LayoutBuilderScreen();
+          case StackScreen.routeName:
+            return const StackScreen();
           case HomeScreen.routeName:
           default:
             return const HomeScreen();
