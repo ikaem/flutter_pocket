@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/src/screens/animated_cross_fade_screen.dart';
 import 'package:sandbox/src/screens/automatic_keep_alive_client_mixin_screen.dart';
+import 'package:sandbox/src/screens/dart_custom_types.dart';
 import 'package:sandbox/src/screens/enums_screen.dart';
 import 'package:sandbox/src/screens/focus_node_screen.dart';
 import 'package:sandbox/src/screens/home_screen.dart';
+import 'package:sandbox/src/screens/inkwell_screen.dart';
 import 'package:sandbox/src/screens/intrinsic_width_height.dart';
 import 'package:sandbox/src/screens/keys_screen.dart';
 import 'package:sandbox/src/screens/layout_builder_screen.dart';
@@ -43,6 +45,11 @@ class AppRouter {
             return const LayoutBuilderScreen();
           case StackScreen.routeName:
             return const StackScreen();
+          case InkWellScreen.routeName:
+            return const InkWellScreen();
+          case ConstrainedBoxScreen.routeName:
+            return const ConstrainedBoxScreen();
+
           case HomeScreen.routeName:
           default:
             return const HomeScreen();
