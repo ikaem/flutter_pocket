@@ -1,5 +1,5 @@
-import 'package:rchitecture_riverpod/src/features/films/domain/models/film.dart';
+import 'package:rchitecture_riverpod/src/features/films/data/dto/film_raw.dart';
 
 abstract class FilmsRepository {
-  Future<Film> getOne({required String id});
+  Future<FilmRaw> getOne({required int id});
 }
