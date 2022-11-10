@@ -10,15 +10,22 @@ import 'package:rchitecture_riverpod/src/features/films/utils/exceptions/api_exc
 class FilmController extends StateNotifier<AsyncValue<Film>> {
   FilmController({
     required this.filmsRepository,
+    required this.filmId,
     // note here that we do have to set initial state for this
-  }) : super(const AsyncValue.loading());
+  }) : super(const AsyncValue.loading()) {
+    loadOne(id: filmId);
+  }
 
   FilmsRepository filmsRepository;
+  int? filmId;
 
-  Future<void> loadOne({required int id}) async {
+  Future<void> loadOne({required int? id}) async {
+    if (id == null) return;
+
     try {
       state = const AsyncValue.loading();
       final FilmRaw filmRaw = await filmsRepository.getOne(id: id);
+      //
       state = AsyncValue.data(Film.fromRaw(filmRaw));
     } on ApiException catch (e) {
       // note that every exception will be api exception, because this is how we set it

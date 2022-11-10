@@ -70,6 +70,7 @@ class FilmsSwRepository implements FilmsRepository {
           }
       }
     } on SocketException {
+      //
       throw const ApiException.noInternetConnection();
     }
   }
