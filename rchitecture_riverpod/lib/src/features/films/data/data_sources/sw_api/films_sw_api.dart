@@ -1,16 +1,23 @@
 // lib\src\features\films\data\repositories\data_sources\films_api.dart
 
+import 'package:rchitecture_riverpod/src/application/services/api_handler/api_handler.dart';
+
 class FilmsSwApi {
   FilmsSwApi(
       // TODO often, this might need an api key, so we would pass it here, and assign it a s a class member
       );
 
-  static const String _apiBaseUrl = "https://swapi.dev";
+  static const String _apiBaseUrl = "swapi.dev";
   static const String _apiPath = "/api/";
 
 // this is to return a specific film uri, to be used to get that movie with some http client
   Uri film(int id) {
-    final Uri uri = _buildUri(endpoint: "films/$id");
+    // final Uri uri = _buildUri(endpoint: "films/$id");
+    final Uri uri = ApiHandler.buildUri(
+      apiBaseUrl: _apiBaseUrl,
+      apiPath: _apiPath,
+      endpoint: "films/$id",
+    );
 
     return uri;
   }
@@ -25,6 +32,7 @@ class FilmsSwApi {
   }
 
   // this is uril builder that will be reused
+  // maybe also move to api handler or something
   Uri _buildUri({
     required String endpoint,
     Map<String, dynamic>? parametersBuilder,

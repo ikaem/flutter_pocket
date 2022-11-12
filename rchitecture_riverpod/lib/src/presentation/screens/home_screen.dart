@@ -50,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 TextButton(
                   onPressed: () {
+                    //
                     AppRouter.navigateToRoute<int>(
                       context: context,
                       path: AppRoutes.screenFilm,
@@ -59,7 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const Text("Get film"),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    //
+                    AppRouter.navigateToRoute<int>(
+                      context: context,
+                      path: AppRoutes.screenWeather,
+                      args: _id,
+                    );
+                  },
                   child: const Text("Get person"),
                 ),
               ],

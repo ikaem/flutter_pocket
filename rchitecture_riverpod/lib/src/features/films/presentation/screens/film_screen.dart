@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rchitecture_riverpod/src/features/films/presentation/state/providers/films_sw_controller_provider.dart';
+import 'package:rchitecture_riverpod/src/features/films/presentation/widgets/film_content.dart';
 
 class FilmScreen extends ConsumerWidget {
   const FilmScreen({
@@ -22,30 +23,27 @@ class FilmScreen extends ConsumerWidget {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text("A single star wars film"),
+        ),
         body: Container(
+          padding: const EdgeInsets.all(16.0),
           color: Colors.amberAccent,
-          child: Column(
-            children: [
-              const Text("Hello film in future"),
-              filmState.when(
-                data: (data) {
-                  //
-                  return const Center(
-                    child: Text("Film is in"),
-                  );
-                },
-                error: (error, stackTrace) {
-                  return const Center(
-                    child: Text("Error is in"),
-                  );
-                },
-                loading: () {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
-              ),
-            ],
+          child: filmState.when(
+            data: (data) {
+              //
+              return FilmContent(film: data);
+            },
+            error: (error, stackTrace) {
+              return const Center(
+                child: Text("Error is in"),
+              );
+            },
+            loading: () {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
           ),
         ),
       ),

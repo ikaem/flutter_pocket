@@ -20,15 +20,15 @@ class Film {
   final String released;
 
   // now this is factory - but it does not have to be
-  factory Film.fromRaw(FilmRaw raw) {
+  factory Film.fromRaw(FilmRaw raw, int id) {
     return Film(
-      id: raw.id,
-      title: raw.info.title,
-      director: raw.info.director,
-      producer: raw.info.producer,
-      edited: raw.dates.edited,
-      created: raw.dates.created,
-      released: raw.dates.released,
+      id: id,
+      title: raw.title,
+      director: raw.director,
+      producer: raw.producer,
+      edited: raw.edited,
+      created: raw.created,
+      released: raw.released,
     );
   }
 }

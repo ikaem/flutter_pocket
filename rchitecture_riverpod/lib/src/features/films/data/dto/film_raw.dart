@@ -5,37 +5,48 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part "film_raw.freezed.dart";
 part "film_raw.g.dart";
 
-@freezed
-class FilmRawDates with _$FilmRawDates {
-  const factory FilmRawDates({
-    required String created,
-    required String edited,
-    @JsonKey(name: "release_date") required String released,
-  }) = _FilmRawDates;
+// TODO not needed any of this
+// @freezed
+// class FilmRawDates with _$FilmRawDates {
+//   const factory FilmRawDates({
+//     required String created,
+//     required String edited,
+//     @JsonKey(name: "release_date") required String released,
+//   }) = _FilmRawDates;
 
-  factory FilmRawDates.fromJson(Map<String, dynamic> json) =>
-      _$FilmRawDatesFromJson(json);
-}
+//   factory FilmRawDates.fromJson(Map<String, dynamic> json) {
+//     //
+//     return _$FilmRawDatesFromJson(json);
+//   }
+// }
 
-@freezed
-class FilmRawInfo with _$FilmRawInfo {
-  const factory FilmRawInfo({
-    required String title,
-    required String director,
-    required String producer,
-    @JsonKey(name: "opening_crawl") required String openingCrawl,
-  }) = _FilmRawInfo;
+// @freezed
+// class FilmRawInfo with _$FilmRawInfo {
+//   const factory FilmRawInfo({
+//     required String title,
+//     required String director,
+//     required String producer,
+//     @JsonKey(name: "opening_crawl") required String openingCrawl,
+//   }) = _FilmRawInfo;
 
-  factory FilmRawInfo.fromJson(Map<String, dynamic> json) =>
-      _$FilmRawInfoFromJson(json);
-}
+//   factory FilmRawInfo.fromJson(Map<String, dynamic> json) =>
+//       _$FilmRawInfoFromJson(json);
+// }
 
 @freezed
 class FilmRaw with _$FilmRaw {
   const factory FilmRaw({
-    required FilmRawDates dates,
-    required FilmRawInfo info,
-    required int id,
+    // required FilmRawDates dates,
+    // required FilmRawInfo info,
+
+    required String created,
+    required String edited,
+    @JsonKey(name: "release_date") required String released,
+    required String title,
+    required String director,
+    required String producer,
+    @JsonKey(name: "opening_crawl") required String openingCrawl,
+    // required int id,
   }) = _FilmRaw;
 
   factory FilmRaw.fromJson(Map<String, dynamic> json) =>
