@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:rchitecture_riverpod/src/application/services/routing/app_routes.dart';
+import 'package:rchitecture_riverpod/src/features/authentication/presentation/screens/sign_in_screen.dart';
 import 'package:rchitecture_riverpod/src/features/films/presentation/screens/film_screen.dart';
 import 'package:rchitecture_riverpod/src/features/weather/presentation/screens/weather_screen.dart';
 import 'package:rchitecture_riverpod/src/presentation/screens/home_screen.dart';
+import 'package:rchitecture_riverpod/src/presentation/screens/main_screen.dart';
 
 class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return MaterialPageRoute(
       builder: (context) {
         switch (settings.name) {
+          case AppRoutes.screenSignIn:
+            return const SignInScreen();
           case AppRoutes.screenWeather:
             return const WeatherScreen();
 
@@ -22,8 +26,9 @@ class AppRouter {
               // filmId: 1,
             );
           case AppRoutes.screenHome:
+            return const HomeScreen(title: "Riverpod architecture test");
           default:
-            return const HomeScreen(title: "Riverpod Star Wars");
+            return const MainScreen();
         }
       },
     );
