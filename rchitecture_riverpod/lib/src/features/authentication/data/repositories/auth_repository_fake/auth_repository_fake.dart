@@ -1,4 +1,4 @@
-import 'package:rchitecture_riverpod/src/application/services/in_memory_store.dart';
+import 'package:rchitecture_riverpod/src/application/services/in_memory_store/in_memory_store.dart';
 import 'package:rchitecture_riverpod/src/features/authentication/data/repositories/auth_repository.dart';
 import 'package:rchitecture_riverpod/src/features/authentication/domain/models/app_user.dart';
 

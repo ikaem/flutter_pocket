@@ -1,4 +1,4 @@
-import 'package:rchitecture_riverpod/src/features/product/data/dto/product_raw/product_raw.dart';
+import 'package:rchitecture_riverpod/src/features/products/data/dto/product_raw/product_raw.dart';
 
 class Product {
   const Product(
