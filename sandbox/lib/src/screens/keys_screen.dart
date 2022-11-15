@@ -16,17 +16,43 @@ class KeysScreen extends StatefulWidget {
 class _KeysScreenState extends State<KeysScreen> {
   late List<Widget> tiles;
 
+  final key = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
     tiles = [
-      // const StatelessColorfulTile(),
-      // const StatelessColorfulTile(),
-      StatefullColorfulTile(
-        key: UniqueKey(),
+      // StatelessColorfulTile(
+      //     // key: UniqueKey(),
+      //     ),
+      // StatelessColorfulTile(
+      //     // key: UniqueKey(),/*  */
+      //     ),
+
+      // StatelessColorfulTile(
+      //   key: UniqueKey(),
+      // ),
+      // StatelessColorfulTile(
+      //   key: UniqueKey(),
+      // ),
+      // StatefullColorfulTile(
+      //   key: UniqueKey(),
+      // ),
+      // StatefullColorfulTile(
+      //   key: UniqueKey(),
+      // ),
+      // TODFO these are not good examples
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: StatefullColorfulTile(
+          key: UniqueKey(),
+        ),
       ),
-      StatefullColorfulTile(
-        key: UniqueKey(),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: StatefullColorfulTile(
+          key: UniqueKey(),
+        ),
       ),
     ];
   }
