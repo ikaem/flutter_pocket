@@ -1,4 +1,5 @@
 import 'package:rchitecture_riverpod/src/application/services/in_memory_store/in_memory_store.dart';
+import 'package:rchitecture_riverpod/src/features/cart/data/dto/cart_raw/cart_raw.dart';
 
 class CartApi {
 // TODO test only
@@ -17,7 +18,7 @@ class CartApi {
     // return fakeProducts.firstWhereOrNull((e) => e.id == id);
     // we will store this somewhere with that rx thing
 
-    _cartState.value(cartRaw);
+    _cartState.value = cartRaw;
   }
 
   void updateCart({
@@ -25,9 +26,10 @@ class CartApi {
   }) {
     final oldCartRaw = getCart();
 
-// TODO need to make this method
-    final newCartRaw = oldCartRaw.copy(cartRaw);
+    if (oldCartRaw == null) return;
 
-    saveCart(cartRaw: cartRaw);
+    final newCartRaw = oldCartRaw.copyWith(cart_items: cartRaw.cart_items);
+
+    saveCart(cartRaw: newCartRaw);
   }
 }

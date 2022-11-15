@@ -18,7 +18,7 @@ class CartItem {
   final String name;
 
 // this could easily be a factory cosntrucotr too?
-  CartItem fromCartItemRaw(CartItemRaw raw) {
+  factory CartItem.fromCartItemRaw(CartItemRaw raw) {
     return CartItem(
       id: raw.id,
       productId: raw.product_id,

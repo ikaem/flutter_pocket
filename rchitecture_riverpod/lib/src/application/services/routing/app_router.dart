@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rchitecture_riverpod/src/application/services/routing/app_routes.dart';
 import 'package:rchitecture_riverpod/src/features/authentication/presentation/screens/sign_in_screen.dart';
 import 'package:rchitecture_riverpod/src/features/films/presentation/screens/film_screen.dart';
+import 'package:rchitecture_riverpod/src/features/products/presentation/screens/products_screen.dart';
 import 'package:rchitecture_riverpod/src/features/weather/presentation/screens/weather_screen.dart';
 import 'package:rchitecture_riverpod/src/presentation/screens/home_screen.dart';
 import 'package:rchitecture_riverpod/src/presentation/screens/main_screen.dart';
@@ -11,12 +12,12 @@ class AppRouter {
     return MaterialPageRoute(
       builder: (context) {
         switch (settings.name) {
+          case AppRoutes.screenProducts:
+            return const ProductsScreen();
           case AppRoutes.screenSignIn:
             return const SignInScreen();
           case AppRoutes.screenWeather:
             return const WeatherScreen();
-
-          //
           case AppRoutes.screenFilm:
             // TODO this does not need to be used here - we can get args from settings too
             final filmId = AppRouter.getRouteArgs<int>(context: context);

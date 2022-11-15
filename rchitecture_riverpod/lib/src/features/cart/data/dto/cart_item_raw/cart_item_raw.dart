@@ -15,7 +15,7 @@ class CartItemRaw {
   final double item_price;
   final String item_name;
 
-  CartItemRaw fromCartItem(CartItem cartItem) {
+  factory CartItemRaw.fromCartItem(CartItem cartItem) {
     return CartItemRaw(
       id: cartItem.id,
       product_id: cartItem.productId,

@@ -71,7 +71,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const Text("Get person"),
                 ),
               ],
-            )
+            ),
+            Text("Shop:"),
+            TextButton(
+              onPressed: () {
+                //
+                AppRouter.navigateToRoute(
+                  context: context,
+                  path: AppRoutes.screenProducts,
+                );
+              },
+              child: const Text("Go to shop"),
+            ),
           ],
         ),
       ),
