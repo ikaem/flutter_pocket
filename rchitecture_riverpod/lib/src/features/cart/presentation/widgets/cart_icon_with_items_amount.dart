@@ -27,14 +27,21 @@ class CartIconWithItemsAmount extends StatelessWidget {
         children: [
           const Icon(Icons.shopping_basket),
           Positioned(
+              top: 4,
+              right: -4,
               child: Container(
-            width: 4,
-            height: 4,
-            decoration: BoxDecoration(
-              color: Colors.red,
-            ),
-            child: Text("3"),
-          ))
+                width: 16,
+                height: 16,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                child: Text(
+                  "3",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12),
+                ),
+              ))
         ],
       ),
     );

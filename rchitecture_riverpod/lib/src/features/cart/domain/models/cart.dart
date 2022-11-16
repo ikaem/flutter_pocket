@@ -19,4 +19,23 @@ class Cart {
 
     return Cart(items: items, id: raw.id);
   }
+
+  Cart copyWith({
+    List<CartItem>? items,
+  }) {
+    return Cart(
+      id: id,
+      items: items ?? this.items,
+    );
+  }
+}
+
+extension CartExtension on Cart {
+  Cart addToCart(CartItem item) {
+    final newItems = [...items, item];
+
+    final updatedCart = copyWith(items: newItems);
+
+    return updatedCart;
+  }
 }

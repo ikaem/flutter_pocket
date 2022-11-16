@@ -38,6 +38,10 @@ class ProductsContent extends StatelessWidget {
                   leading: Text(product.price.toString()),
                   title: Text(product.name),
                   trailing: Text(product.category),
+                  subtitle: TextButton(
+                    onPressed: () {},
+                    child: Text("Add"),
+                  ),
                 ),
               );
             },

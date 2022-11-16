@@ -21,6 +21,7 @@ class CartApi {
     _cartState.value = cartRaw;
   }
 
+// TODO unused - will use save instead
   void updateCart({
     required CartRaw cartRaw,
   }) {
