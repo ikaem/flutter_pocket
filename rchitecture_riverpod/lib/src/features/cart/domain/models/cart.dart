@@ -29,13 +29,3 @@ class Cart {
     );
   }
 }
-
-extension CartExtension on Cart {
-  Cart addToCart(CartItem item) {
-    final newItems = [...items, item];
-
-    final updatedCart = copyWith(items: newItems);
-
-    return updatedCart;
-  }
-}

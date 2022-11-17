@@ -5,5 +5,6 @@ abstract class AuthRepository {
   Stream<AppUser?> authStateChanges();
   Future<void> signInAnonimously();
   Future<void> signOut();
+  AppUser? get currentUser;
   void dispose();
 }

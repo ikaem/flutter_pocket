@@ -27,5 +27,12 @@ class AuthRepositoryFake implements AuthRepository {
   }
 
   @override
+  AppUser? get currentUser {
+    final user = _authState.value;
+
+    return user;
+  }
+
+  @override
   void dispose() => _authState.close();
 }

@@ -8,5 +8,7 @@ final cartRepositoryProvider = Provider(
     final CartRepository cartRepository = LocalCartRepositroy(
       cartApi: CartApi(),
     );
+
+    return cartRepository;
   },
 );
