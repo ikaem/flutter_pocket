@@ -38,6 +38,8 @@ class _PersonsScreenState extends State<PersonsScreen> {
         // listener: (context, state) {
         //   // TODO: implement listener
         // },
+        // we could initialize the bloc here as well
+        // and then, we could just call ..on created bloc -something like ..add(PersonsFetchDataEvent)
         body: BlocBuilder<PersonsBloc, PersonsState>(
           builder: (context, state) {
             if (state is PersonsLoadingDataState) {
