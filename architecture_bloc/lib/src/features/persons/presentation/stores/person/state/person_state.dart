@@ -35,7 +35,7 @@ class PersonSuccessDataState extends PersonState {
     required this.person,
   });
 
-  final Person? person;
+  final Person person;
 
   @override
   List<Object?> get props => [];

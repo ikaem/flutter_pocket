@@ -23,9 +23,11 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
 
     emitter(const PersonLoadingDataState());
 
-    final person = await personsRepository.one(event.id);
+    try {
+      final person = await personsRepository.one(event.id);
 
-    try {} catch (e) {
+      emitter(PersonSuccessDataState(person: person));
+    } catch (e) {
       emitter(PersonErrorDataState(message: e.toString()));
     }
   }

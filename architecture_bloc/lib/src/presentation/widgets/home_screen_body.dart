@@ -1,3 +1,4 @@
+import 'package:architecture_bloc/src/features/movies/presentation/screens/movies_screen.dart';
 import 'package:architecture_bloc/src/features/persons/presentation/screens/persons_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,19 @@ class HomeScreenBody extends StatelessWidget {
               );
             },
             child: const Text("Fetch star wars people"),
-          )
+          ),
+          const Divider(),
+          ElevatedButton(
+            onPressed: () {
+              // naive navigation
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const MoviesScreen(),
+                ),
+              );
+            },
+            child: const Text("Fetch star wars movies"),
+          ),
         ],
       ),
     );

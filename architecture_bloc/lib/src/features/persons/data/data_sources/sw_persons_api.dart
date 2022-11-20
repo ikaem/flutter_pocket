@@ -22,17 +22,22 @@ class SwPersonsApi {
     return _personsRaw;
   }
 
-  Future<Person?> one(int id) async {
+  Future<PersonDTO> one(int id) async {
     await Future.delayed(const Duration(milliseconds: 500));
 
-    final random = Random().nextInt(3);
+    final random = Random().nextInt(2);
 
     if (random == 0) throw const HttpException("Failed to fetch the person");
-    if (random == 1) return null;
 
-    return _personsRaw.firstWhereOrNull((person) {
+    final dto = _personsRaw.firstWhereOrNull((person) {
       return person.id == id;
     });
+
+    if (dto == null) {
+      throw const HttpException("There is no such person");
+    }
+
+    return dto;
   }
 }
 

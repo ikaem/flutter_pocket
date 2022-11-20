@@ -17,4 +17,13 @@ class PersonsRepositoryFake implements PersonsRepository {
 
     return persons;
   }
+
+  @override
+  Future<Person> one(int id) async {
+    final dto = await api.one(id);
+
+    final person = Person.fromDTO(dto);
+
+    return person;
+  }
 }
