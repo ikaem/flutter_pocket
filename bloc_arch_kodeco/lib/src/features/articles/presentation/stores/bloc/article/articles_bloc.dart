@@ -5,8 +5,8 @@ import 'package:bloc_arch_kodeco/src/features/articles/domain/models/article/art
 import 'package:bloc_arch_kodeco/src/presentation/stores/bloc/bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ArticleBloc implements Bloc {
-  ArticleBloc({
+class ArticlesBloc implements Bloc {
+  ArticlesBloc({
     required this.articlesRepository,
   }) {
     // this will await for each request because of async map - probably not best in this case
@@ -22,7 +22,7 @@ class ArticleBloc implements Bloc {
     // });
 
     // TODO maybe bettersoltiion
-    articleStream = _searhQueryController.stream
+    articlesStream = _searhQueryController.stream
         .startWith(null)
         .debounceTime(const Duration(milliseconds: 100))
         .switchMap(
@@ -33,10 +33,10 @@ class ArticleBloc implements Bloc {
 
   final ArticlesRepository articlesRepository;
   /* late hs to be, to be able to intiialize it in the cosntructors body  */
-  late Stream<Article>? articleStream;
+  late Stream<List<Article>?> articlesStream;
 
-// note sure what is this used form tbh
-  final _refreshController = StreamController<String?>();
+// ok, so this stream will hold strings?
+  final _searhQueryController = StreamController<String?>();
 
   // and we are now returning sink of search query here
   Sink<String?> get searchQuery => _searhQueryController.sink;

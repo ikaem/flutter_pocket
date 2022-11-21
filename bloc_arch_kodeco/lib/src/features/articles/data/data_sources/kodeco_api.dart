@@ -32,23 +32,45 @@ class KodecoAPI {
     return dtos;
   }
 
+  Future<ArticleDTO> one(String id) async {
+    final dtos = await httpWrapper.get<ArticleDTO>(
+      apiBaseUrl: _apiBaseUrl,
+      apiContextPath: _apiContextPath,
+      apiEndpoint: "contents/$id",
+      parameters: null,
+      // TODO this could be not required
+      headers: null,
+      dataBuilder: getDTOForOne,
+    );
+
+    return dtos;
+  }
+
   Map<String, Object> getParametersForMany(String? query) {
     return {
-      'filter[content_types][]': 'article',
-      'page[size]': '25',
+      // 'filter[content_types][]': 'article',
+      // 'page[size]': '25',
       if (query != null) "filter[q]": query,
     };
   }
 
   List<ArticleDTO> getDTOsForMany(dynamic source) {
-    final List<dynamic> json = jsonDecode(source);
+    final json = jsonDecode(source);
 
-    final dtos = json
+    final dtos = json["data"]
         .map<ArticleDTO>(
           (element) => ArticleDTO.fromJson(element),
         )
         .toList();
 
     return dtos;
+  }
+
+  ArticleDTO getDTOForOne(dynamic source) {
+    final json = jsonDecode(source);
+
+    final dto = ArticleDTO.fromJson(json["data"]);
+
+    return dto;
   }
 }

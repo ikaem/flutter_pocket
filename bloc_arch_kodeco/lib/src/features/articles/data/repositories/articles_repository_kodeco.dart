@@ -10,7 +10,7 @@ class ArticlesRepositoryKodeco implements ArticlesRepository {
   final KodecoAPI api;
 
   @override
-  Future<List<Article>> many(String? query) async {
+  Future<List<Article>?> many(String? query) async {
     final dtos = await api.many(query);
 
     final articles = dtos.map<Article>((dto) {
@@ -18,5 +18,14 @@ class ArticlesRepositoryKodeco implements ArticlesRepository {
     }).toList();
 
     return articles;
+  }
+
+  @override
+  Future<Article> one(String id) async {
+    final dto = await api.one(id);
+
+    final article = Article.fromDTO(dto);
+
+    return article;
   }
 }
