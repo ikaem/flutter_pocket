@@ -49,3 +49,4 @@ class ArticleBloc implements Bloc {
     _searhQueryController.close();
   }
 }
+;
