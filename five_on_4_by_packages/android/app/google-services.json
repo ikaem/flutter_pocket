@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "106307734832",
+    "project_id": "five-o4-proto",
+    "storage_bucket": "five-o4-proto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106307734832:android:4f7001b86f5e2f66faccf5",
+        "android_client_info": {
+          "package_name": "com.example.five_o4_packaged_features"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106307734832-8drp7fou394dcl36r82kvv2ae9c073tk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7qtbvBdD8dVpzhSFdg63l5p9xip4MkfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106307734832-8drp7fou394dcl36r82kvv2ae9c073tk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "106307734832-13cdv3skakrq9jpc24fop5tpt1r1gbke.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xyz.imkaem.fivefouralpha"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106307734832:android:1b7a0ad09d93518ffaccf5",
+        "android_client_info": {
+          "package_name": "com.example.five_on_4_by_packages"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106307734832-8drp7fou394dcl36r82kvv2ae9c073tk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7qtbvBdD8dVpzhSFdg63l5p9xip4MkfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106307734832-8drp7fou394dcl36r82kvv2ae9c073tk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "106307734832-13cdv3skakrq9jpc24fop5tpt1r1gbke.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xyz.imkaem.fivefouralpha"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106307734832:android:98dd9e416a65b2ccfaccf5",
+        "android_client_info": {
+          "package_name": "xyz.imkaem.fivefouralpha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106307734832-8drp7fou394dcl36r82kvv2ae9c073tk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7qtbvBdD8dVpzhSFdg63l5p9xip4MkfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106307734832-8drp7fou394dcl36r82kvv2ae9c073tk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "106307734832-13cdv3skakrq9jpc24fop5tpt1r1gbke.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xyz.imkaem.fivefouralpha"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
