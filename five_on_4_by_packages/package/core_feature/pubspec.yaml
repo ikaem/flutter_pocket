@@ -1,18 +1,23 @@
 name: core_feature
 description: A new Flutter package project.
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: ">=2.18.1 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
+  players_feature:
+    path: ../players_feature
+
   firebase_core: ^2.3.0
   cloud_firestore: ^4.1.0
   flutter:
     sdk: flutter
   freezed_annotation: ^2.2.0
   json_annotation: ^4.7.0
+  flutter_bloc: ^8.1.1
 
 dev_dependencies:
   flutter_test:
