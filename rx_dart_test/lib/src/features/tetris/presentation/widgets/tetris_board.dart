@@ -23,7 +23,9 @@ class _TetrisBoardState extends State<TetrisBoard> {
       height: engine.effectiveHeight.toDouble(),
       child: StreamBuilder<GameData>(
         stream: engine.gridStateSteam,
-        builder: (context, snapshot) {},
+        builder: (context, snapshot) {
+          // TODO stopped here
+        },
       ),
     );
   }
