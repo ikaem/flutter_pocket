@@ -29,4 +29,24 @@ class FireStorePlayersApi implements PlayersApi {
       rethrow;
     }
   }
+
+  @override
+  Future<List<PlayerDTO>> getMany(String? searchTerm) async {
+    // TODO for now, lets not sure sesarch term
+    try {
+      final response = await fireStore.getCollectionItems(
+        "players",
+      );
+
+      final dtos = response.map((e) => PlayerDTO.fromJson(e)).toList();
+
+      // const newPlayer = PlayerDTO(id: "1", nickname: "test");
+
+      return dtos;
+    } catch (e) {
+      // TODO check
+      // TODO remove try catch
+      rethrow;
+    }
+  }
 }

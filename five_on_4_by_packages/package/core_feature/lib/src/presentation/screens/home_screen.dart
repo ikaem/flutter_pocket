@@ -19,6 +19,17 @@ class HomeScreen extends StatelessWidget {
                 // TODO make better navigation here
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
+                    return const PlayersScreen();
+                  },
+                ));
+              },
+              child: const Text("To players screen"),
+            ),
+            TextButton(
+              onPressed: () {
+                // TODO make better navigation here
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
                     return const PlayerScreen(playerId: "vtRlluMVicLMeiYlXRdU");
                   },
                 ));
