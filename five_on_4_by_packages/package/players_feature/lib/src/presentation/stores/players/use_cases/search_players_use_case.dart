@@ -27,11 +27,13 @@ class SearchPlayersUseCase {
       final players = dtos.map((dto) => Player.fromDTO(dto)).toList();
 
       yield PlayersDataState(players: players);
+      return;
     }
 
-    // TODO only this possibly needs to return a stream - because maybe if we initially want to emit some other state - or maybe initially emit some other data - such as locally cached data to be shown until we fetch new data
+    final dtos = await playersRepository.searchPlayers(searchTerm);
 
-// TODO this is only test for now
-    yield const PlayersDataState(players: []);
+    final players = dtos.map((dto) => Player.fromDTO(dto)).toList();
+
+    yield PlayersDataState(players: players);
   }
 }

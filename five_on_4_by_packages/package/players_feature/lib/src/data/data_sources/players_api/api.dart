@@ -4,4 +4,5 @@ abstract class PlayersApi {
   // TODO probably can have this iwhtout optional - just throw error if there is no data
   Future<PlayerDTO?> getOne(String id);
   Future<List<PlayerDTO>> getMany(String? searchTerm);
+  Future<List<PlayerDTO>> searchMany(String searchTerm);
 }

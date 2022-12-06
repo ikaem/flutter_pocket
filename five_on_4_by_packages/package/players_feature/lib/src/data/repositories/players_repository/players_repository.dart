@@ -6,5 +6,5 @@ abstract class PlayersRepository {
   // TODO this should probably also return a dto
   Future<List<PlayerDTO>> getPlayers(String? searchTerm);
   // TODO stream just because
-  Stream<PlayerDTO> searchPlayers(String searchTerm);
+  Future<List<PlayerDTO>> searchPlayers(String searchTerm);
 }

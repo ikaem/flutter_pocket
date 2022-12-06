@@ -49,7 +49,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<PlayersBloc>(
             create: (context) {
               return PlayersBloc(
-                  getPlayersUseCase: playersUseCases.getPlayersUseCase);
+                getPlayersUseCase: playersUseCases.getPlayersUseCase,
+                searchPlayersUseCase: playersUseCases.searchPlayersUseCase,
+              );
             },
           )
         ],

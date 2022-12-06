@@ -13,9 +13,6 @@ class PlayersScreen extends StatefulWidget {
 }
 
 class _PlayersScreenState extends State<PlayersScreen> {
-  final TextEditingController _playersSearchController =
-      TextEditingController();
-
 // TODO this is cool - a getter for bloc
   PlayersBloc get _playersBloc => context.read<PlayersBloc>();
 
@@ -27,7 +24,6 @@ class _PlayersScreenState extends State<PlayersScreen> {
 
   @override
   void dispose() {
-    _playersSearchController.dispose();
     super.dispose();
   }
 
@@ -65,9 +61,6 @@ class _PlayersScreenState extends State<PlayersScreen> {
 
             return Column(
               children: [
-                PlayersSearch(
-                  searchController: _playersSearchController,
-                ),
                 Expanded(
                   child: PlayersList(players: players),
                 ),
@@ -83,13 +76,5 @@ class _PlayersScreenState extends State<PlayersScreen> {
     _playersBloc.add(
       const PlayersLoadEvent(searchTerm: null),
     );
-    _playersSearchController.addListener(() {
-      // final playersBloc = context.;
-
-      final searchTerm = _playersSearchController.text;
-      _playersBloc.add(PlayersSearchEvent(searchTerm: searchTerm));
-
-      // but now i also need access to the bloc - this probably cannot get the bloc thing
-    });
   }
 }

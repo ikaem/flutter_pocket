@@ -13,7 +13,6 @@ class PlayersList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const Text("------ Players ------"),
         Expanded(
           child: ListView.builder(
             itemCount: players.length,

@@ -1,4 +1,6 @@
-import "package:flutter_bloc/flutter_bloc.dart";
+// import "package:flutter_bloc/flutter_bloc.dart";
+import "package:bloc/bloc.dart";
+import "package:rxdart/rxdart.dart";
 import 'package:players_feature/src/domain/models/player/player.dart';
 import 'package:players_feature/src/presentation/stores/players/use_cases/get_players_use_case.dart';
 import 'package:players_feature/src/presentation/stores/players/exports.dart';
@@ -11,7 +13,16 @@ class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
     required this.searchPlayersUseCase,
   }) : super(const PlayersInitialState()) {
     on<PlayersLoadEvent>(_onPlayersLoadEvent);
-    on<PlayersSearchEvent>(_onPlayersSearchEvent);
+    on<PlayersSearchEvent>(
+      _onPlayersSearchEvent,
+      transformer: (events, mapper) {
+        // TODO this is make sure we debounce
+
+        return events
+            .debounceTime(const Duration(seconds: 2))
+            .asyncExpand((event) => mapper(event));
+      },
+    );
   }
 
   GetPlayersUseCase getPlayersUseCase;
@@ -52,9 +63,13 @@ class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
 /* TODO note that return of this on each is a future in the end */
       return emitter.onEach<PlayersState>(
         playersSearchStream,
-        onData: emitter,
+        onData: (data) {
+          // TODO test
+          emitter(data);
+        },
       );
     } catch (e) {
+      // TODO test
       emitter(PlayersErrorState(message: e.toString()));
     }
   }

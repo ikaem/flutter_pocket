@@ -31,7 +31,11 @@ class FirebasePlayersRepository implements PlayersRepository {
   }
 
   @override
-  Stream<PlayerDTO> searchPlayers(String searchTerm) async* {
+  Future<List<PlayerDTO>> searchPlayers(String searchTerm) async {
     // this possibly does nto need to return a stream - this will always return just its own data
+
+    final dtos = await api.searchMany(searchTerm);
+
+    return dtos;
   }
 }
