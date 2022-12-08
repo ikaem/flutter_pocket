@@ -12,7 +12,7 @@ class WeatherApi7Timer implements WeatherApi {
 
   // TODO helpers here
 
-  Map<String, dynamic> buildWeatherSearchParameters({
+  Map<String, dynamic> _getWeatherQueryParameters({
     required double longitude,
     required double latitude,
   }) {
