@@ -13,6 +13,7 @@ class FireStorePlayersApi implements PlayersApi {
 
   @override
   Future<PlayerDTO?> getOne(String id) async {
+    // TODO this should probably pass a data builder function to firestore class to build data immediately
     try {
       final response = await fireStore.getCollectionItem("players", id);
 

@@ -1,5 +1,2 @@
 export "firebase/firebase.dart";
-
-void insideLibraries() {
-  return;
-}
+export "dio/dio.dart";

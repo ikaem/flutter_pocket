@@ -18,6 +18,8 @@ dependencies:
     path: package/core_feature
   players_feature:
     path: package/players_feature
+  weather_feature:
+    path: package/weather_feature
 
 dev_dependencies:
   flutter_test:
