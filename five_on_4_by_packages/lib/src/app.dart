@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import "package:flutter_bloc/flutter_bloc.dart";
 import 'package:players_feature/players_feature.dart';
+import "package:weather_feature/weather_feature.dart";
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HttpWrapper httpWrapper = HttpWrapper();
     final FireStore fireStore = FireStore();
     // final PlayersApi playersApi = FireStorePlayersApi(fireStore: fireStore);
     // final PlayersRepository playersRepository =
@@ -23,11 +25,21 @@ class MyApp extends StatelessWidget {
     final PlayersApis playersApis = PlayersApis(
       fireStore: fireStore,
     );
+    final WeatherApi weatherApi = WeatherApi7Timer(
+      httpWrapper: httpWrapper,
+    );
+
     final PlayersRepositories playersRepositories =
         PlayersRepositories(playersApi: playersApis.playersApi);
+    final WeatherRepository weatherRepository = WeatherRepository7Timer(
+      api: weatherApi,
+    );
 
     final PlayersUseCases playersUseCases = PlayersUseCases(
       playersRepository: playersRepositories.playersRepository,
+    );
+    final WeatherUseCases weatherUseCases = WeatherUseCases(
+      weatherRepository: weatherRepository,
     );
 
 // TODO could be a widget to provide this
@@ -41,6 +53,11 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<PlayersUseCases>(
           create: (context) {
             return playersUseCases;
+          },
+        ),
+        RepositoryProvider<WeatherUseCases>(
+          create: (context) {
+            return weatherUseCases;
           },
         ),
       ],

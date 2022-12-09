@@ -27,7 +27,7 @@ class WeatherDataState extends WeatherState {
     required this.weather,
   });
 
-  final Weather? weather;
+  final Weather weather;
 
   @override
   List<Object?> get props => [

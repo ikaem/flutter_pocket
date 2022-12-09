@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:players_feature/players_feature.dart';
+import "package:weather_feature/weather_feature.dart";
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -35,6 +36,17 @@ class HomeScreen extends StatelessWidget {
                 ));
               },
               child: const Text("To players search screen"),
+            ),
+            TextButton(
+              onPressed: () {
+                // TODO make better navigation here
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const WeatherScreen();
+                  },
+                ));
+              },
+              child: const Text("To weather screen"),
             ),
             TextButton(
               onPressed: () {

@@ -23,7 +23,26 @@ class HttpWrapper {
         queryParameters: args.queryParameters,
       );
 
-      final response = await _client.getUri(uri);
+// issue with this is that we dont get proper map it seems
+// we get json response
+// TODO can i request json back in the response
+// this actually retrurns text type
+      final response = await _client.getUri(
+        uri,
+        // options: Options(
+        //   method: "get",
+        //   responseType: ResponseType.,
+        //   headers: {"ContentType": "application/json"},
+        // ),
+      );
+
+      // final response = await _client.get("https://swapi.dev/api/people/1");
+
+      // final response = await _client.get(
+      //   uri.toString(),
+      //   queryParameters: args.queryParameters,
+      // );
+      // TODO test
       final T data = dataBuilder(response.data);
 
       return data;
