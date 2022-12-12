@@ -11,32 +11,44 @@ import "package:weather_feature/weather_feature.dart";
 class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
+    required this.appLogger,
+    required this.database,
+    required this.fireStore,
+    required this.httpWrapper,
   });
+
+  final AppLogger appLogger;
+  final DB database;
+  final FireStore fireStore;
+  final HttpWrapper httpWrapper;
 
   @override
   Widget build(BuildContext context) {
-    final HttpWrapper httpWrapper = HttpWrapper();
-    final FireStore fireStore = FireStore();
-    // final PlayersApi playersApi = FireStorePlayersApi(fireStore: fireStore);
-    // final PlayersRepository playersRepository =
-    //     FirebasePlayersRepository(api: playersApi);
-
 // TODO this would be greate if it was stored in an object so we dont have to do it here
     final PlayersApis playersApis = PlayersApis(
       fireStore: fireStore,
     );
-    final WeatherApi weatherApi = WeatherApi7Timer(
+    final PlayersDbApi playersDbApi = PlayersDbApi(
+      database: database,
+    );
+
+    final WeatherApi weatherApi = WeatherApiOpenMeteo(
       httpWrapper: httpWrapper,
     );
 
     final PlayersRepositories playersRepositories =
         PlayersRepositories(playersApi: playersApis.playersApi);
+    final PlayersDbRepository playersDbRepository = PlayersHiveDbRepository(
+      playersDbApi: playersDbApi,
+    );
     final WeatherRepository weatherRepository = WeatherRepository7Timer(
       api: weatherApi,
     );
 
     final PlayersUseCases playersUseCases = PlayersUseCases(
       playersRepository: playersRepositories.playersRepository,
+      playersDbRepository: playersDbRepository,
+      appLogger: appLogger,
     );
     final WeatherUseCases weatherUseCases = WeatherUseCases(
       weatherRepository: weatherRepository,
@@ -68,6 +80,7 @@ class MyApp extends StatelessWidget {
               return PlayersBloc(
                 getPlayersUseCase: playersUseCases.getPlayersUseCase,
                 searchPlayersUseCase: playersUseCases.searchPlayersUseCase,
+                appLogger: appLogger,
               );
             },
           )

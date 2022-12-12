@@ -44,5 +44,18 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   Future<void> refetchWeather() async {
     await fetchWeather();
+    // TODO just for testing
+    // emit(const WeatherErrorState(message: "TODO just testing this error"));
+    // TODO if it fails, not we can emit state with error
+    // emit(WeatherDataState(weather: state.));
+    final lastState = state;
+    if (lastState is WeatherDataState) {
+      emit(
+        WeatherDataState(
+          weather: lastState.weather,
+          dataUpdateError: "Just some error for test",
+        ),
+      );
+    }
   }
 }

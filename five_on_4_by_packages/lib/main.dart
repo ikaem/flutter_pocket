@@ -8,7 +8,24 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeApp(DefaultFirebaseOptions.currentPlatform);
 
+  final AppLogger appLogger = AppLogger();
+  final DB database = DB(
+    appLogger: appLogger,
+  );
+  final HttpWrapper httpWrapper = HttpWrapper(
+    appLogger: appLogger,
+  );
+  final FireStore fireStore = FireStore();
+
+/* TODO this should probably be happening either in main - not un build function - initializing the database */
+  await database.initialize();
+
   runApp(
-    const MyApp(),
+    MyApp(
+      appLogger: appLogger,
+      database: database,
+      httpWrapper: httpWrapper,
+      fireStore: fireStore,
+    ),
   );
 }

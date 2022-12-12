@@ -25,9 +25,11 @@ class WeatherLoadingState extends WeatherState {
 class WeatherDataState extends WeatherState {
   const WeatherDataState({
     required this.weather,
+    this.dataUpdateError,
   });
 
   final Weather weather;
+  final dynamic dataUpdateError;
 
   @override
   List<Object?> get props => [

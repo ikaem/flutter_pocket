@@ -11,7 +11,7 @@ class WeatherScreen extends StatelessWidget {
     final WeatherUseCases weatherUseCases = context.read<WeatherUseCases>();
 
     return BlocProvider(
-      create: (context) => WeatherCubit(
+      create: (providerContext) => WeatherCubit(
         // TODO these are parameters that should be passed to funciton - they are not needed for the class per se
         longitude: 16.0,
         latitude: 45.0,
@@ -22,43 +22,84 @@ class WeatherScreen extends StatelessWidget {
           appBar: AppBar(
             title: const Text("A single weather, hardcoded"),
           ),
-          body: BlocBuilder<WeatherCubit, WeatherState>(
-            // not the best in this case - but could be if we obtained cubit from elsewhere, so we can work with that instance
-            // bloc: WeatherCubit(),
-            builder: (context, state) {
-              if (state is WeatherInitialState) return const SizedBox.shrink();
-              if (state is WeatherErrorState) {
+          body: Center(
+            child: BlocConsumer<WeatherCubit, WeatherState>(
+              listener: (listenerContext, state) {
+                if (state is! WeatherDataState) return;
+
+                ScaffoldMessenger.of(listenerContext).showSnackBar(
+                  const SnackBar(
+                    content: Text("Error!"),
+                  ),
+                );
+
+                if (state.dataUpdateError == null) return;
+
+                ScaffoldMessenger.of(listenerContext).showSnackBar(
+                  const SnackBar(
+                    content: Text("Error!"),
+                  ),
+                );
+              },
+              // not the best in this case - but could be if we obtained cubit from elsewhere, so we can work with that instance
+              // bloc: WeatherCubit(),
+              builder: (builderContext, state) {
+                if (state is WeatherInitialState) {
+                  return const SizedBox.shrink();
+                }
+                if (state is WeatherErrorState) {
+                  return Column(
+                    children: [
+                      const Text(
+                        "There was an error",
+                      ),
+                      const SizedBox(
+                        height: 16.0,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          final cubit = context.read<WeatherCubit>();
+                          cubit.refetchWeather();
+                        },
+                        child: const Text("Try again"),
+                      ),
+                    ],
+                  );
+                }
+                if (state is WeatherLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                final weatherState = state as WeatherDataState;
+                final weather = weatherState.weather;
+                final isUpdateError = weatherState.dataUpdateError != null;
+
                 return Column(
                   children: [
-                    const Text("There was an error"),
+                    const Text("Temperature:"),
+                    Text(weather.temperature.toString()),
                     const SizedBox(
-                      height: 16.0,
+                      height: 48.0,
+                    ),
+                    if (isUpdateError)
+                      const Text(
+                          "There was an error with refetching weather data"),
+                    const SizedBox(
+                      height: 48.0,
                     ),
                     TextButton(
                       onPressed: () {
-                        final cubit = context.read<WeatherCubit>();
+                        final cubit = builderContext.read<WeatherCubit>();
                         cubit.refetchWeather();
                       },
-                      child: const Text("Try again"),
+                      child: const Text("Refresh"),
                     ),
                   ],
                 );
-              }
-              if (state is WeatherLoadingState) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-
-              final weather = (state as WeatherDataState).weather;
-
-              return Column(
-                children: [
-                  const Text("Location:"),
-                  Text(weather.product),
-                ],
-              );
-            },
+              },
+            ),
           ),
         ),
       ),

@@ -2,11 +2,12 @@ import 'package:core_feature/core_feature.dart';
 import 'package:weather_feature/src/data/data-sources/weather_api/api.dart';
 import 'package:weather_feature/src/data/dtos/weather_dto/weather.dart';
 
-class WeatherApi7Timer implements WeatherApi {
-  static const String _apiBaseUrl = "7timer.info";
-  static const String _apiPath = "bin/astro.php";
+class WeatherApiOpenMeteo implements WeatherApi {
+  static const String _apiBaseUrl = "api.open-meteo.com";
+  static const String _apiPath = "v1";
+  static const String _apiForecastEndpoint = "forecast";
 
-  WeatherApi7Timer({
+  WeatherApiOpenMeteo({
     required this.httpWrapper,
   });
 
@@ -23,7 +24,7 @@ class WeatherApi7Timer implements WeatherApi {
       scheme: "https",
       apiBaseUrl: _apiBaseUrl,
       apiContextPath: _apiPath,
-      apiEndpoint: "",
+      apiEndpoint: _apiForecastEndpoint,
       queryParameters: _generateWeatherQueryParameters(
         longitude: longitude,
         latitude: latitude,
@@ -58,12 +59,9 @@ class WeatherApi7Timer implements WeatherApi {
     required double latitude,
   }) {
     return {
-      "lon": longitude.toString(),
-      "lat": latitude.toString(),
-      "ac": "0",
-      "unit": "metric",
-      "output": "json",
-      "tzshift": "0",
+      "longitude": longitude.toString(),
+      "latitude": latitude.toString(),
+      "current_weather": true.toString(),
     };
   }
 }

@@ -5,36 +5,38 @@ import 'package:weather_feature/src/data/dtos/weather_dto/weather.dart';
 // TODO this could also use freezed eventually
 class Weather extends Equatable {
   const Weather({
-    required this.product,
-    required this.init,
-    required this.timepoint,
-    required this.cloudcover,
-    required this.liftedIndex,
+    required this.elevation,
+    required this.temperature,
+    required this.windSpeed,
+    required this.windDirection,
+    // TODO this should probably be an enum of some kind or such
+    required this.weatherCode,
   });
 
-  final String product;
-  final String init;
-  final int timepoint;
-  final int cloudcover;
-  final int liftedIndex;
+  final double elevation;
+  final double temperature;
+  final double windSpeed;
+  final double windDirection;
+  final int weatherCode;
 
 // making named constructor
   factory Weather.fromDTO(WeatherDTO dto) {
     return Weather(
-      product: dto.product,
-      init: dto.init,
-      timepoint: dto.dataSeries[0].timepoint,
-      cloudcover: dto.dataSeries[0].cloudcover,
-      liftedIndex: dto.dataSeries[0].liftedIndex,
+      elevation: dto.elevation,
+      temperature: dto.currentWeather.temperature,
+      windSpeed: dto.currentWeather.windSpeed,
+      windDirection: dto.currentWeather.windDirection,
+      weatherCode: dto.currentWeather.weatherCode,
     );
   }
 
   @override
   List<Object?> get props => [
-        product,
-        init,
-        timepoint,
-        cloudcover,
-        liftedIndex,
+        // TODO removing this so that bloc can always create new weather if refetch weather call fails - otherwise, bloc will not create new state
+        // elevation,
+        // temperature,
+        // windSpeed,
+        // windDirection,
+        // weatherCode,
       ];
 }

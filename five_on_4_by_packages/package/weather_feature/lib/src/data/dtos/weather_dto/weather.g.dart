@@ -6,32 +6,35 @@ part of 'weather.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_WeatherDataDTO _$$_WeatherDataDTOFromJson(Map<String, dynamic> json) =>
-    _$_WeatherDataDTO(
-      timepoint: json['timepoint'] as int,
-      cloudcover: json['cloudcover'] as int,
-      liftedIndex: json['lifted_index'] as int,
-    );
-
-Map<String, dynamic> _$$_WeatherDataDTOToJson(_$_WeatherDataDTO instance) =>
-    <String, dynamic>{
-      'timepoint': instance.timepoint,
-      'cloudcover': instance.cloudcover,
-      'lifted_index': instance.liftedIndex,
-    };
-
 _$_WeatherDTO _$$_WeatherDTOFromJson(Map<String, dynamic> json) =>
     _$_WeatherDTO(
-      product: json['product'] as String,
-      init: json['init'] as String,
-      dataSeries: (json['dataseries'] as List<dynamic>)
-          .map((e) => WeatherDataDTO.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      elevation: (json['elevation'] as num).toDouble(),
+      currentWeather: WeatherCurrentWeatherDTO.fromJson(
+          json['current_weather'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_WeatherDTOToJson(_$_WeatherDTO instance) =>
     <String, dynamic>{
-      'product': instance.product,
-      'init': instance.init,
-      'dataseries': instance.dataSeries,
+      'elevation': instance.elevation,
+      'current_weather': instance.currentWeather,
+    };
+
+_$_WeatherCurrentWeatherDTO _$$_WeatherCurrentWeatherDTOFromJson(
+        Map<String, dynamic> json) =>
+    _$_WeatherCurrentWeatherDTO(
+      temperature: (json['temperature'] as num).toDouble(),
+      windSpeed: (json['windspeed'] as num).toDouble(),
+      windDirection: (json['winddirection'] as num).toDouble(),
+      weatherCode: json['weathercode'] as int,
+      time: json['time'] as String,
+    );
+
+Map<String, dynamic> _$$_WeatherCurrentWeatherDTOToJson(
+        _$_WeatherCurrentWeatherDTO instance) =>
+    <String, dynamic>{
+      'temperature': instance.temperature,
+      'windspeed': instance.windSpeed,
+      'winddirection': instance.windDirection,
+      'weathercode': instance.weatherCode,
+      'time': instance.time,
     };

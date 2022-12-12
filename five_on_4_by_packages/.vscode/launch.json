@@ -7,7 +7,8 @@
     {
       "name": "five_on_4_by_packages",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "program": "lib/main.dart"
     },
     {
       "name": "five_on_4_by_packages (profile mode)",

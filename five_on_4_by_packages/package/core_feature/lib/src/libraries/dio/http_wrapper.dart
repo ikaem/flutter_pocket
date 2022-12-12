@@ -4,6 +4,12 @@ import 'package:dio/dio.dart';
 // TODO not sure if this should be here
 
 class HttpWrapper {
+  HttpWrapper({
+    required this.appLogger,
+  });
+
+  final AppLogger appLogger;
+
   // TODO dio needs better configuration here
   // TODO dio will need interceptors as well
   // TOOD dio will need some error handling too
@@ -27,13 +33,21 @@ class HttpWrapper {
 // we get json response
 // TODO can i request json back in the response
 // this actually retrurns text type
+
+      // final options = Options(
+      //   method: "get",
+      //   headers: {'Content-Type': 'application/json;charset=UTF-8'},
+      //   responseDecoder: (responseBytes, options, responseBody) {
+      //     // TODO test
+      //     final what = utf8.decode(responseBytes);
+      //     // TODO test
+      //     return "hello";
+      //   },
+      // );
+
       final response = await _client.getUri(
         uri,
-        // options: Options(
-        //   method: "get",
-        //   responseType: ResponseType.,
-        //   headers: {"ContentType": "application/json"},
-        // ),
+        // options: options,
       );
 
       // final response = await _client.get("https://swapi.dev/api/people/1");
@@ -47,6 +61,11 @@ class HttpWrapper {
 
       return data;
     } catch (e) {
+      appLogger.log(
+          logLevel: LogLevel.info,
+          message: "Error retrieving data",
+          error: e.toString());
+
       if (e is! DioError) {
         throw ApiFetchException(
           message: "Data fetch error: ${e.toString()}",

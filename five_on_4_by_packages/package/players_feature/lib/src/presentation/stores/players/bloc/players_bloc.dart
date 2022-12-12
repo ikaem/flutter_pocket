@@ -1,5 +1,6 @@
 // import "package:flutter_bloc/flutter_bloc.dart";
 import "package:bloc/bloc.dart";
+import 'package:core_feature/core_feature.dart';
 import "package:rxdart/rxdart.dart";
 import 'package:players_feature/src/domain/models/player/player.dart';
 import 'package:players_feature/src/presentation/stores/players/use_cases/get_players_use_case.dart';
@@ -11,6 +12,7 @@ class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
     // required this.playersRepository,
     required this.getPlayersUseCase,
     required this.searchPlayersUseCase,
+    required this.appLogger,
   }) : super(const PlayersInitialState()) {
     on<PlayersLoadEvent>(_onPlayersLoadEvent);
     on<PlayersSearchEvent>(
@@ -25,9 +27,10 @@ class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
     );
   }
 
-  GetPlayersUseCase getPlayersUseCase;
+  final GetPlayersUseCase getPlayersUseCase;
   // TODO this is all for testing streams and handling it
-  SearchPlayersUseCase searchPlayersUseCase;
+  final SearchPlayersUseCase searchPlayersUseCase;
+  final AppLogger appLogger;
 
   Future<void> _onPlayersLoadEvent(
       PlayersLoadEvent event, Emitter<PlayersState> emitter) async {
@@ -70,6 +73,11 @@ class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
       );
     } catch (e) {
       // TODO test
+      appLogger.log(
+        logLevel: LogLevel.error,
+        message: "There was an error with loading players",
+        error: e,
+      );
       emitter(PlayersErrorState(message: e.toString()));
     }
   }

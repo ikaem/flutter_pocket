@@ -1,2 +1,2 @@
-export "weather_api_7_timer.dart";
+export 'weather_api_open_meteo.dart';
 export "api.dart";

@@ -14,204 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-WeatherDataDTO _$WeatherDataDTOFromJson(Map<String, dynamic> json) {
-  return _WeatherDataDTO.fromJson(json);
-}
-
-/// @nodoc
-mixin _$WeatherDataDTO {
-  int get timepoint => throw _privateConstructorUsedError;
-  int get cloudcover => throw _privateConstructorUsedError;
-  @JsonKey(name: "lifted_index")
-  int get liftedIndex => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $WeatherDataDTOCopyWith<WeatherDataDTO> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $WeatherDataDTOCopyWith<$Res> {
-  factory $WeatherDataDTOCopyWith(
-          WeatherDataDTO value, $Res Function(WeatherDataDTO) then) =
-      _$WeatherDataDTOCopyWithImpl<$Res, WeatherDataDTO>;
-  @useResult
-  $Res call(
-      {int timepoint,
-      int cloudcover,
-      @JsonKey(name: "lifted_index") int liftedIndex});
-}
-
-/// @nodoc
-class _$WeatherDataDTOCopyWithImpl<$Res, $Val extends WeatherDataDTO>
-    implements $WeatherDataDTOCopyWith<$Res> {
-  _$WeatherDataDTOCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? timepoint = null,
-    Object? cloudcover = null,
-    Object? liftedIndex = null,
-  }) {
-    return _then(_value.copyWith(
-      timepoint: null == timepoint
-          ? _value.timepoint
-          : timepoint // ignore: cast_nullable_to_non_nullable
-              as int,
-      cloudcover: null == cloudcover
-          ? _value.cloudcover
-          : cloudcover // ignore: cast_nullable_to_non_nullable
-              as int,
-      liftedIndex: null == liftedIndex
-          ? _value.liftedIndex
-          : liftedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_WeatherDataDTOCopyWith<$Res>
-    implements $WeatherDataDTOCopyWith<$Res> {
-  factory _$$_WeatherDataDTOCopyWith(
-          _$_WeatherDataDTO value, $Res Function(_$_WeatherDataDTO) then) =
-      __$$_WeatherDataDTOCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int timepoint,
-      int cloudcover,
-      @JsonKey(name: "lifted_index") int liftedIndex});
-}
-
-/// @nodoc
-class __$$_WeatherDataDTOCopyWithImpl<$Res>
-    extends _$WeatherDataDTOCopyWithImpl<$Res, _$_WeatherDataDTO>
-    implements _$$_WeatherDataDTOCopyWith<$Res> {
-  __$$_WeatherDataDTOCopyWithImpl(
-      _$_WeatherDataDTO _value, $Res Function(_$_WeatherDataDTO) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? timepoint = null,
-    Object? cloudcover = null,
-    Object? liftedIndex = null,
-  }) {
-    return _then(_$_WeatherDataDTO(
-      timepoint: null == timepoint
-          ? _value.timepoint
-          : timepoint // ignore: cast_nullable_to_non_nullable
-              as int,
-      cloudcover: null == cloudcover
-          ? _value.cloudcover
-          : cloudcover // ignore: cast_nullable_to_non_nullable
-              as int,
-      liftedIndex: null == liftedIndex
-          ? _value.liftedIndex
-          : liftedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_WeatherDataDTO implements _WeatherDataDTO {
-  const _$_WeatherDataDTO(
-      {required this.timepoint,
-      required this.cloudcover,
-      @JsonKey(name: "lifted_index") required this.liftedIndex});
-
-  factory _$_WeatherDataDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_WeatherDataDTOFromJson(json);
-
-  @override
-  final int timepoint;
-  @override
-  final int cloudcover;
-  @override
-  @JsonKey(name: "lifted_index")
-  final int liftedIndex;
-
-  @override
-  String toString() {
-    return 'WeatherDataDTO(timepoint: $timepoint, cloudcover: $cloudcover, liftedIndex: $liftedIndex)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_WeatherDataDTO &&
-            (identical(other.timepoint, timepoint) ||
-                other.timepoint == timepoint) &&
-            (identical(other.cloudcover, cloudcover) ||
-                other.cloudcover == cloudcover) &&
-            (identical(other.liftedIndex, liftedIndex) ||
-                other.liftedIndex == liftedIndex));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, timepoint, cloudcover, liftedIndex);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_WeatherDataDTOCopyWith<_$_WeatherDataDTO> get copyWith =>
-      __$$_WeatherDataDTOCopyWithImpl<_$_WeatherDataDTO>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_WeatherDataDTOToJson(
-      this,
-    );
-  }
-}
-
-abstract class _WeatherDataDTO implements WeatherDataDTO {
-  const factory _WeatherDataDTO(
-          {required final int timepoint,
-          required final int cloudcover,
-          @JsonKey(name: "lifted_index") required final int liftedIndex}) =
-      _$_WeatherDataDTO;
-
-  factory _WeatherDataDTO.fromJson(Map<String, dynamic> json) =
-      _$_WeatherDataDTO.fromJson;
-
-  @override
-  int get timepoint;
-  @override
-  int get cloudcover;
-  @override
-  @JsonKey(name: "lifted_index")
-  int get liftedIndex;
-  @override
-  @JsonKey(ignore: true)
-  _$$_WeatherDataDTOCopyWith<_$_WeatherDataDTO> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 WeatherDTO _$WeatherDTOFromJson(Map<String, dynamic> json) {
   return _WeatherDTO.fromJson(json);
 }
 
 /// @nodoc
 mixin _$WeatherDTO {
-  String get product => throw _privateConstructorUsedError;
-  String get init => throw _privateConstructorUsedError;
-  @JsonKey(name: "dataseries")
-  List<WeatherDataDTO> get dataSeries => throw _privateConstructorUsedError;
+  double get elevation => throw _privateConstructorUsedError;
+  @JsonKey(name: "current_weather")
+  WeatherCurrentWeatherDTO get currentWeather =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -226,9 +38,11 @@ abstract class $WeatherDTOCopyWith<$Res> {
       _$WeatherDTOCopyWithImpl<$Res, WeatherDTO>;
   @useResult
   $Res call(
-      {String product,
-      String init,
-      @JsonKey(name: "dataseries") List<WeatherDataDTO> dataSeries});
+      {double elevation,
+      @JsonKey(name: "current_weather")
+          WeatherCurrentWeatherDTO currentWeather});
+
+  $WeatherCurrentWeatherDTOCopyWith<$Res> get currentWeather;
 }
 
 /// @nodoc
@@ -244,24 +58,28 @@ class _$WeatherDTOCopyWithImpl<$Res, $Val extends WeatherDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = null,
-    Object? init = null,
-    Object? dataSeries = null,
+    Object? elevation = null,
+    Object? currentWeather = null,
   }) {
     return _then(_value.copyWith(
-      product: null == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as String,
-      init: null == init
-          ? _value.init
-          : init // ignore: cast_nullable_to_non_nullable
-              as String,
-      dataSeries: null == dataSeries
-          ? _value.dataSeries
-          : dataSeries // ignore: cast_nullable_to_non_nullable
-              as List<WeatherDataDTO>,
+      elevation: null == elevation
+          ? _value.elevation
+          : elevation // ignore: cast_nullable_to_non_nullable
+              as double,
+      currentWeather: null == currentWeather
+          ? _value.currentWeather
+          : currentWeather // ignore: cast_nullable_to_non_nullable
+              as WeatherCurrentWeatherDTO,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WeatherCurrentWeatherDTOCopyWith<$Res> get currentWeather {
+    return $WeatherCurrentWeatherDTOCopyWith<$Res>(_value.currentWeather,
+        (value) {
+      return _then(_value.copyWith(currentWeather: value) as $Val);
+    });
   }
 }
 
@@ -274,9 +92,12 @@ abstract class _$$_WeatherDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String product,
-      String init,
-      @JsonKey(name: "dataseries") List<WeatherDataDTO> dataSeries});
+      {double elevation,
+      @JsonKey(name: "current_weather")
+          WeatherCurrentWeatherDTO currentWeather});
+
+  @override
+  $WeatherCurrentWeatherDTOCopyWith<$Res> get currentWeather;
 }
 
 /// @nodoc
@@ -290,23 +111,18 @@ class __$$_WeatherDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = null,
-    Object? init = null,
-    Object? dataSeries = null,
+    Object? elevation = null,
+    Object? currentWeather = null,
   }) {
     return _then(_$_WeatherDTO(
-      product: null == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as String,
-      init: null == init
-          ? _value.init
-          : init // ignore: cast_nullable_to_non_nullable
-              as String,
-      dataSeries: null == dataSeries
-          ? _value._dataSeries
-          : dataSeries // ignore: cast_nullable_to_non_nullable
-              as List<WeatherDataDTO>,
+      elevation: null == elevation
+          ? _value.elevation
+          : elevation // ignore: cast_nullable_to_non_nullable
+              as double,
+      currentWeather: null == currentWeather
+          ? _value.currentWeather
+          : currentWeather // ignore: cast_nullable_to_non_nullable
+              as WeatherCurrentWeatherDTO,
     ));
   }
 }
@@ -315,31 +131,21 @@ class __$$_WeatherDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_WeatherDTO implements _WeatherDTO {
   const _$_WeatherDTO(
-      {required this.product,
-      required this.init,
-      @JsonKey(name: "dataseries")
-          required final List<WeatherDataDTO> dataSeries})
-      : _dataSeries = dataSeries;
+      {required this.elevation,
+      @JsonKey(name: "current_weather") required this.currentWeather});
 
   factory _$_WeatherDTO.fromJson(Map<String, dynamic> json) =>
       _$$_WeatherDTOFromJson(json);
 
   @override
-  final String product;
+  final double elevation;
   @override
-  final String init;
-  final List<WeatherDataDTO> _dataSeries;
-  @override
-  @JsonKey(name: "dataseries")
-  List<WeatherDataDTO> get dataSeries {
-    if (_dataSeries is EqualUnmodifiableListView) return _dataSeries;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dataSeries);
-  }
+  @JsonKey(name: "current_weather")
+  final WeatherCurrentWeatherDTO currentWeather;
 
   @override
   String toString() {
-    return 'WeatherDTO(product: $product, init: $init, dataSeries: $dataSeries)';
+    return 'WeatherDTO(elevation: $elevation, currentWeather: $currentWeather)';
   }
 
   @override
@@ -347,16 +153,15 @@ class _$_WeatherDTO implements _WeatherDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WeatherDTO &&
-            (identical(other.product, product) || other.product == product) &&
-            (identical(other.init, init) || other.init == init) &&
-            const DeepCollectionEquality()
-                .equals(other._dataSeries, _dataSeries));
+            (identical(other.elevation, elevation) ||
+                other.elevation == elevation) &&
+            (identical(other.currentWeather, currentWeather) ||
+                other.currentWeather == currentWeather));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, product, init,
-      const DeepCollectionEquality().hash(_dataSeries));
+  int get hashCode => Object.hash(runtimeType, elevation, currentWeather);
 
   @JsonKey(ignore: true)
   @override
@@ -374,23 +179,260 @@ class _$_WeatherDTO implements _WeatherDTO {
 
 abstract class _WeatherDTO implements WeatherDTO {
   const factory _WeatherDTO(
-      {required final String product,
-      required final String init,
-      @JsonKey(name: "dataseries")
-          required final List<WeatherDataDTO> dataSeries}) = _$_WeatherDTO;
+          {required final double elevation,
+          @JsonKey(name: "current_weather")
+              required final WeatherCurrentWeatherDTO currentWeather}) =
+      _$_WeatherDTO;
 
   factory _WeatherDTO.fromJson(Map<String, dynamic> json) =
       _$_WeatherDTO.fromJson;
 
   @override
-  String get product;
+  double get elevation;
   @override
-  String get init;
-  @override
-  @JsonKey(name: "dataseries")
-  List<WeatherDataDTO> get dataSeries;
+  @JsonKey(name: "current_weather")
+  WeatherCurrentWeatherDTO get currentWeather;
   @override
   @JsonKey(ignore: true)
   _$$_WeatherDTOCopyWith<_$_WeatherDTO> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+WeatherCurrentWeatherDTO _$WeatherCurrentWeatherDTOFromJson(
+    Map<String, dynamic> json) {
+  return _WeatherCurrentWeatherDTO.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WeatherCurrentWeatherDTO {
+  double get temperature => throw _privateConstructorUsedError;
+  @JsonKey(name: "windspeed")
+  double get windSpeed => throw _privateConstructorUsedError;
+  @JsonKey(name: "winddirection")
+  double get windDirection => throw _privateConstructorUsedError;
+  @JsonKey(name: "weathercode")
+  int get weatherCode => throw _privateConstructorUsedError;
+  String get time => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WeatherCurrentWeatherDTOCopyWith<WeatherCurrentWeatherDTO> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WeatherCurrentWeatherDTOCopyWith<$Res> {
+  factory $WeatherCurrentWeatherDTOCopyWith(WeatherCurrentWeatherDTO value,
+          $Res Function(WeatherCurrentWeatherDTO) then) =
+      _$WeatherCurrentWeatherDTOCopyWithImpl<$Res, WeatherCurrentWeatherDTO>;
+  @useResult
+  $Res call(
+      {double temperature,
+      @JsonKey(name: "windspeed") double windSpeed,
+      @JsonKey(name: "winddirection") double windDirection,
+      @JsonKey(name: "weathercode") int weatherCode,
+      String time});
+}
+
+/// @nodoc
+class _$WeatherCurrentWeatherDTOCopyWithImpl<$Res,
+        $Val extends WeatherCurrentWeatherDTO>
+    implements $WeatherCurrentWeatherDTOCopyWith<$Res> {
+  _$WeatherCurrentWeatherDTOCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? temperature = null,
+    Object? windSpeed = null,
+    Object? windDirection = null,
+    Object? weatherCode = null,
+    Object? time = null,
+  }) {
+    return _then(_value.copyWith(
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as double,
+      windSpeed: null == windSpeed
+          ? _value.windSpeed
+          : windSpeed // ignore: cast_nullable_to_non_nullable
+              as double,
+      windDirection: null == windDirection
+          ? _value.windDirection
+          : windDirection // ignore: cast_nullable_to_non_nullable
+              as double,
+      weatherCode: null == weatherCode
+          ? _value.weatherCode
+          : weatherCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      time: null == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WeatherCurrentWeatherDTOCopyWith<$Res>
+    implements $WeatherCurrentWeatherDTOCopyWith<$Res> {
+  factory _$$_WeatherCurrentWeatherDTOCopyWith(
+          _$_WeatherCurrentWeatherDTO value,
+          $Res Function(_$_WeatherCurrentWeatherDTO) then) =
+      __$$_WeatherCurrentWeatherDTOCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {double temperature,
+      @JsonKey(name: "windspeed") double windSpeed,
+      @JsonKey(name: "winddirection") double windDirection,
+      @JsonKey(name: "weathercode") int weatherCode,
+      String time});
+}
+
+/// @nodoc
+class __$$_WeatherCurrentWeatherDTOCopyWithImpl<$Res>
+    extends _$WeatherCurrentWeatherDTOCopyWithImpl<$Res,
+        _$_WeatherCurrentWeatherDTO>
+    implements _$$_WeatherCurrentWeatherDTOCopyWith<$Res> {
+  __$$_WeatherCurrentWeatherDTOCopyWithImpl(_$_WeatherCurrentWeatherDTO _value,
+      $Res Function(_$_WeatherCurrentWeatherDTO) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? temperature = null,
+    Object? windSpeed = null,
+    Object? windDirection = null,
+    Object? weatherCode = null,
+    Object? time = null,
+  }) {
+    return _then(_$_WeatherCurrentWeatherDTO(
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as double,
+      windSpeed: null == windSpeed
+          ? _value.windSpeed
+          : windSpeed // ignore: cast_nullable_to_non_nullable
+              as double,
+      windDirection: null == windDirection
+          ? _value.windDirection
+          : windDirection // ignore: cast_nullable_to_non_nullable
+              as double,
+      weatherCode: null == weatherCode
+          ? _value.weatherCode
+          : weatherCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      time: null == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WeatherCurrentWeatherDTO implements _WeatherCurrentWeatherDTO {
+  const _$_WeatherCurrentWeatherDTO(
+      {required this.temperature,
+      @JsonKey(name: "windspeed") required this.windSpeed,
+      @JsonKey(name: "winddirection") required this.windDirection,
+      @JsonKey(name: "weathercode") required this.weatherCode,
+      required this.time});
+
+  factory _$_WeatherCurrentWeatherDTO.fromJson(Map<String, dynamic> json) =>
+      _$$_WeatherCurrentWeatherDTOFromJson(json);
+
+  @override
+  final double temperature;
+  @override
+  @JsonKey(name: "windspeed")
+  final double windSpeed;
+  @override
+  @JsonKey(name: "winddirection")
+  final double windDirection;
+  @override
+  @JsonKey(name: "weathercode")
+  final int weatherCode;
+  @override
+  final String time;
+
+  @override
+  String toString() {
+    return 'WeatherCurrentWeatherDTO(temperature: $temperature, windSpeed: $windSpeed, windDirection: $windDirection, weatherCode: $weatherCode, time: $time)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WeatherCurrentWeatherDTO &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature) &&
+            (identical(other.windSpeed, windSpeed) ||
+                other.windSpeed == windSpeed) &&
+            (identical(other.windDirection, windDirection) ||
+                other.windDirection == windDirection) &&
+            (identical(other.weatherCode, weatherCode) ||
+                other.weatherCode == weatherCode) &&
+            (identical(other.time, time) || other.time == time));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, temperature, windSpeed, windDirection, weatherCode, time);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WeatherCurrentWeatherDTOCopyWith<_$_WeatherCurrentWeatherDTO>
+      get copyWith => __$$_WeatherCurrentWeatherDTOCopyWithImpl<
+          _$_WeatherCurrentWeatherDTO>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WeatherCurrentWeatherDTOToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WeatherCurrentWeatherDTO implements WeatherCurrentWeatherDTO {
+  const factory _WeatherCurrentWeatherDTO(
+      {required final double temperature,
+      @JsonKey(name: "windspeed") required final double windSpeed,
+      @JsonKey(name: "winddirection") required final double windDirection,
+      @JsonKey(name: "weathercode") required final int weatherCode,
+      required final String time}) = _$_WeatherCurrentWeatherDTO;
+
+  factory _WeatherCurrentWeatherDTO.fromJson(Map<String, dynamic> json) =
+      _$_WeatherCurrentWeatherDTO.fromJson;
+
+  @override
+  double get temperature;
+  @override
+  @JsonKey(name: "windspeed")
+  double get windSpeed;
+  @override
+  @JsonKey(name: "winddirection")
+  double get windDirection;
+  @override
+  @JsonKey(name: "weathercode")
+  int get weatherCode;
+  @override
+  String get time;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WeatherCurrentWeatherDTOCopyWith<_$_WeatherCurrentWeatherDTO>
+      get copyWith => throw _privateConstructorUsedError;
 }
