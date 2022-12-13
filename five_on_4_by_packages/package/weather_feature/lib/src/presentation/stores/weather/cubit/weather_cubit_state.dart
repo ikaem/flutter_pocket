@@ -32,9 +32,7 @@ class WeatherDataState extends WeatherState {
   final dynamic dataUpdateError;
 
   @override
-  List<Object?> get props => [
-        weather,
-      ];
+  List<Object?> get props => [weather, dataUpdateError];
 }
 
 class WeatherErrorState extends WeatherState {

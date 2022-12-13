@@ -72,6 +72,15 @@ class FireStore {
 
     return item;
   }
+
+// TODO what is the time of collection map - it could potentually be only a map
+  Future<void> postCollectionItem(
+    String collectionPath,
+    Map<String, dynamic> data,
+  ) async {
+    // TODO techically, we could get the result back
+    await FirebaseFirestore.instance.collection(collectionPath).add(data);
+  }
 }
 
 // TODO test here only - move this to helpers

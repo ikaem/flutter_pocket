@@ -67,13 +67,13 @@ class HttpWrapper {
           error: e.toString());
 
       if (e is! DioError) {
-        throw ApiFetchException(
+        throw ApiGetException(
           message: "Data fetch error: ${e.toString()}",
           statusCode: null,
         );
       }
 
-      throw ApiFetchException(
+      throw ApiGetException(
         message: e.message,
         statusCode: e.response?.statusCode,
       );

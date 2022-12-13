@@ -27,19 +27,15 @@ class WeatherScreen extends StatelessWidget {
               listener: (listenerContext, state) {
                 if (state is! WeatherDataState) return;
 
-                ScaffoldMessenger.of(listenerContext).showSnackBar(
-                  const SnackBar(
-                    content: Text("Error!"),
-                  ),
-                );
-
                 if (state.dataUpdateError == null) return;
 
-                ScaffoldMessenger.of(listenerContext).showSnackBar(
-                  const SnackBar(
-                    content: Text("Error!"),
-                  ),
-                );
+                ScaffoldMessenger.of(listenerContext)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    const SnackBar(
+                      content: Text("Error!"),
+                    ),
+                  );
               },
               // not the best in this case - but could be if we obtained cubit from elsewhere, so we can work with that instance
               // bloc: WeatherCubit(),

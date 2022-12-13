@@ -33,10 +33,10 @@ class Weather extends Equatable {
   @override
   List<Object?> get props => [
         // TODO removing this so that bloc can always create new weather if refetch weather call fails - otherwise, bloc will not create new state
-        // elevation,
-        // temperature,
-        // windSpeed,
-        // windDirection,
-        // weatherCode,
+        elevation,
+        temperature,
+        windSpeed,
+        windDirection,
+        weatherCode,
       ];
 }

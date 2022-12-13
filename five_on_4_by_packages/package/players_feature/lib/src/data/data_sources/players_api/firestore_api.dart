@@ -5,6 +5,8 @@ import 'package:players_feature/src/data/dtos/player_dto/dto.dart';
 import "package:core_feature/core_feature.dart";
 
 class FireStorePlayersApi implements PlayersApi {
+  static const String fireStoreCollection = "players";
+
   const FireStorePlayersApi({
     required this.fireStore,
   });
@@ -15,7 +17,8 @@ class FireStorePlayersApi implements PlayersApi {
   Future<PlayerDTO?> getOne(String id) async {
     // TODO this should probably pass a data builder function to firestore class to build data immediately
     try {
-      final response = await fireStore.getCollectionItem("players", id);
+      final response =
+          await fireStore.getCollectionItem(fireStoreCollection, id);
 
       if (response == null) return null;
 
@@ -38,7 +41,7 @@ class FireStorePlayersApi implements PlayersApi {
     // TODO for now, lets not sure sesarch term
     try {
       final response = await fireStore.getCollectionItems(
-        "players",
+        fireStoreCollection,
       );
 
       final dtos = response.map((e) => PlayerDTO.fromJson(e)).toList();
@@ -58,7 +61,7 @@ class FireStorePlayersApi implements PlayersApi {
     // TODO for now, lets not sure sesarch term
     try {
       final response = await fireStore.filterCollectionItems(
-        "players",
+        fireStoreCollection,
         "nickname",
         searchTerm,
       );
