@@ -27,6 +27,7 @@ dependencies:
   dio: ^4.0.6
   logger: ^1.1.0
   path_provider: ^2.0.11
+  formz: ^0.4.1
 
 dev_dependencies:
   flutter_test:
