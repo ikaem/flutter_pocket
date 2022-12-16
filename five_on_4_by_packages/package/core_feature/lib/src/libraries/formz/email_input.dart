@@ -10,7 +10,7 @@ class EmailInput extends FormzInput<String, EmailValidationError>
   ])  : isAlreadyRegistered = false,
         super.pure(value);
 
-  const EmailInput.validate(
+  const EmailInput.validated(
     String value, {
     this.isAlreadyRegistered = false,
   }) : super.dirty(value);

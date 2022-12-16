@@ -1,3 +1,4 @@
+import 'package:auth_feature/src/presentation/stores/utils/utils.dart';
 import "package:equatable/equatable.dart";
 
 import "package:core_feature/core_feature.dart";
@@ -9,20 +10,20 @@ import "package:core_feature/core_feature.dart";
 class LoginCubitState extends Equatable {
   const LoginCubitState({
     this.email = const EmailInput.unvalidated(),
-    this.password = const PasswordInput.validated(),
+    this.password = const PasswordInput.unvalidated(),
     this.submissionStatus,
   });
 
-  final Email email;
-  final Password password;
+  final EmailInput email;
+  final PasswordInput password;
   final SubmissionStatus? submissionStatus;
 
-  SignInState copyWith({
-    Email? email,
-    Password? password,
+  LoginCubitState copyWith({
+    EmailInput? email,
+    PasswordInput? password,
     SubmissionStatus? submissionStatus,
   }) {
-    return SignInState(
+    return LoginCubitState(
       email: email ?? this.email,
       password: password ?? this.password,
       submissionStatus: submissionStatus,
