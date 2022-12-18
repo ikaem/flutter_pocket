@@ -3,15 +3,11 @@ import "package:bloc/bloc.dart";
 import 'package:core_feature/core_feature.dart';
 import "package:rxdart/rxdart.dart";
 import 'package:players_feature/src/domain/models/player/player.dart';
-import 'package:players_feature/src/presentation/stores/players/use_cases/get_players_use_case.dart';
 import 'package:players_feature/src/presentation/stores/players/exports.dart';
-import 'package:players_feature/src/presentation/stores/players/use_cases/search_players_use_case.dart';
 
 class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
   PlayersBloc({
-    // required this.playersRepository,
-    required this.getPlayersUseCase,
-    required this.searchPlayersUseCase,
+    required this.playersUseCases,
     required this.appLogger,
   }) : super(const PlayersInitialState()) {
     on<PlayersLoadEvent>(_onPlayersLoadEvent);
@@ -27,9 +23,7 @@ class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
     );
   }
 
-  final GetPlayersUseCase getPlayersUseCase;
-  // TODO this is all for testing streams and handling it
-  final SearchPlayersUseCase searchPlayersUseCase;
+  final PlayersUseCases playersUseCases;
   final AppLogger appLogger;
 
   Future<void> _onPlayersLoadEvent(
@@ -38,7 +32,7 @@ class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
       emitter(const PlayersLoadingState());
 
       final List<Player> players =
-          await getPlayersUseCase.getPlayers(event.searchTerm);
+          await playersUseCases.getPlayers(event.searchTerm);
 
       emitter(PlayersDataState(players: players));
     } catch (e) {
@@ -61,7 +55,7 @@ class PlayersBloc extends Bloc<PlayersEvent, PlayersState> {
 // TODO this now should be returning a stream of futures
 
       final Stream<PlayersState> playersSearchStream =
-          searchPlayersUseCase.searchPlayers(event.searchTerm);
+          playersUseCases.searchPlayers(event.searchTerm);
 
 /* TODO note that return of this on each is a future in the end */
       return emitter.onEach<PlayersState>(

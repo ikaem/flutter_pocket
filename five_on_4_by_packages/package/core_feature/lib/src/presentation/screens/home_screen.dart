@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:players_feature/players_feature.dart';
 import "package:weather_feature/weather_feature.dart";
+import "package:auth_feature/auth_feature.dart";
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,17 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            TextButton(
+              onPressed: () {
+                // TODO make better navigation here
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const LoginScreen();
+                  },
+                ));
+              },
+              child: const Text("To login screen"),
+            ),
             TextButton(
               onPressed: () {
                 // TODO make better navigation here

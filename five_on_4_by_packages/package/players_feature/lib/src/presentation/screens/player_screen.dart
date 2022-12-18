@@ -13,12 +13,11 @@ class PlayerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PlayersRepository playersRepository =
-        context.read<PlayersRepository>();
+    final PlayersUseCases playersUseCases = context.read<PlayersUseCases>();
 
     return BlocProvider<PlayerBloc>(
       create: (providerContext) {
-        return PlayerBloc(playersRepository: playersRepository)
+        return PlayerBloc(playersUseCases: playersUseCases)
           ..add(
             PlayerLoadEvent(
               playerId: playerId,

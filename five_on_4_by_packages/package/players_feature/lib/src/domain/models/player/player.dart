@@ -11,7 +11,7 @@ class Player with _$Player {
     required String nickname,
   }) = _Player;
 
-  factory Player.fromDTO(PlayerDTO dto) {
+  factory Player.fromDTO(PlayerApiDTO dto) {
     final player = Player(
       id: dto.id,
       nickname: dto.nickname,

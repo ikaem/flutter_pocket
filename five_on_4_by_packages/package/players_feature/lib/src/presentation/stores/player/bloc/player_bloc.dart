@@ -1,22 +1,21 @@
 import "package:flutter_bloc/flutter_bloc.dart";
 import 'package:players_feature/players_feature.dart';
-import 'package:players_feature/src/domain/models/player/player.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   PlayerBloc({
-    required this.playersRepository,
+    required this.playersUseCases,
   }) : super(const PlayerInitialState()) {
     on<PlayerLoadEvent>(_onPlayerLoadEvent);
   }
 
-  PlayersRepository playersRepository;
+  PlayersUseCases playersUseCases;
 
   Future<void> _onPlayerLoadEvent(
       PlayerLoadEvent event, Emitter<PlayerState> emitter) async {
     try {
       emitter(const PlayerLoadingState());
 
-      final Player? player = await playersRepository.getPlayer(event.playerId);
+      final Player player = await playersUseCases.getPlayer(event.playerId);
 
       emitter(PlayerDataState(player: player));
     } catch (e) {

@@ -1,3 +1,3 @@
-export "password_input.dart";
-export "email_input.dart";
+export "inputs/inputs.dart";
 export "utils/utils.dart";
+export "inputs_validation.dart";

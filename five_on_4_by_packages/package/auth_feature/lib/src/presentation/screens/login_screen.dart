@@ -1,4 +1,4 @@
-import 'package:auth_feature/src/domain/use_cases/auth_use_cases/auth_use_cases.dart';
+import 'package:auth_feature/src/domain/use_cases/auth_use_cases/use_cases.dart';
 import 'package:auth_feature/src/presentation/stores/login/cubit/cubit.dart';
 import 'package:auth_feature/src/presentation/stores/utils/enums/enums.dart';
 import 'package:core_feature/core_feature.dart';
@@ -19,6 +19,7 @@ class LoginScreen extends StatelessWidget {
         return LoginCubit(authUseCases: authUseCases);
       },
       child: const LoginView(),
+      // child: const Text("no"),
     );
   }
 }
@@ -49,13 +50,17 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginCubitState>(
-      listenWhen: _blocListenWhen,
-      listener: _blocListener,
-      builder: (context, state) {},
-      // buildWhen: (previous, current) {
-
-      // },
+    //
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text("Login"),
+      ),
+      body: BlocConsumer<LoginCubit, LoginCubitState>(
+        listenWhen: _blocListenWhen,
+        listener: _blocListener,
+        builder: _blocBuilder, // },
+      ),
     );
   }
 
@@ -132,48 +137,76 @@ class _LoginViewState extends State<LoginView> {
     // now get the cubit here - this is just to be able to submit
     final loginCubit = context.read<LoginCubit>();
 
-    return Column(
-      children: <Widget>[
-        TextField(
-          focusNode: _emailFocusNode,
-          onChanged: loginCubit.onEmailChanged,
-          textInputAction: TextInputAction.next,
-          autocorrect: false,
-          decoration: InputDecoration(
-            suffix: const Icon(
-              Icons.alternate_email,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          TextField(
+            focusNode: _emailFocusNode,
+            onChanged: loginCubit.onEmailChanged,
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            autocorrect: false,
+            decoration: InputDecoration(
+              suffix: const Icon(
+                Icons.alternate_email,
+              ),
+              enabled: !isLoading,
+              labelText: "Email",
+              errorText: emailError == null ? null : emailErrorText,
             ),
-            enabled: !isLoading,
-            labelText: "Email",
-            errorText: emailError == null ? null : emailErrorText,
           ),
-        ),
-        const SizedBox(
-          height: Spacing.large,
-        ),
-        TextField(
-          focusNode: _passwordFocusNode,
-          onChanged: loginCubit.onPasswordChanged,
-          obscureText: true,
-          onEditingComplete: loginCubit.onSubmit,
-          decoration: InputDecoration(
-            suffix: const Icon(
-              Icons.password,
+          const SizedBox(
+            height: Spacing.large,
+          ),
+          TextField(
+            focusNode: _passwordFocusNode,
+            onChanged: loginCubit.onPasswordChanged,
+            obscureText: true,
+            onEditingComplete: loginCubit.onSubmit,
+            decoration: InputDecoration(
+              suffix: const Icon(
+                Icons.password,
+              ),
+              enabled: !isLoading,
+              labelText: "Password",
+              errorText: passwordError == null ? null : passwordErrorText,
             ),
-            enabled: !isLoading,
-            labelText: "Password",
-            errorText: passwordError == null ? null : passwordErrorText,
           ),
-        ),
-        TextButton(
-          onPressed: isLoading
-              ? null
-              : () {
-                  // just go somewhere when forgot
-                },
-          child: const Text("Forgot password"),
-        ),
-      ],
+          TextButton(
+            onPressed: isLoading
+                ? null
+                : () {
+                    // just go somewhere when forgot
+                  },
+            child: const Text("Forgot password"),
+          ),
+          const SizedBox(
+            height: Spacing.small,
+          ),
+          // now we check
+          isLoading
+              ? ExpandedElevatedButton.loading(label: "Log in")
+              : ExpandedElevatedButton(
+                  label: "Log in",
+                  onTap: loginCubit.onSubmit,
+                  icon: const Icon(
+                    Icons.login,
+                  ),
+                ),
+          // other options now
+          const SizedBox(
+            height: Spacing.xxLarge,
+          ),
+          const Text("Some opening text for signup"),
+          TextButton(
+            onPressed: () {
+              // todo THIS will be sending to another page
+            },
+            child: const Text("Register"),
+          ),
+        ],
+      ),
     );
   }
 

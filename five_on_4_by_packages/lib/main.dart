@@ -9,23 +9,37 @@ void main() async {
   await initializeApp(DefaultFirebaseOptions.currentPlatform);
 
   final AppLogger appLogger = AppLogger();
+  final InputsValidation inputsValidation = InputsValidation();
   final DB database = DB(
     appLogger: appLogger,
   );
+  await database.initialize();
+
   final HttpWrapper httpWrapper = HttpWrapper(
     appLogger: appLogger,
   );
   final FireStore fireStore = FireStore();
 
-/* TODO this should probably be happening either in main - not un build function - initializing the database */
-  await database.initialize();
+  final AppDataSources appDataSources = AppDataSources(
+    httpWrapper: httpWrapper,
+    database: database,
+    fireStore: fireStore,
+  );
+
+  final AppRepositories appRepositories = AppRepositories(
+    appDataSources: appDataSources,
+  );
+
+  final AppUseCases appUseCases = AppUseCases(
+    appRepositories: appRepositories,
+    appLogger: appLogger,
+    inputsValidation: inputsValidation,
+  );
 
   runApp(
     MyApp(
       appLogger: appLogger,
-      database: database,
-      httpWrapper: httpWrapper,
-      fireStore: fireStore,
+      appUseCases: appUseCases,
     ),
   );
 }

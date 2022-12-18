@@ -20,6 +20,8 @@ dependencies:
     path: package/players_feature
   weather_feature:
     path: package/weather_feature
+  auth_feature:
+    path: package/auth_feature
 
 dev_dependencies:
   flutter_test:

@@ -14,17 +14,23 @@ class FireStorePlayersApi implements PlayersApi {
   final FireStore fireStore;
 
   @override
-  Future<PlayerDTO?> getOne(String id) async {
+  Future<PlayerApiDTO> getOne(String id) async {
     // TODO this should probably pass a data builder function to firestore class to build data immediately
     try {
       final response =
           await fireStore.getCollectionItem(fireStoreCollection, id);
 
-      if (response == null) return null;
+      if (response == null) {
+        throw FireStoreGetException(
+          message: "Unable to retrieve player",
+          // TODO probably dont need status code here
+          statusCode: 500,
+        );
+      }
 
       // TODO maybe even create a function that will add id there
 
-      final dto = PlayerDTO.fromJson(response);
+      final dto = PlayerApiDTO.fromJson(response);
 
       // const newPlayer = PlayerDTO(id: "1", nickname: "test");
 
@@ -37,14 +43,14 @@ class FireStorePlayersApi implements PlayersApi {
   }
 
   @override
-  Future<List<PlayerDTO>> getMany(String? searchTerm) async {
+  Future<List<PlayerApiDTO>> getMany(String? searchTerm) async {
     // TODO for now, lets not sure sesarch term
     try {
       final response = await fireStore.getCollectionItems(
         fireStoreCollection,
       );
 
-      final dtos = response.map((e) => PlayerDTO.fromJson(e)).toList();
+      final dtos = response.map((e) => PlayerApiDTO.fromJson(e)).toList();
 
       // const newPlayer = PlayerDTO(id: "1", nickname: "test");
 
@@ -57,7 +63,7 @@ class FireStorePlayersApi implements PlayersApi {
   }
 
   @override
-  Future<List<PlayerDTO>> searchMany(String searchTerm) async {
+  Future<List<PlayerApiDTO>> searchMany(String searchTerm) async {
     // TODO for now, lets not sure sesarch term
     try {
       final response = await fireStore.filterCollectionItems(
@@ -66,7 +72,7 @@ class FireStorePlayersApi implements PlayersApi {
         searchTerm,
       );
 
-      final dtos = response.map((e) => PlayerDTO.fromJson(e)).toList();
+      final dtos = response.map((e) => PlayerApiDTO.fromJson(e)).toList();
 
       log("this is dtos!!: $dtos");
 

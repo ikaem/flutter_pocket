@@ -8,7 +8,7 @@ class PasswordInput extends FormzInput<String, PasswordValidationError> {
     // TODO i guess pure is to make sure that it was not touched
   ]) : super.pure(value);
 
-  const PasswordInput.validate([
+  const PasswordInput.validated([
     String value = "",
   ]) : super.dirty(value);
 

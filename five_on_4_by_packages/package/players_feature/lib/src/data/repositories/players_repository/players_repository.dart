@@ -1,10 +1,9 @@
 import 'package:players_feature/src/data/dtos/player_dto/dto.dart';
-import 'package:players_feature/src/domain/models/player/player.dart';
 
 abstract class PlayersRepository {
-  Future<Player?> getPlayer(String id);
+  Future<PlayerApiDTO> getPlayer(String id);
   // TODO this should probably also return a dto
-  Future<List<PlayerDTO>> getPlayers(String? searchTerm);
+  Future<List<PlayerApiDTO>> getPlayers(String? searchTerm);
   // TODO stream just because
-  Future<List<PlayerDTO>> searchPlayers(String searchTerm);
+  Future<List<PlayerApiDTO>> searchPlayers(String searchTerm);
 }

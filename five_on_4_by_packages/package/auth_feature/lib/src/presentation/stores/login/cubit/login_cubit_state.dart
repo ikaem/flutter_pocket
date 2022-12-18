@@ -11,7 +11,7 @@ class LoginCubitState extends Equatable {
   const LoginCubitState({
     this.email = const EmailInput.unvalidated(),
     this.password = const PasswordInput.unvalidated(),
-    this.submissionStatus,
+    this.submissionStatus = SubmissionStatus.initial,
   });
 
   final EmailInput email;

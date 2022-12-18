@@ -12,6 +12,8 @@ dependencies:
     path: ../players_feature
   weather_feature:
     path: ../weather_feature
+  auth_feature:
+    path: ../auth_feature
 
   firebase_core: ^2.3.0
   cloud_firestore: ^4.1.0

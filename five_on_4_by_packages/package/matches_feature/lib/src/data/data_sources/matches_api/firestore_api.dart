@@ -36,6 +36,7 @@ class MatchesFirestoreApi implements MatchesApi {
       );
 
 // TODO need better error here - need to know what status code we get
+// TODO i do have exception for firestore - but maybe it is better to use this if i ever swithc from firestore
       throw ApiGetException(
         message: "Failed to get match - id: $id",
         statusCode: 500,

@@ -28,7 +28,7 @@ class PlayerDbDTO {
     return dbDto;
   }
 
-  factory PlayerDbDTO.fromApiDTO(PlayerDTO apiDTO) {
+  factory PlayerDbDTO.fromApiDTO(PlayerApiDTO apiDTO) {
     final dbDto = PlayerDbDTO(
       id: apiDTO.id,
       nickname: apiDTO.nickname,

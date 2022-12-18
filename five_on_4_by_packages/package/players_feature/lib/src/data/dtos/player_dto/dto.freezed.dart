@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PlayerDTO _$PlayerDTOFromJson(Map<String, dynamic> json) {
+PlayerApiDTO _$PlayerDTOFromJson(Map<String, dynamic> json) {
   return _PlayerDTO.fromJson(json);
 }
 
@@ -25,20 +25,21 @@ mixin _$PlayerDTO {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerDTOCopyWith<PlayerDTO> get copyWith =>
+  $PlayerDTOCopyWith<PlayerApiDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PlayerDTOCopyWith<$Res> {
-  factory $PlayerDTOCopyWith(PlayerDTO value, $Res Function(PlayerDTO) then) =
-      _$PlayerDTOCopyWithImpl<$Res, PlayerDTO>;
+  factory $PlayerDTOCopyWith(
+          PlayerApiDTO value, $Res Function(PlayerApiDTO) then) =
+      _$PlayerDTOCopyWithImpl<$Res, PlayerApiDTO>;
   @useResult
   $Res call({String id, String nickname});
 }
 
 /// @nodoc
-class _$PlayerDTOCopyWithImpl<$Res, $Val extends PlayerDTO>
+class _$PlayerDTOCopyWithImpl<$Res, $Val extends PlayerApiDTO>
     implements $PlayerDTOCopyWith<$Res> {
   _$PlayerDTOCopyWithImpl(this._value, this._then);
 
@@ -149,7 +150,7 @@ class _$_PlayerDTO implements _PlayerDTO {
   }
 }
 
-abstract class _PlayerDTO implements PlayerDTO {
+abstract class _PlayerDTO implements PlayerApiDTO {
   const factory _PlayerDTO(
       {required final String id,
       required final String nickname}) = _$_PlayerDTO;
