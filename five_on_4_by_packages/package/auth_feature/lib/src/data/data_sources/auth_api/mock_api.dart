@@ -19,7 +19,11 @@ class AuthMockApi implements AuthApi {
     if (randNumber == 2) throw InvalidCredentialsException();
     if (randNumber == 1) throw Exception("Just a generic error");
     // TODO this is just a mock now
-    const AuthApiDTO dto = AuthApiDTO(name: "Karlo", token: "Some token");
+    const AuthApiDTO dto = AuthApiDTO(
+      id: "1",
+      name: "Karlo",
+      token: "Some token",
+    );
 
     return dto;
   }

@@ -24,7 +24,7 @@ class _MatchesViewState extends State<MatchesView> {
     firstPageKey: 1,
   );
 
-  final; 
+  // final;
 
   @override
   Widget build(BuildContext context) {

@@ -27,6 +27,7 @@ import 'package:players_feature/players_feature.dart';
 class DB {
   // TODO test - not sure this should live here in future
   static const String kPlayersBox = "players";
+  static const String kAuthBox = "auth";
 
   DB({
     required this.appLogger,
@@ -45,6 +46,7 @@ class DB {
 
 // TODO this could eventually be running a loop, and registering all adapters in a list - so we would need to have a list of all adapters somewhere somehow
     Hive.registerAdapter(PlayerDbDTOAdapter());
+    // TODO should register also auth db adapter
 
     // TODO later, we could be opening this lazily
     // TODO this should also be made more sophiistactdd - but do it later
@@ -114,6 +116,17 @@ class DB {
     // TODO if there is no data, should probably throw some error that thereis no data in the databse
 
     return item;
+  }
+
+  Stream<BoxEvent> observeBoxItem<T>({
+    required String boxName,
+    required Object itemId,
+  }) {
+    final Stream<BoxEvent> stream = Hive.box<T>(boxName).watch(
+      key: itemId,
+    );
+
+    return stream;
   }
 }
 

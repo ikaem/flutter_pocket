@@ -14,34 +14,34 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PlayerApiDTO _$PlayerDTOFromJson(Map<String, dynamic> json) {
+PlayerApiDTO _$PlayerApiDTOFromJson(Map<String, dynamic> json) {
   return _PlayerDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PlayerDTO {
+mixin _$PlayerApiDTO {
   String get id => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerDTOCopyWith<PlayerApiDTO> get copyWith =>
+  $PlayerApiDTOCopyWith<PlayerApiDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerDTOCopyWith<$Res> {
-  factory $PlayerDTOCopyWith(
+abstract class $PlayerApiDTOCopyWith<$Res> {
+  factory $PlayerApiDTOCopyWith(
           PlayerApiDTO value, $Res Function(PlayerApiDTO) then) =
-      _$PlayerDTOCopyWithImpl<$Res, PlayerApiDTO>;
+      _$PlayerApiDTOCopyWithImpl<$Res, PlayerApiDTO>;
   @useResult
   $Res call({String id, String nickname});
 }
 
 /// @nodoc
-class _$PlayerDTOCopyWithImpl<$Res, $Val extends PlayerApiDTO>
-    implements $PlayerDTOCopyWith<$Res> {
-  _$PlayerDTOCopyWithImpl(this._value, this._then);
+class _$PlayerApiDTOCopyWithImpl<$Res, $Val extends PlayerApiDTO>
+    implements $PlayerApiDTOCopyWith<$Res> {
+  _$PlayerApiDTOCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -68,7 +68,8 @@ class _$PlayerDTOCopyWithImpl<$Res, $Val extends PlayerApiDTO>
 }
 
 /// @nodoc
-abstract class _$$_PlayerDTOCopyWith<$Res> implements $PlayerDTOCopyWith<$Res> {
+abstract class _$$_PlayerDTOCopyWith<$Res>
+    implements $PlayerApiDTOCopyWith<$Res> {
   factory _$$_PlayerDTOCopyWith(
           _$_PlayerDTO value, $Res Function(_$_PlayerDTO) then) =
       __$$_PlayerDTOCopyWithImpl<$Res>;
@@ -79,7 +80,7 @@ abstract class _$$_PlayerDTOCopyWith<$Res> implements $PlayerDTOCopyWith<$Res> {
 
 /// @nodoc
 class __$$_PlayerDTOCopyWithImpl<$Res>
-    extends _$PlayerDTOCopyWithImpl<$Res, _$_PlayerDTO>
+    extends _$PlayerApiDTOCopyWithImpl<$Res, _$_PlayerDTO>
     implements _$$_PlayerDTOCopyWith<$Res> {
   __$$_PlayerDTOCopyWithImpl(
       _$_PlayerDTO _value, $Res Function(_$_PlayerDTO) _then)
@@ -119,7 +120,7 @@ class _$_PlayerDTO implements _PlayerDTO {
 
   @override
   String toString() {
-    return 'PlayerDTO(id: $id, nickname: $nickname)';
+    return 'PlayerApiDTO(id: $id, nickname: $nickname)';
   }
 
   @override

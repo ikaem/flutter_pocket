@@ -5,12 +5,12 @@ part "dto.freezed.dart";
 part "dto.g.dart";
 
 @freezed
-class PlayerApiDTO with _$PlayerDTO {
+class PlayerApiDTO with _$PlayerApiDTO {
   const factory PlayerApiDTO({
     required String id,
     required String nickname,
   }) = _PlayerDTO;
 
   factory PlayerApiDTO.fromJson(Map<String, dynamic> map) =>
-      _$PlayerDTOFromJson(map);
+      _$PlayerApiDTOFromJson(map);
 }
