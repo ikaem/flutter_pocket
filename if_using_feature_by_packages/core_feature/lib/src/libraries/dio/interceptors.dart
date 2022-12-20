@@ -1,0 +1,2 @@
+// TODO interceptor could be passed database connection - or database repository maybe better - to get its current authentication - or the api client could be passed this
+// or api client could always be passed needed credetials
