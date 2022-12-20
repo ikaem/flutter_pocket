@@ -1,0 +1,62 @@
+import 'package:five_on_4_by_packages/src/features/weather_feature/src/domain/domain.dart';
+import 'package:five_on_4_by_packages/src/features/weather_feature/src/presentation/stores/weather/use_cases/weather_use_cases.dart';
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:equatable/equatable.dart";
+// TODO remove this, put the export inside the barrel
+
+part "weather_cubit_state.dart";
+
+class WeatherCubit extends Cubit<WeatherState> {
+  WeatherCubit({
+    // TODO this is not needed if we call the function from outside of the cubit
+    required this.longitude,
+    required this.latitude,
+    required this.weatherUseCases,
+  }) : super(const WeatherInitialState()) {
+    fetchWeather(
+        // longitude,
+        // latitude,
+        );
+  }
+
+  final WeatherUseCases weatherUseCases;
+  // TODO note that we would not need this if we manually fetch, which is what i would like
+  // TODO also, this possible does not need be set here
+  final double longitude;
+  final double latitude;
+
+  // TODO methods
+  Future<void> fetchWeather() async {
+    emit(const WeatherLoadingState());
+
+    try {
+      final Weather weather = await weatherUseCases.getWeather(
+        longitude: longitude,
+        latitude: latitude,
+      );
+
+      emit(WeatherDataState(weather: weather));
+    } catch (e) {
+      final error = e;
+      /* TODO test */
+      emit(WeatherErrorState(message: e.toString()));
+    }
+  }
+
+  Future<void> refetchWeather() async {
+    await fetchWeather();
+    // TODO just for testing
+    // emit(const WeatherErrorState(message: "TODO just testing this error"));
+    // TODO if it fails, not we can emit state with error
+    // emit(WeatherDataState(weather: state.));
+    final lastState = state;
+    if (lastState is WeatherDataState) {
+      emit(
+        WeatherDataState(
+          weather: lastState.weather,
+          dataUpdateError: "Just some error for test",
+        ),
+      );
+    }
+  }
+}

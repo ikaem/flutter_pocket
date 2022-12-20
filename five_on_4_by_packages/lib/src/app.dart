@@ -1,10 +1,13 @@
-import 'package:core_feature/core_feature.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/domain/domain.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/libraries/libraries.dart';
+import 'package:five_on_4_by_packages/src/features/players_feature/players_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import "package:flutter_bloc/flutter_bloc.dart";
-import 'package:players_feature/players_feature.dart';
+
+import 'features/core_feature/src/presentation/screens/screens.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
