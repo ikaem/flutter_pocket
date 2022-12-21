@@ -18,6 +18,8 @@ class AppUseCases {
 
   late final AuthUseCases authUseCases = AuthUseCases(
     authApiRepository: appRepositories.authApiRepository,
+    // TODO maybe repositories should be handling both data sources?
+    authDBApiRepository: appRepositories.authDbApiRepository,
     inputsValidation: inputsValidation,
   );
 

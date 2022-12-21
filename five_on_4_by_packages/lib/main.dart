@@ -23,6 +23,7 @@ void main() async {
     httpWrapper: httpWrapper,
     database: database,
     fireStore: fireStore,
+    appLogger: appLogger,
   );
 
   final AppRepositories appRepositories = AppRepositories(

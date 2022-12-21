@@ -17,11 +17,13 @@
 
 // TODO trying to make it as a class
 
+import 'dart:async';
 import 'dart:io';
 
+import 'package:five_on_4_by_packages/src/features/auth_feature/src/data/dtos/auth_db_api_dto/db_api_dto.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/libraries/logger/app_logger.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/utils/utils.dart';
-import 'package:five_on_4_by_packages/src/features/players_feature/players_feature.dart';
+import 'package:five_on_4_by_packages/src/features/players_feature/src/data/dtos/player_db_dto/player_db_dto.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -47,12 +49,16 @@ class DB {
 
 // TODO this could eventually be running a loop, and registering all adapters in a list - so we would need to have a list of all adapters somewhere somehow
     Hive.registerAdapter(PlayerDbDTOAdapter());
+    Hive.registerAdapter(AuthDbApiDTOAdapter());
     // TODO should register also auth db adapter
 
     // TODO later, we could be opening this lazily
     // TODO this should also be made more sophiistactdd - but do it later
     // TODO not sure if this should be done here - or maybe it should be done in each function
     await Hive.openBox<PlayerDbDTO>(kPlayersBox);
+    await Hive.openBox<AuthDbApiDTO>(kAuthBox);
+
+    // await Hive.initFlutter();
   }
 
   // TODO we should also be closing boxes too - and we should close it when the app closes - how to do that check it
@@ -134,11 +140,25 @@ class DB {
     required String boxName,
     required Object itemId,
   }) {
-    final Stream<BoxEvent> stream = Hive.box<T>(boxName).watch(
-      key: itemId,
-    );
+// Hive.box(name).
 
-    return stream;
+    try {
+      final Stream<BoxEvent> stream = Hive.box<T>(boxName).watch(
+        key: itemId,
+      );
+
+      // final Stream stream = StreamController().stream.map((event) => null);
+
+      return stream;
+    } catch (e) {
+      final error = e;
+      // TODO TEST
+      rethrow;
+    }
+  }
+
+  Future<void> cleanup() async {
+    await Hive.close();
   }
 }
 

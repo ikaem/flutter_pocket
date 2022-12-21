@@ -14,6 +14,10 @@ class AppRepositories {
     authApi: appDataSources.authApi,
   );
 
+  late final AuthDBApiRepository authDbApiRepository = AuthHiveDBApiRepository(
+    authDbApi: appDataSources.authDbApi,
+  );
+
   late final PlayersRepository playersRepository = FirebasePlayersRepository(
     api: appDataSources.playersApi,
   );

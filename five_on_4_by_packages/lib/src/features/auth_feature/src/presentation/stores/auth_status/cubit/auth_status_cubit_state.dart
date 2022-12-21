@@ -6,6 +6,8 @@ part of "auth_status_cubit.dart";
 class AuthStatusState with _$AuthStatusState {
   // TODO how to make sure we know we have user in the state of this cubit?
   const factory AuthStatusState.initial() = AuthStatusInitialState;
-  const factory AuthStatusState.loggedIn() = AuthStatusLoggedInState;
+  const factory AuthStatusState.loggedIn(
+    Auth auth,
+  ) = AuthStatusLoggedInState;
   const factory AuthStatusState.loggedOut() = AuthStatusLoggedOutState;
 }

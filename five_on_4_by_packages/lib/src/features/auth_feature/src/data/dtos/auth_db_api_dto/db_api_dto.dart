@@ -6,7 +6,7 @@ import "package:hive/hive.dart";
 
 part "db_api_dto.g.dart";
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class AuthDbApiDTO {
   const AuthDbApiDTO({
     required this.id,

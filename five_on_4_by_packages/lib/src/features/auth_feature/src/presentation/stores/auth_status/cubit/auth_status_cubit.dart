@@ -7,11 +7,24 @@ part "auth_status_cubit.freezed.dart";
 
 class AuthStatusCubit extends Cubit<AuthStatusState> {
   AuthStatusCubit({
-    required this.authDBApiRepository,
-  });
+    required this.authUseCases,
+  }) : super(const AuthStatusInitialState()) {
+    _handleAuthStatus();
+  }
 
-  final AuthDBApiRepository authDBApiRepository;
+  final AuthUseCases authUseCases;
 
-// TODO this does not necessary observe data - it can always just fetch data
+  void _handleAuthStatus() {
+    // TODO not sure if this works
+    authUseCases.observeAuth().listen((event) {
+      final Auth? auth = event;
 
+      if (auth == null) {
+        emit(const AuthStatusLoggedOutState());
+        return;
+      }
+
+      emit(AuthStatusLoggedInState(auth));
+    });
+  }
 }

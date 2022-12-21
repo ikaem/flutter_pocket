@@ -7,6 +7,7 @@ import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dar
 
 class AuthUseCases {
   const AuthUseCases({
+    // TODO possibly could have only accept a repository - and repository juggles data sources local and remote
     required this.authApiRepository,
     required this.authDBApiRepository,
     required this.inputsValidation,
@@ -15,6 +16,17 @@ class AuthUseCases {
   final AuthApiRepository authApiRepository;
   final AuthDBApiRepository authDBApiRepository;
   final InputsValidation inputsValidation;
+
+  Stream<Auth?> observeAuth() {
+    // TODO it is silly that this actually transforms data - repository should probably handle transformation
+    final Stream<Auth?> stream = authDBApiRepository.observeAuth().map((event) {
+      if (event == null) return null;
+
+      return Auth.fromDbApiDTO(event);
+    });
+
+    return stream;
+  }
 
   // TODO test
   Future<Auth> login({

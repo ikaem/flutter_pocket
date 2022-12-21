@@ -16,7 +16,11 @@ class AppDataSources {
   final DB database;
   final AppLogger appLogger;
 
-  final AuthApi authApi = AuthMockApi();
+  late final AuthApi authApi = AuthMockApi();
+  late final AuthDbApi authDbApi = AuthHiveDbApi(
+    database: database,
+    appLogger: appLogger,
+  );
 
   late final PlayersDbApi playersDbApi = PlayersDbApi(
     database: database,
@@ -28,10 +32,5 @@ class AppDataSources {
 
   late final WeatherApi weatherApi = WeatherApiOpenMeteo(
     httpWrapper: httpWrapper,
-  );
-
-  late final AuthDbApi authDbApi = AuthHiveDbApi(
-    database: database,
-    appLogger: appLogger,
   );
 }

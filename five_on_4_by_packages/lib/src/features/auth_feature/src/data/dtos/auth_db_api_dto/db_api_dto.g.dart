@@ -8,7 +8,7 @@ part of 'db_api_dto.dart';
 
 class AuthDbApiDTOAdapter extends TypeAdapter<AuthDbApiDTO> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
   AuthDbApiDTO read(BinaryReader reader) {

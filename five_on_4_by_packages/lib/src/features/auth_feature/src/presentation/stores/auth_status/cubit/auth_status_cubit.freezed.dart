@@ -19,21 +19,21 @@ mixin _$AuthStatusState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loggedIn,
+    required TResult Function(Auth auth) loggedIn,
     required TResult Function() loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loggedIn,
+    TResult? Function(Auth auth)? loggedIn,
     TResult? Function()? loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loggedIn,
+    TResult Function(Auth auth)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) =>
@@ -119,7 +119,7 @@ class _$AuthStatusInitialState implements AuthStatusInitialState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loggedIn,
+    required TResult Function(Auth auth) loggedIn,
     required TResult Function() loggedOut,
   }) {
     return initial();
@@ -129,7 +129,7 @@ class _$AuthStatusInitialState implements AuthStatusInitialState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loggedIn,
+    TResult? Function(Auth auth)? loggedIn,
     TResult? Function()? loggedOut,
   }) {
     return initial?.call();
@@ -139,7 +139,7 @@ class _$AuthStatusInitialState implements AuthStatusInitialState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loggedIn,
+    TResult Function(Auth auth)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
@@ -193,6 +193,8 @@ abstract class _$$AuthStatusLoggedInStateCopyWith<$Res> {
   factory _$$AuthStatusLoggedInStateCopyWith(_$AuthStatusLoggedInState value,
           $Res Function(_$AuthStatusLoggedInState) then) =
       __$$AuthStatusLoggedInStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Auth auth});
 }
 
 /// @nodoc
@@ -202,58 +204,82 @@ class __$$AuthStatusLoggedInStateCopyWithImpl<$Res>
   __$$AuthStatusLoggedInStateCopyWithImpl(_$AuthStatusLoggedInState _value,
       $Res Function(_$AuthStatusLoggedInState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? auth = null,
+  }) {
+    return _then(_$AuthStatusLoggedInState(
+      null == auth
+          ? _value.auth
+          : auth // ignore: cast_nullable_to_non_nullable
+              as Auth,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$AuthStatusLoggedInState implements AuthStatusLoggedInState {
-  const _$AuthStatusLoggedInState();
+  const _$AuthStatusLoggedInState(this.auth);
+
+  @override
+  final Auth auth;
 
   @override
   String toString() {
-    return 'AuthStatusState.loggedIn()';
+    return 'AuthStatusState.loggedIn(auth: $auth)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthStatusLoggedInState);
+            other is _$AuthStatusLoggedInState &&
+            (identical(other.auth, auth) || other.auth == auth));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, auth);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthStatusLoggedInStateCopyWith<_$AuthStatusLoggedInState> get copyWith =>
+      __$$AuthStatusLoggedInStateCopyWithImpl<_$AuthStatusLoggedInState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loggedIn,
+    required TResult Function(Auth auth) loggedIn,
     required TResult Function() loggedOut,
   }) {
-    return loggedIn();
+    return loggedIn(auth);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loggedIn,
+    TResult? Function(Auth auth)? loggedIn,
     TResult? Function()? loggedOut,
   }) {
-    return loggedIn?.call();
+    return loggedIn?.call(auth);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loggedIn,
+    TResult Function(Auth auth)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
-      return loggedIn();
+      return loggedIn(auth);
     }
     return orElse();
   }
@@ -294,7 +320,13 @@ class _$AuthStatusLoggedInState implements AuthStatusLoggedInState {
 }
 
 abstract class AuthStatusLoggedInState implements AuthStatusState {
-  const factory AuthStatusLoggedInState() = _$AuthStatusLoggedInState;
+  const factory AuthStatusLoggedInState(final Auth auth) =
+      _$AuthStatusLoggedInState;
+
+  Auth get auth;
+  @JsonKey(ignore: true)
+  _$$AuthStatusLoggedInStateCopyWith<_$AuthStatusLoggedInState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -337,7 +369,7 @@ class _$AuthStatusLoggedOutState implements AuthStatusLoggedOutState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loggedIn,
+    required TResult Function(Auth auth) loggedIn,
     required TResult Function() loggedOut,
   }) {
     return loggedOut();
@@ -347,7 +379,7 @@ class _$AuthStatusLoggedOutState implements AuthStatusLoggedOutState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loggedIn,
+    TResult? Function(Auth auth)? loggedIn,
     TResult? Function()? loggedOut,
   }) {
     return loggedOut?.call();
@@ -357,7 +389,7 @@ class _$AuthStatusLoggedOutState implements AuthStatusLoggedOutState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loggedIn,
+    TResult Function(Auth auth)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) {

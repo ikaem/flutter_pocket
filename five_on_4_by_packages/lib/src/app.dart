@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import "package:flutter_bloc/flutter_bloc.dart";
 
+import 'features/auth_feature/src/presentation/stores/auth_status/cubit/cubit.dart';
 import 'features/core_feature/src/presentation/screens/screens.dart';
 
 /// The Widget that configures your application.
@@ -26,6 +27,12 @@ class MyApp extends StatelessWidget {
       appUseCases: appUseCases,
       child: MultiBlocProvider(
         providers: [
+          BlocProvider<AuthStatusCubit>(
+            create: (context) => AuthStatusCubit(
+              authUseCases: appUseCases.authUseCases,
+            ),
+          ),
+          // TODO not sure if players should be all around the app
           BlocProvider<PlayersBloc>(
             create: (context) {
               return PlayersBloc(

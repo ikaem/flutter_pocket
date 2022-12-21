@@ -44,11 +44,16 @@ class AuthHiveDbApi implements AuthDbApi {
 
   @override
   Stream<AuthDbApiDTO?> observeAuth() {
-    final Stream<BoxEvent> stream =
-        database.observeBoxItem(boxName: DB.kAuthBox, itemId: kAuthBoxKey);
+    // TODO this could be an issuehere
+    final Stream<BoxEvent> stream = database.observeBoxItem<AuthDbApiDTO>(
+        boxName: DB.kAuthBox, itemId: kAuthBoxKey);
 
-    final Stream<AuthDbApiDTO?> normalizedStream =
-        stream.map((event) => event.value as AuthDbApiDTO?);
+    final Stream<AuthDbApiDTO?> normalizedStream = stream.map((event) {
+      // TODO not really sure what this value is here - could be a list of dtos too?
+      final value = event.value;
+
+      return event.value as AuthDbApiDTO?;
+    });
 
     return normalizedStream;
   }
