@@ -1,7 +1,9 @@
 // TODO later, use freezed on this i guess - or no need
-import "package:equatable/equatable.dart";
-import 'package:five_on_4_by_packages/src/features/matches_feature/matches_feature.dart';
-import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/matches_filter/model.dart';
+// import "package:equatable/equatable.dart";
+// import 'package:five_on_4_by_packages/src/features/matches_feature/matches_feature.dart';
+// import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/matches_filter/model.dart';
+
+part of "matches_bloc.dart";
 
 class MatchesBlocState extends Equatable {
   const MatchesBlocState({
@@ -23,6 +25,9 @@ class MatchesBlocState extends Equatable {
   final MatchesFilter? filter;
   final dynamic refreshError;
   final dynamic favoriteToggleError;
+
+  // TODO this is just initial one, to make it easier for me
+  const MatchesBlocState.initial() : this();
 
 // ok, constructor for building a state when the app is loading a tag change
 // TODO come back to this

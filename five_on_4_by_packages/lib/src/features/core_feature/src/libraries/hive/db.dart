@@ -23,6 +23,7 @@ import 'dart:io';
 import 'package:five_on_4_by_packages/src/features/auth_feature/src/data/dtos/auth_db_api_dto/db_api_dto.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/libraries/logger/app_logger.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/utils/utils.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/dtos/match_local_dto/local_dto.dart';
 import 'package:five_on_4_by_packages/src/features/players_feature/src/data/dtos/player_db_dto/player_db_dto.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -31,6 +32,7 @@ class DB {
   // TODO test - not sure this should live here in future
   static const String kPlayersBox = "players";
   static const String kAuthBox = "auth";
+  static const String kMatchesBox = "matches";
 
   DB({
     required this.appLogger,
@@ -50,6 +52,7 @@ class DB {
 // TODO this could eventually be running a loop, and registering all adapters in a list - so we would need to have a list of all adapters somewhere somehow
     Hive.registerAdapter(PlayerDbDTOAdapter());
     Hive.registerAdapter(AuthDbApiDTOAdapter());
+    Hive.registerAdapter(MatchLocalDTOAdapter());
     // TODO should register also auth db adapter
 
     // TODO later, we could be opening this lazily
@@ -57,6 +60,7 @@ class DB {
     // TODO not sure if this should be done here - or maybe it should be done in each function
     await Hive.openBox<PlayerDbDTO>(kPlayersBox);
     await Hive.openBox<AuthDbApiDTO>(kAuthBox);
+    await Hive.openBox<MatchLocalDTO>(kMatchesBox);
 
     // await Hive.initFlutter();
   }
@@ -126,11 +130,11 @@ class DB {
     return item;
   }
 
-  Future<void> deleteBoxItem({
+  Future<void> deleteBoxItem<T>({
     required String boxName,
     required Object itemId,
   }) async {
-    final Box box = Hive.box(boxName);
+    final Box box = Hive.box<T>(boxName);
 
 // TODO not sure if this is ok
     await box.delete(itemId);

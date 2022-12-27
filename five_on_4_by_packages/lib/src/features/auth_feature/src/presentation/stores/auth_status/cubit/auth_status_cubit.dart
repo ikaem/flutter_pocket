@@ -14,17 +14,20 @@ class AuthStatusCubit extends Cubit<AuthStatusState> {
 
   final AuthUseCases authUseCases;
 
+  // TODO i am not sure about this - can i access this from the outside?
+  Auth? auth;
+
   void _handleAuthStatus() {
     // TODO not sure if this works
     authUseCases.observeAuth().listen((event) {
-      final Auth? auth = event;
+      final Auth? currentAuth = auth = event;
 
-      if (auth == null) {
+      if (currentAuth == null) {
         emit(const AuthStatusLoggedOutState());
         return;
       }
 
-      emit(AuthStatusLoggedInState(auth));
+      emit(AuthStatusLoggedInState(currentAuth));
     });
   }
 }

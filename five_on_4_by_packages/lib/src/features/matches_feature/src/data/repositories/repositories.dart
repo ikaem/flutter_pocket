@@ -1,1 +1,1 @@
-export "matches_api_repository/matches_api_repository.dart";
+export 'matches_repository/matches_repository.dart';

@@ -36,8 +36,8 @@ class AuthMockApi implements AuthApi {
       const Duration(milliseconds: 500),
     );
 
-    if (randNumber == 2) throw UserAlreadyLoggedOutException();
-    if (randNumber == 1) throw Exception("Just a generic error");
+    // if (randNumber == 2) throw UserAlreadyLoggedOutException();
+    // if (randNumber == 1) throw Exception("Just a generic error");
 
     return;
   }

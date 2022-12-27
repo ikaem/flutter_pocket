@@ -1,7 +1,10 @@
-import "package:equatable/equatable.dart";
-import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/domain.dart';
+// import "package:equatable/equatable.dart";
+// import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/domain.dart';
 
 // TODO possibly replace all of these with freezed later
+
+part of "matches_bloc.dart";
+
 abstract class MatchesBlocEvent extends Equatable {
   const MatchesBlocEvent();
 

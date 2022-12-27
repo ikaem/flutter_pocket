@@ -1,1 +1,1 @@
-export "matches_bloc_events.dart";
+export "matches_bloc.dart";

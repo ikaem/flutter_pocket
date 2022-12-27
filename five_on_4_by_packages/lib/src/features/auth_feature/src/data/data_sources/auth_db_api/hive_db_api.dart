@@ -20,13 +20,14 @@ class AuthHiveDbApi implements AuthDbApi {
   @override
   Future<void> login(AuthDbApiDTO dto) async {
 // TODO this just adds it to the database - but this table can hild multiple options
-    await database.addBoxItem(
+    await database.addBoxItem<AuthDbApiDTO>(
         boxName: DB.kAuthBox, item: dto, itemId: kAuthBoxKey);
   }
 
   @override
   Future<void> logout() async {
-    await database.deleteBoxItem(boxName: DB.kAuthBox, itemId: kAuthBoxKey);
+    await database.deleteBoxItem<AuthDbApiDTO>(
+        boxName: DB.kAuthBox, itemId: kAuthBoxKey);
   }
 
   // TODO get auth

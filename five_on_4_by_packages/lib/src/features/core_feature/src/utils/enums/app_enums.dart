@@ -1,0 +1,3 @@
+enum MenuPopupAction {
+  logout,
+}

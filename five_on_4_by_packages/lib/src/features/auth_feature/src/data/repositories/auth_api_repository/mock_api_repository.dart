@@ -23,4 +23,9 @@ class AuthMockApiRepository implements AuthApiRepository {
 
     return dto;
   }
+
+  @override
+  Future<void> logout() async {
+    await authApi.logout();
+  }
 }

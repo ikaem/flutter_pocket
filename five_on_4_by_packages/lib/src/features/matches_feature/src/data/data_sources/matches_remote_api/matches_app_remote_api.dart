@@ -1,11 +1,12 @@
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
-import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/data_sources/matches_api/api.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/data_sources/matches_remote_api/remote_api.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/dtos/dtos.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/dtos/match_remote_dto/remote_dto.dart';
 
-class MatchesFirestoreApi implements MatchesApi {
+class MatchesAppRemoteApi implements MatchesRemoteApi {
   static const String fireStoreCollection = "matches";
 
-  const MatchesFirestoreApi({
+  const MatchesAppRemoteApi({
     required this.fireStore,
     required this.appLogger,
   });
@@ -14,7 +15,7 @@ class MatchesFirestoreApi implements MatchesApi {
   final AppLogger appLogger;
 
   @override
-  Future<MatchApiDTO> getMatch(String id) async {
+  Future<MatchRemoteDTO> getMatch(String id) async {
     try {
       final response = await fireStore.getCollectionItem(
         fireStoreCollection,
@@ -23,7 +24,7 @@ class MatchesFirestoreApi implements MatchesApi {
 
       if (response == null) throw Exception("Failed to get match - id: $id");
 
-      final dtos = MatchApiDTO.fromJson(response);
+      final dtos = MatchRemoteDTO.fromJson(response);
 
       return dtos;
     } catch (e) {
@@ -45,13 +46,13 @@ class MatchesFirestoreApi implements MatchesApi {
   }
 
   @override
-  Future<List<MatchApiDTO>> getMatches() async {
+  Future<List<MatchRemoteDTO>> getMatches() async {
     try {
       final response = await fireStore.getCollectionItems(
         fireStoreCollection,
       );
 
-      final dtos = response.map((e) => MatchApiDTO.fromJson(e)).toList();
+      final dtos = response.map((e) => MatchRemoteDTO.fromJson(e)).toList();
 
       return dtos;
     } catch (e) {

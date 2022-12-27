@@ -17,6 +17,7 @@ class AuthUseCases {
   final AuthDBApiRepository authDBApiRepository;
   final InputsValidation inputsValidation;
 
+// TODO ould this be a getter instead
   Stream<Auth?> observeAuth() {
     // TODO it is silly that this actually transforms data - repository should probably handle transformation
     final Stream<Auth?> stream = authDBApiRepository.observeAuth().map((event) {
@@ -47,6 +48,13 @@ class AuthUseCases {
     await authDBApiRepository.login(authDbApiDTO);
 
     return auth;
+  }
+
+  // TODO test
+  Future<void> logout() async {
+    // TODO this repo should be handling both local and remoterepositories
+    await authApiRepository.logout();
+    await authDBApiRepository.logout();
   }
 
 // TODO for this case, it would be greate to have multiple use cases - to put all use cases stuff here

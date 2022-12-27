@@ -6,4 +6,6 @@ abstract class AuthApiRepository {
     required String email,
     required String password,
   });
+
+  Future<void> logout();
 }

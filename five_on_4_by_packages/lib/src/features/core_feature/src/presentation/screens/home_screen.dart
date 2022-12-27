@@ -1,6 +1,7 @@
 import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dart';
 import 'package:five_on_4_by_packages/src/features/auth_feature/src/presentation/stores/auth_status/cubit/auth_status_cubit.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/presentation/widgets/layout/app_bar/app_bar.dart';
 import 'package:five_on_4_by_packages/src/features/players_feature/players_feature.dart';
 import 'package:five_on_4_by_packages/src/features/weather_feature/src/presentation/presentation.dart';
 import 'package:flutter/material.dart';
@@ -40,9 +41,10 @@ class HomeScreen extends StatelessWidget {
       ],
       child: SafeArea(
           child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Home Screen"),
-        ),
+        appBar: const CustomAppBar(title: "Home Screen"),
+        // appBar: AppBar(
+        //   title: const Text("Home Screen"),
+        // ),
         body: Center(
           child: Column(
             children: [
