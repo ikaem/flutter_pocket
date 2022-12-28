@@ -8,5 +8,8 @@ abstract class MatchesRemoteApi {
   Future<void> postMatch(Map<String, dynamic> data);
   Future<List<MatchRemoteDTO>> searchMatches({
     required int page,
+    required String? tag,
+    required String searchTerm,
+    required String offsetDocumentId,
   });
 }

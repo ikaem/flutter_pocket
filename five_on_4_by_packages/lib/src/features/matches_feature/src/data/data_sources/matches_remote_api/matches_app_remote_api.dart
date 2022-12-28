@@ -101,25 +101,50 @@ class MatchesAppRemoteApi implements MatchesRemoteApi {
   @override
   Future<List<MatchRemoteDTO>> searchMatches({
     required int page,
-    required List<String> tags,
+    required String? tag,
     required String searchTerm,
-  }) {
-    // TODO using solution to search for items
-    // https://stackoverflow.com/questions/50870652/flutter-firebase-basic-query-or-basic-search-code
-    // TODO will need to add another field to database to have only lowercase title there
+    // TODO test
+    required String offsetDocumentId,
+  }) async {
     try {
+      final DocumentSnapshot<Map<String, dynamic>> offsetDocumentSnapshot =
+          await fireStore.getCollectionDocumentSnapshot(
+        fireStoreCollection,
+        offsetDocumentId,
+      );
+
+      // TODO using solution to search for items
+      // https://stackoverflow.com/questions/50870652/flutter-firebase-basic-query-or-basic-search-code
+      // TODO will need to add another field to database to have only lowercase title there
       final CollectionReference<Map<String, dynamic>> matchesCollection =
-          fireStore.getCollection(fireStoreCollection);
-      final filteredCollectionItems = matchesCollection
+          fireStore.getCollectionReference(fireStoreCollection);
+      final filteredCollectionItemsSnapshot = await matchesCollection
           .startAt([searchTerm])
           .endAt(['$searchTerm\uf8ff'])
-          .startAfterDocument(documentSnapshot)
+          .startAfterDocument(offsetDocumentSnapshot)
           .where(
             "tags",
-            arrayContainsAny: tags,
+            arrayContains: tag,
           )
           .orderBy("name")
-          .limit(10);
+          .limit(10)
+          .get();
+
+      final docs = filteredCollectionItemsSnapshot.docs;
+
+      // TODO not sure i want to do this here - or maybe i do this here
+
+      final items = docs.map((e) {
+        final data = e.data();
+
+        data.addKey("id", e.id);
+
+        return data;
+      }).toList();
+
+      final dtos = items.map((e) => MatchRemoteDTO.fromJson(e)).toList();
+
+      return dtos;
     } catch (e) {
       appLogger.log(
         logLevel: LogLevel.error,
@@ -136,5 +161,4 @@ class MatchesAppRemoteApi implements MatchesRemoteApi {
   }
 }
 
-
-// TODO how to be handling errors 
+// TODO how to be handling errors

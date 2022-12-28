@@ -2,6 +2,7 @@ import 'package:five_on_4_by_packages/src/features/matches_feature/matches_featu
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/data.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/data_sources/matches_local_api/matches_local_api.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/dtos/match_remote_dto/match_remote_dto.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/match/model.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/utils/utils.dart';
 
 class MatchesAppRepository implements MatchesRepository {
@@ -34,6 +35,8 @@ class MatchesAppRepository implements MatchesRepository {
     await matchesRemoteApi.postMatch(data);
   }
 
+// TODO i think this should send match, and not match page
+// TODO and then use casae can transform it into match page - eventually
   @override
   Stream<Match> getMatchesPage(
     int pageNumber, {
@@ -52,4 +55,21 @@ class MatchesAppRepository implements MatchesRepository {
   }
 
   // TODO helpers only
+
+  // TODO test
+  Future<Match> _getPaginatedMatches(
+    int pageNumber, {
+    required Tag? tag,
+    required String searchTerm,
+    String? favoritedByUsername,
+  }) async {
+// TODO for now, favorite we will not use
+
+    final List<MatchRemoteDTO> matches = await matchesRemoteApi.searchMatches(
+      page: pageNumber,
+      tag: tag == null ? null : tag.name,
+      searchTerm: searchTerm,
+      offsetDocumentId: offsetDocumentId,
+    );
+  }
 }

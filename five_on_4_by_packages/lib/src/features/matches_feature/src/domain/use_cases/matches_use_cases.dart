@@ -24,6 +24,8 @@ class MatchesUseCases {
   // TODO note that we stream a list of matches state - which i dont like to be hones
 
   // TODO , ok this will be yielding data - so it is a stream
+  // TODO is it possibly do be sending matches - and then transform data in the bloc to send actual bloc state
+  // so we send maybe null - and then if we are null with bloc, we would emit event, no items found
   Stream<MatchesBlocState> streamMatchesPage(
     int page, {
     required Auth? auth,

@@ -1,13 +1,26 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
 
 class FireStore {
-  CollectionReference<Map<String, dynamic>> getCollection(
-      String collectionPath) {
-    final collection = FirebaseFirestore.instance.collection(collectionPath);
+  CollectionReference<Map<String, dynamic>> getCollectionReference(
+    String collectionPath,
+  ) {
+    final CollectionReference<Map<String, dynamic>> collectionReference =
+        FirebaseFirestore.instance.collection(collectionPath);
 
-    return collection;
+    return collectionReference;
+  }
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> getCollectionDocumentSnapshot(
+    String collectionPath,
+    String documentPath,
+  ) async {
+    final DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+        await FirebaseFirestore.instance.collection(collectionPath).doc().get();
+
+    return documentSnapshot;
   }
 
   Future<List<Map<String, dynamic>>> filterCollectionItems(
@@ -98,8 +111,8 @@ class FireStore {
 }
 
 // TODO test here only - move this to helpers
-extension MapExtensions on Map {
-  void addKey(dynamic key, dynamic value) {
-    this[key] = value;
-  }
-}
+// extension MapExtensions on Map {
+//   void addKey(dynamic key, dynamic value) {
+//     this[key] = value;
+//   }
+// }
