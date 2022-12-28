@@ -6,4 +6,7 @@ abstract class MatchesRemoteApi {
   // TODO this will need bunch of params later
   Future<List<MatchRemoteDTO>> getMatches();
   Future<void> postMatch(Map<String, dynamic> data);
+  Future<List<MatchRemoteDTO>> searchMatches({
+    required int page,
+  });
 }

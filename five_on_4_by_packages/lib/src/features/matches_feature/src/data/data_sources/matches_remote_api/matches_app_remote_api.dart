@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/data_sources/matches_remote_api/remote_api.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/dtos/dtos.dart';
@@ -92,6 +93,43 @@ class MatchesAppRemoteApi implements MatchesRemoteApi {
 // TODO need better error here - need to know what status code we get
       throw ApiPostException(
         message: "Failed to post match: $data",
+        statusCode: 500,
+      );
+    }
+  }
+
+  @override
+  Future<List<MatchRemoteDTO>> searchMatches({
+    required int page,
+    required List<String> tags,
+    required String searchTerm,
+  }) {
+    // TODO using solution to search for items
+    // https://stackoverflow.com/questions/50870652/flutter-firebase-basic-query-or-basic-search-code
+    // TODO will need to add another field to database to have only lowercase title there
+    try {
+      final CollectionReference<Map<String, dynamic>> matchesCollection =
+          fireStore.getCollection(fireStoreCollection);
+      final filteredCollectionItems = matchesCollection
+          .startAt([searchTerm])
+          .endAt(['$searchTerm\uf8ff'])
+          .startAfterDocument(documentSnapshot)
+          .where(
+            "tags",
+            arrayContainsAny: tags,
+          )
+          .orderBy("name")
+          .limit(10);
+    } catch (e) {
+      appLogger.log(
+        logLevel: LogLevel.error,
+        message: "Failed to search matches",
+        error: e,
+      );
+      // TODO i did have some specific erros for firebase - but maybe there is no need
+      throw ApiGetException(
+        message: "Failed to search matches",
+        // TODO not sure if status code is ever needed
         statusCode: 500,
       );
     }

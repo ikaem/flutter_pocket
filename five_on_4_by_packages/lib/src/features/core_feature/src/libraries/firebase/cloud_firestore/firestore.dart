@@ -3,6 +3,13 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStore {
+  CollectionReference<Map<String, dynamic>> getCollection(
+      String collectionPath) {
+    final collection = FirebaseFirestore.instance.collection(collectionPath);
+
+    return collection;
+  }
+
   Future<List<Map<String, dynamic>>> filterCollectionItems(
     String collectionPath,
     String filterBy,
@@ -34,9 +41,16 @@ class FireStore {
     return items;
   }
 
+// TODO i might need to return just the collection to the api, and api class will then attach is filters and what not
   Future<List<Map<String, dynamic>>> getCollectionItems(
     String collectionPath,
   ) async {
+// TODO test
+    // final filteredCollection = await FirebaseFirestore.instance
+    //     .collection(collectionPath)
+    //     .where("tag", arrayContainsAny: ["friendly", "karlo"]).where("name",
+    //         isEqualTo: "some match name");
+
     final collection =
         await FirebaseFirestore.instance.collection(collectionPath).get();
 

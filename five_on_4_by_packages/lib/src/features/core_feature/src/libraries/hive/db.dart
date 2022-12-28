@@ -102,6 +102,7 @@ class DB {
   }
 
   Future<Iterable<T>> getBoxItems<T>({
+    // TODO how to get specific number of items from box here
     required String boxName,
   }) async {
     final Box<T> box = Hive.box<T>(boxName);
