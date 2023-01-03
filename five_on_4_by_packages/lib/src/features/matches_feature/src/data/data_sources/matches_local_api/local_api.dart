@@ -2,7 +2,8 @@ import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/dtos
 
 abstract class MatchesLocalApi {
   Future<void> saveMatch(MatchLocalDTO dto);
-  Future<void> saveMatchs(Map<String, MatchLocalDTO> dtos);
+  Future<void> saveMatches(Map<String, MatchLocalDTO> dtos);
   Future<MatchLocalDTO> getMatch(String itemId);
-  Future<List<MatchLocalDTO>> getMatches(String itemId);
+  // TODO figure out pagiantion lager for this
+  Future<List<MatchLocalDTO>> getMatches();
 }

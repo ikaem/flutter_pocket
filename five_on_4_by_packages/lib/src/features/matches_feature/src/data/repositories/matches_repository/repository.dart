@@ -10,11 +10,10 @@ abstract class MatchesRepository {
   Future<void> postMatch(Map<String, dynamic> data);
   // TODO this is new
   // TODO also, this could return a proper data now
-  Stream<Match> getMatchesPage(
-    int pageNumber, {
-    Tag? tag,
-    String searchTerm = "",
-    String? favoritedByUsername,
-    required MatchesPageFetchPolicy fetchPolicy,
-  });
+  Stream<List<Match>> streamMatches(int pageNumber,
+      {Tag? tag,
+      String searchTerm = "",
+      String? favoritedByUsername,
+      required MatchesPageFetchPolicy fetchPolicy,
+      required String offsetDocumentId});
 }

@@ -6,8 +6,8 @@
 
 import "package:equatable/equatable.dart";
 import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dart';
-import 'package:five_on_4_by_packages/src/features/auth_feature/src/data/dtos/auth_db_api_dto/db_api_dto.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/matches_feature.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/match/model.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/matches_filter/model.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/use_cases/use_cases.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/utils/enums/enums.dart';
@@ -50,10 +50,38 @@ class MatchesBloc extends Bloc<MatchesBlocEvent, MatchesBlocState> {
 
   void _registerEventHandlers() {
     on<MatchesUsernameObtainedEvent>(_onMatchesUsernameObtainedEvent);
+    on<MatchesFailedFetchRetriedEvent>(_onMatchesFailedFetchRetriedEvent);
+    // TODO will be needeing more events here
+    // https://github.dev/kodecocodes/rwf-materials/blob/c61b8fd4ddad8fa96c3eb8dd096f1be7363d9c39/05-managing-complex-state-with-blocs/projects/final/packages/features/quote_list/lib/src/quote_list_bloc.dart#L48
+  }
+
+  Future<void> _onMatchesFailedFetchRetriedEvent(
+    MatchesFailedFetchRetriedEvent event,
+    Emitter<MatchesBlocState> emitter,
+  ) {
+    emitter(state.copyWithNewError(null));
+
+// TODO do eventually emit a full page porpely type - with meta data and such
+// TODO or porbably, just subscrtibe to firebase stream and that is it
+    final Stream<MatchesBlocState> firstPageOfMatches =
+        matchesUseCases.streamMatchesPage(
+      1,
+      auth: auth,
+      fetchPolicy: MatchesPageFetchPolicy.cacheAndNetwork,
+      currentMatchesState: state,
+      offsetDocumentId: "Test",
+    );
+
+    return emitter.onEach(
+      stream,
+      onData: emitter,
+    );
   }
 
   Future<void> _onMatchesUsernameObtainedEvent(
-      MatchesUsernameObtainedEvent event, Emitter<MatchesBlocState> emitter) {
+    MatchesUsernameObtainedEvent event,
+    Emitter<MatchesBlocState> emitter,
+  ) {
     // TODO this is initial state mitterd - but why with filter - there is no loading - we just emit thatever we already have in the state
     // TODO i dont really understand what is this
     emitter(MatchesBlocState(
@@ -63,9 +91,13 @@ class MatchesBloc extends Bloc<MatchesBlocEvent, MatchesBlocState> {
     // now we get the stream
 
     final Stream<MatchesBlocState> firstPageFetchStream =
-        matchesUseCases.fetchMatchesPage(
+        matchesUseCases.streamMatchesPage(
+      // TODO page will not be needed later when we add this existing offset document id
       1,
+      auth: auth,
       fetchPolicy: MatchesPageFetchPolicy.cacheAndNetwork,
+      currentMatchesState: state,
+      offsetDocumentId: "Test",
     );
 
     final future = emitter.onEach<MatchesBlocState>(
@@ -75,23 +107,4 @@ class MatchesBloc extends Bloc<MatchesBlocEvent, MatchesBlocState> {
 
     return future;
   }
-
-  // TODO actually, lets have a function to return state here
-  // TODO not really sure where should this live
-  // Stream<MatchesBlocState> _fetchQuotePage(
-  //   int page, {
-  //   required MatchesPageFetchPolicy fetchPolicy,
-  //   // TODO test - dont like the default here
-  //   bool isRefresh = false,
-  // }) async* {
-  //   // ok, get the current filter
-  //   final MatchesFilter? currentlyAppliedFilter = state.filter;
-  //   final bool isFilteringByFavorites =
-  //       currentlyAppliedFilter is MatchesFilterByFavorites;
-  //   final bool isUserSignedIn = auth != null;
-
-  //   if (isFilteringByFavorites && !isUserSignedIn) {
-  //     yield MatchesBlocState.noItemsFound(filter: currentlyAppliedFilter);
-  //   }
-  // }
 }

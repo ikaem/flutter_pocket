@@ -109,6 +109,10 @@ class DB {
 
     final Iterable<T> items = box.values;
 
+    if (items.isEmpty) {
+      throw DbFetchException(message: "Failed to fetch items from database");
+    }
+
     return items;
   }
 

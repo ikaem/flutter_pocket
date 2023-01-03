@@ -20,7 +20,7 @@ class MatchesAppLocalApi extends MatchesLocalApi {
   }
 
   @override
-  Future<List<MatchLocalDTO>> getMatches(String itemId) async {
+  Future<List<MatchLocalDTO>> getMatches() async {
     final dtos =
         await database.getBoxItems<MatchLocalDTO>(boxName: DB.kMatchesBox);
 
@@ -37,7 +37,7 @@ class MatchesAppLocalApi extends MatchesLocalApi {
   }
 
   @override
-  Future<void> saveMatchs(Map<String, MatchLocalDTO> dtos) async {
+  Future<void> saveMatches(Map<String, MatchLocalDTO> dtos) async {
     await database.addBoxItems<MatchLocalDTO>(
       boxName: DB.kPlayersBox,
       items: dtos,

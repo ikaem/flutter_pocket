@@ -31,6 +31,7 @@ class MatchesUseCases {
     required Auth? auth,
     required MatchesPageFetchPolicy fetchPolicy,
     required MatchesBlocState currentMatchesState,
+    required String offsetDocumentId,
     bool isRefresh = false,
   }) async* {
     // ok, get the current filter
@@ -46,6 +47,52 @@ class MatchesUseCases {
       return;
     }
 
-    // final Stream<Match> pagesStream = matchesApiRepository.
+    final Stream<List<Match>> pagesStream = matchesApiRepository.streamMatches(
+      page,
+      fetchPolicy: fetchPolicy,
+      offsetDocumentId: offsetDocumentId,
+      // TODO here we will have search and so on
+    );
+
+    // TODO here, we could get the matches
+    // TODO also, we could save last one of fetched matches into some matches state - and then always send it back
+
+    try {
+      // ok, so this now literally loops throw ouh stream
+
+      await for (final matchesPage in pagesStream) {
+        // ok, now we wsant to combine old and new matches here
+
+        final List<Match> newMatchesList = matchesPage;
+        final List<Match> oldMatchesList = currentMatchesState.matches ?? [];
+
+        final List<Match> completeMatches = newMatchesList + oldMatchesList;
+
+        yield MatchesBlocState.success(
+          // TODO this could be calculated, the next page
+          nextPage: 2,
+          matches: completeMatches,
+          filter: currentlyAppliedFilter,
+          isRefresh: isRefresh,
+        );
+      }
+    } catch (e) {
+      final error = e;
+
+// TODO do come back to this
+      // if (error is SomeErrorThatSaysWeHaveNoData) {
+      //   yield MatchesBlocState.noItemsFound(filter: currentlyAppliedFilter);
+      //   return;
+      // }
+
+      // this is cool - we here now actually check type of the request, and create that kind of error
+      if (isRefresh) {
+        // TODO i dont like that we are passing error here - we should be handling that better
+        yield currentMatchesState.copyWithNewRefreshError(error);
+        return;
+      }
+
+      yield currentMatchesState.copyWithNewError(error);
+    }
   }
 }
