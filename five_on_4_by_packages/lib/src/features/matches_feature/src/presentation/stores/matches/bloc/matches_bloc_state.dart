@@ -113,3 +113,22 @@ class MatchesBlocState extends Equatable {
   List<Object?> get props =>
       [matches, nextPage, error, filter, refreshError, favoriteToggleError];
 }
+
+// TODO this is state for some reason for matches filter here
+// abstract class MatchesFilter extends Equatable {
+//   const MatchesFilter();
+
+//   @override
+//   List<Object?> get props => [];
+// }
+
+// class MatchesFilterBySearchTerm extends MatchesFilter {
+//   const MatchesFilterBySearchTerm(this.searchTerm);
+
+//   final String searchTerm;
+
+//   @override
+//   List<Object?> get props => [
+//         searchTerm,
+//       ];
+// }
