@@ -52,6 +52,11 @@ class _FavoritesChip extends StatelessWidget {
           // because here our variable is only tellign us if filter is of the filter by favorites type
           return isFilteringByFavorites;
         },
+        builder: (context, isFilteringByFavoritesOnly) {
+
+          return RoundedChou
+          
+        },
       ),
     );
   }
