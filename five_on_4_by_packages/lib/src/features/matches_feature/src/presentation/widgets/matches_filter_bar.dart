@@ -53,11 +53,83 @@ class _FavoritesChip extends StatelessWidget {
           return isFilteringByFavorites;
         },
         builder: (context, isFilteringByFavoritesOnly) {
+          return RoundedChoiceChip(
+            label: "Favorites",
+            isSelected: isFilteringByFavoritesOnly,
+            avatar: Icon(
+              isFilteringByFavoritesOnly
+                  ? Icons.favorite
+                  : Icons.favorite_border_outlined,
+              color: isFilteringByFavoritesOnly ? Colors.yellow : Colors.orange,
+            ),
+            onSelected: (isSelected) {
+              _releaseFocus(context);
 
-          return RoundedChou
-          
+              // TODO and now we gind the bloc
+              final bloc = context.read<MatchesBloc>();
+
+              bloc.add(const MatchesFilterByFavoritesToggledEvent());
+            },
+          );
         },
       ),
     );
   }
+}
+
+class _TagChip extends StatelessWidget {
+  const _TagChip({
+    super.key,
+    required this.tag,
+  });
+
+  final Tag tag;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final bool isLastTag = tag == Tag.values.last;
+
+    return Padding(
+      padding: EdgeInsets.only(right: isLastTag ? 16 : 24, left: 24.0),
+      child: BlocSelector<MatchesBloc, MatchesBlocState, Tag?>(
+        selector: (state) {
+          final MatchesFilter? filter = state.filter;
+
+          // now, we will say that selected tag is only if we have the tag filter, otherwise is null
+          final Tag? selectedTag =
+              filter is MatchesFilterByTag ? filter.tag : null;
+
+          return selectedTag;
+        },
+        builder: (context, selectedTag) {
+          // now we check if tag is selected
+          final bool isCurrentTagSelected = selectedTag == tag;
+
+          return RoundedChoiceChip(
+            label: tag.name,
+            isSelected: isCurrentTagSelected,
+            onSelected: (isSelected) {
+              // again, we have to release focus
+              _releaseFocus(context);
+
+              final bloc = context.read<MatchesBloc>();
+
+              bloc.add(MatchesTagChangedEvent(
+                tag: isSelected ? tag : null,
+              ));
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+void _releaseFocus(BuildContext context) {
+  // this is old way
+  FocusScope.of(context).unfocus();
+
+  // TODO this is new way
+  // FocusManager.instance.primaryFocus?.unfocus();
 }

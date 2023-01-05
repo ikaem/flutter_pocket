@@ -2,6 +2,7 @@ import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dar
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/match/model.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/matches_filter/matches_filter.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/presentation/stores/matches/bloc/bloc.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/presentation/widgets/widgets.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,7 +69,9 @@ class _MatchesViewState extends State<MatchesView> {
           title: const Text("Matches Screen"),
         ),
         body: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              _releaseFocus(context);
+            },
             child: Column(
               children: [
                 // TODO theme should have screen margin
@@ -82,6 +85,21 @@ class _MatchesViewState extends State<MatchesView> {
                     // TODO not necessarily passing this
                     onChanged: null,
                   ),
+                ),
+                const MatchesFilterBar(),
+                RefreshIndicator(
+                  child: child,
+                  onRefresh: () async {
+                    _matchesBloc.add(const MatchesRefreshedEvent());
+
+                    // we want to return a future here - but this will return future implicitly now
+                    // but here it is just for the sake of science - bloc has stream on it - and its first elemenet is future
+                    // final Future<MatchesBlocState> stateChangeFuture =
+                    //     _matchesBloc.stream.first;
+                    // await stateChangeFuture;
+
+                    // return;
+                  },
                 ),
               ],
             )),
@@ -130,6 +148,13 @@ class _MatchesViewState extends State<MatchesView> {
         searchTerm: _matchesSearchController.text,
       ));
     });
+  }
+
+  void _releaseFocus(BuildContext context) {
+    FocusScope.of(context).unfocus();
+
+    // nwe thing
+    // FocusManager.instance.primaryFocus?.unfocus();
   }
 
   void _disposeView() {

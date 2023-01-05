@@ -43,8 +43,8 @@ class MatchesSearchTermChangedEvent extends MatchesBlocEvent {
 }
 
 // TODO possibly adjust naming a bit later
-class MatchesRefreshed extends MatchesBlocEvent {
-  const MatchesRefreshed();
+class MatchesRefreshedEvent extends MatchesBlocEvent {
+  const MatchesRefreshedEvent();
 }
 
 class MatchesNextPageRequestedEvent extends MatchesBlocEvent {
