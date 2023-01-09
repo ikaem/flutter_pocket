@@ -27,8 +27,9 @@ dependencies:
   logger: ^1.1.0
   path_provider: ^2.0.11
   formz: ^0.4.1
-  infinite_scroll_pagination:
-    ^3.2.0
+  infinite_scroll_pagination: ^3.2.0
+  flutter_svg:
+    ^1.1.6
 
     # TODO dont use this
   # core_feature:
@@ -58,3 +59,4 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/svg/

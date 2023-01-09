@@ -1,22 +1,20 @@
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/match/model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class MatchBriefCard extends StatelessWidget {
   const MatchBriefCard({
     super.key,
     required this.match,
     required this.top,
-    required this.bottom,
+    // required this.bottom,
     required this.onTap,
     required this.onFavoriteTap,
   });
 
   final Match match;
   final Widget top;
-  final Widget bottom;
+  // final Widget bottom;
   final VoidCallback onTap;
   final VoidCallback onFavoriteTap;
 
@@ -68,11 +66,21 @@ class MatchBriefCard extends StatelessWidget {
                 // style: theme.matchTextStyle.copyWith(
                 //   fontSize: FontSize.large,
                 // ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: FontSize.large,
                 ),
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //     bottom: Spacing.medium,
+            //     right: Spacing.medium,
+            //   ),
+            //   child: bottom,
+            // ),
+            const SizedBox(
+              height: Spacing.mediumLarge,
+            )
           ],
         ),
       ),

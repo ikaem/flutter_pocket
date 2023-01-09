@@ -1,12 +1,11 @@
 // TODO this could easily be a common widget
 
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart'
-    show ExceptionIndicator;
+    show ExceptionIndicator, SVGMatch;
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/match/model.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/presentation/presentation.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/presentation/stores/matches/matches.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -27,22 +26,22 @@ class MatchesPaginatedList extends StatelessWidget {
     final matchesBloc = context.read<MatchesBloc>();
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: PagedListView.separated(
         pagingController: pagingController,
         builderDelegate: PagedChildBuilderDelegate<Match>(
           itemBuilder: (context, match, index) {
             // TODO this will need to be on the match model for UI in the future
             // final bool isFavorite = match.isFavorite ?? false;
-            final bool isFavorite = true;
+            const bool isFavorite = true;
 
             return MatchBriefCard(
                 match: match,
-                top: const OpeningMatchSvgAsset(),
-                bottom: const ClosingMatchSvgAsset(),
+                top: const SVGMatch(),
+                // bottom: const ClosingMatchSvgAsset(),
                 onFavoriteTap: () {
                   // we will send toggle event instead of sending specific event for each
-                  matchesBloc.add(MatchesItemFavoriteToggleEvent());
+                  matchesBloc.add(MatchesItemFavoriteToggleEvent(id: match.id));
                 },
                 onTap: () {
                   // TODO here we literally just want to navigate to match - there is no event really
@@ -56,7 +55,7 @@ class MatchesPaginatedList extends StatelessWidget {
             );
           },
         ),
-        separatorBuilder: (context, index) => SizedBox(
+        separatorBuilder: (context, index) => const SizedBox(
           height: 16.0,
         ),
       ),

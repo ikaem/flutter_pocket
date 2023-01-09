@@ -62,16 +62,25 @@ abstract class MatchesItemFavoriteToggledEvent extends MatchesBlocEvent {
     required this.id,
   });
 
-  final int id;
+  final String id;
 }
 
-class MatchesItemFavoritedEvent extends MatchesItemFavoriteToggledEvent {
-  const MatchesItemFavoritedEvent({required int id}) : super(id: id);
+// TODO this one should be enough
+class MatchesItemFavoriteToggleEvent extends MatchesItemFavoriteToggledEvent {
+  const MatchesItemFavoriteToggleEvent({
+    required super.id,
+  });
 }
 
-class MatchesItemUnfavoritedEvent extends MatchesItemFavoriteToggledEvent {
-  const MatchesItemUnfavoritedEvent({required int id}) : super(id: id);
-}
+// TODO probably wont be using these
+
+// class MatchesItemFavoritedEvent extends MatchesItemFavoriteToggledEvent {
+//   const MatchesItemFavoritedEvent({required int id}) : super(id: id);
+// }
+
+// class MatchesItemUnfavoritedEvent extends MatchesItemFavoriteToggledEvent {
+//   const MatchesItemUnfavoritedEvent({required int id}) : super(id: id);
+// }
 
 // not sure what these do
 class MatchesFailedFetchRetriedEvent extends MatchesBlocEvent {

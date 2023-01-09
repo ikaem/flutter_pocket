@@ -1,8 +1,9 @@
+import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/match/model.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/models/matches_filter/matches_filter.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/use_cases/matches_use_cases.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/presentation/stores/matches/bloc/bloc.dart';
-import 'package:five_on_4_by_packages/src/features/matches_feature/src/presentation/widgets/widgets.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,16 @@ class MatchesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MatchesView();
+    final AuthUseCases authUseCases = context.read<AuthUseCases>();
+    final MatchesUseCases matchesUseCases = context.read<MatchesUseCases>();
+
+    return BlocProvider<MatchesBloc>(
+      create: (context) => MatchesBloc(
+        authUseCases: authUseCases,
+        matchesUseCases: matchesUseCases,
+      ),
+      child: const MatchesView(),
+    );
   }
 }
 
@@ -73,34 +83,37 @@ class _MatchesViewState extends State<MatchesView> {
               _releaseFocus(context);
             },
             child: Column(
-              children: [
+              children: const [
                 // TODO theme should have screen margin
                 // Padding(padding: EdgeInsets.symmetric(horizontal: theme.screenMargin)),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                  ),
-                  child: SearchBar(
-                    controller: _matchesSearchController,
-                    // TODO not necessarily passing this
-                    onChanged: null,
-                  ),
-                ),
-                const MatchesFilterBar(),
-                RefreshIndicator(
-                  child: child,
-                  onRefresh: () async {
-                    _matchesBloc.add(const MatchesRefreshedEvent());
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(
+                //     horizontal: 16.0,
+                //   ),
+                //   child: SearchBar(
+                //     controller: _matchesSearchController,
+                //     // TODO not necessarily passing this
+                //     onChanged: null,
+                //   ),
+                // ),
+                // const MatchesFilterBar(),
+                // RefreshIndicator(
+                //   child: MatchesPaginatedList(
+                //     onMatchSelected: (p0) {},
+                //     pagingController: _pagingController,
+                //   ),
+                //   onRefresh: () async {
+                //     _matchesBloc.add(const MatchesRefreshedEvent());
 
-                    // we want to return a future here - but this will return future implicitly now
-                    // but here it is just for the sake of science - bloc has stream on it - and its first elemenet is future
-                    // final Future<MatchesBlocState> stateChangeFuture =
-                    //     _matchesBloc.stream.first;
-                    // await stateChangeFuture;
+                //     // we want to return a future here - but this will return future implicitly now
+                //     // but here it is just for the sake of science - bloc has stream on it - and its first elemenet is future
+                //     // final Future<MatchesBlocState> stateChangeFuture =
+                //     //     _matchesBloc.stream.first;
+                //     // await stateChangeFuture;
 
-                    // return;
-                  },
-                ),
+                //     // return;
+                //   },
+                // ),
               ],
             )),
       ),

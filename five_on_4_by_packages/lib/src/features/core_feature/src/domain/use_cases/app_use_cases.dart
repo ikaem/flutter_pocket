@@ -2,6 +2,7 @@ import 'package:five_on_4_by_packages/src/features/auth_feature/src/domain/use_c
 import 'package:five_on_4_by_packages/src/features/core_feature/src/data/repositories/app_repositories.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/libraries/formz/formz.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/libraries/logger/app_logger.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/use_cases/matches_use_cases.dart';
 import 'package:five_on_4_by_packages/src/features/players_feature/src/presentation/presentation.dart';
 import 'package:five_on_4_by_packages/src/features/weather_feature/src/presentation/stores/weather/use_cases/weather_use_cases.dart';
 
@@ -31,5 +32,10 @@ class AppUseCases {
 
   late final WeatherUseCases weatherUseCases = WeatherUseCases(
     weatherRepository: appRepositories.weatherRepository,
+  );
+
+  late final MatchesUseCases matchesUseCases = MatchesUseCases(
+    matchesApiRepository: appRepositories.matchesAppRepository,
+    appLogger: appLogger,
   );
 }

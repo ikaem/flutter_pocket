@@ -30,14 +30,15 @@ class MatchesBloc extends Bloc<MatchesBlocEvent, MatchesBlocState> {
     // todo TEST
     // TODO not liking this
     // TODO could observer auth be a getter instead of a funciton
-    authUseCases.observeAuth().listen((event) {
-      // TODO not like this - but it seems to be the only way to do it
-      // alternatively, we could pass in initial user - and get users data with taht
-      // TODO note that we are sending event ot outselves
-      auth = event;
+    // TODO we never did log this
+    // authUseCases.observeAuth().listen((event) {
+    //   // TODO not like this - but it seems to be the only way to do it
+    //   // alternatively, we could pass in initial user - and get users data with taht
+    //   // TODO note that we are sending event ot outselves
+    //   auth = event;
 
-      add(const MatchesUsernameObtainedEvent());
-    });
+    //   add(const MatchesUsernameObtainedEvent());
+    // });
   }
 
 // TODO i dont like that this is here - ideally, i would pass the user into functions that need it

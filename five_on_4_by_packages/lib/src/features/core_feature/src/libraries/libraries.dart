@@ -4,3 +4,4 @@ export "logger/logger.dart";
 export "hive/hive.dart";
 export "formz/formz.dart";
 export "bloc/bloc.dart";
+export "flutter-svg/flutter_svg.dart";

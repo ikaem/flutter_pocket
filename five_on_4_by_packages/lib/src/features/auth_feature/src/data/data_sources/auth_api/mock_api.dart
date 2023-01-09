@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dart';
 import 'package:five_on_4_by_packages/src/features/auth_feature/src/data/dtos/auth_api_dto/api_dto.dart';
-import 'package:five_on_4_by_packages/src/features/auth_feature/src/presentation/stores/utils/exceptions/auth_exceptions.dart';
 
 class AuthMockApi implements AuthApi {
   @override

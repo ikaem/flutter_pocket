@@ -2,6 +2,7 @@ import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dar
 import 'package:five_on_4_by_packages/src/features/auth_feature/src/presentation/stores/auth_status/cubit/auth_status_cubit.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/presentation/widgets/layout/app_bar/app_bar.dart';
+import 'package:five_on_4_by_packages/src/features/matches_feature/src/presentation/presentation.dart';
 import 'package:five_on_4_by_packages/src/features/players_feature/players_feature.dart';
 import 'package:five_on_4_by_packages/src/features/weather_feature/src/presentation/presentation.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,17 @@ class HomeScreen extends StatelessWidget {
                   ));
                 },
                 child: const Text("To login screen"),
+              ),
+              TextButton(
+                onPressed: () {
+                  // TODO make better navigation here
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return const MatchesScreen();
+                    },
+                  ));
+                },
+                child: const Text("To matches screen"),
               ),
               TextButton(
                 onPressed: () {
