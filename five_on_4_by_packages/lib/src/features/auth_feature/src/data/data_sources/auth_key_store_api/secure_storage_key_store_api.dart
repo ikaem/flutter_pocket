@@ -34,6 +34,8 @@ class SecureStorageKeyStoreApi extends AuthKeyStoreApi {
     // final String? id = authValues
 
     final bool isValidAuth = authValues.every((element) => element != null);
+
+    if (!isValidAuth) return null;
   }
 
   @override
