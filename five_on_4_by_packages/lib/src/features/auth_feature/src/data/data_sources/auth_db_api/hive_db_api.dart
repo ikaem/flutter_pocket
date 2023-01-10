@@ -5,6 +5,8 @@ import "package:hive/hive.dart";
 
 export "db_api.dart";
 
+// TODO probably not good to save any auth data in the database
+
 class AuthHiveDbApi implements AuthDbApi {
   static const kAuthBoxKey = "authUser";
 

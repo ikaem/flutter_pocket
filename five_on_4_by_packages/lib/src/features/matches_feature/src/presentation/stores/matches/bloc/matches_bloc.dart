@@ -4,6 +4,7 @@
 //   // TODO
 // }
 
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import "package:equatable/equatable.dart";
 import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/matches_feature.dart';
@@ -12,6 +13,7 @@ import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/mo
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/use_cases/use_cases.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/utils/enums/enums.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 part "matches_bloc_events.dart";
 part "matches_bloc_state.dart";
@@ -52,6 +54,36 @@ class MatchesBloc extends Bloc<MatchesBlocEvent, MatchesBlocState> {
   void _registerEventHandlers() {
     on<MatchesUsernameObtainedEvent>(_onMatchesUsernameObtainedEvent);
     on<MatchesFailedFetchRetriedEvent>(_onMatchesFailedFetchRetriedEvent);
+    on<MatchesSearchTermChangedEvent>(
+      _onMatchesSearchTermChanged,
+      transformer: (eventsStream, eventHandler) {
+        // TODO and now we want to debounce this
+
+        final debouncedStream = eventsStream
+            .debounceTime(const Duration(seconds: 1))
+            .where((event) {
+          final MatchesFilter? previousFilter = state.filter;
+
+          // now assign value to some string to indicate previous filter - but only if it is by search term
+          final String previousSearchTerm =
+              previousFilter is MatchesFilterBySearchTerm
+                  ? previousFilter.searchTerm
+                  : "";
+          // and now return true only if event search term is different from current
+          // this is only so we dont do search for the same thing as before
+
+          return event.searchTerm != previousSearchTerm;
+        });
+
+        final Stream<MatchesSearchTermChangedEvent> Function(
+                Stream<MatchesSearchTermChangedEvent>,
+                Stream<MatchesSearchTermChangedEvent> Function(
+                    MatchesSearchTermChangedEvent)) restartableTransformer =
+            restartable<MatchesSearchTermChangedEvent>();
+
+        return restartableTransformer(debouncedStream, eventHandler);
+      },
+    );
     // TODO will be needeing more events here
     // https://github.dev/kodecocodes/rwf-materials/blob/c61b8fd4ddad8fa96c3eb8dd096f1be7363d9c39/05-managing-complex-state-with-blocs/projects/final/packages/features/quote_list/lib/src/quote_list_bloc.dart#L48
   }
@@ -106,6 +138,31 @@ class MatchesBloc extends Bloc<MatchesBlocEvent, MatchesBlocState> {
       onData: emitter,
     );
 
+    return future;
+  }
+
+  Future<void> _onMatchesSearchTermChanged(
+    MatchesSearchTermChangedEvent event,
+    Emitter<MatchesBlocState> emitter,
+  ) {
+// TODO this should be freeezed
+// TODO with this, we put search term inside the state
+    emitter(
+      MatchesBlocState.newSearchTermLoading(searchTerm: event.searchTerm),
+    );
+
+    final Stream<MatchesBlocState> firstPageFetchStream =
+        matchesUseCases.streamMatchesPage(
+      1,
+      auth: auth,
+      fetchPolicy: MatchesPageFetchPolicy.cachePreferable,
+      currentMatchesState: state,
+      offsetDocumentId: "Test",
+    );
+
+    final future = emitter.onEach(stream, onData: emitter);
+
+// TODO dont get confused by the future return - nothing is returned here - instead, emitter will continue emitting new events as they come in
     return future;
   }
 }
