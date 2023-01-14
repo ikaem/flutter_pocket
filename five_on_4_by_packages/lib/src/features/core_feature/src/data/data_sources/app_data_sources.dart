@@ -18,7 +18,7 @@ class AppDataSources {
   final DB database;
   final AppLogger appLogger;
 
-  late final AuthApi authApi = AuthMockApi();
+  late final AuthRemoteApi authApi = AuthMockRemoteApi();
   late final AuthDbApi authDbApi = AuthHiveDbApi(
     database: database,
     appLogger: appLogger,

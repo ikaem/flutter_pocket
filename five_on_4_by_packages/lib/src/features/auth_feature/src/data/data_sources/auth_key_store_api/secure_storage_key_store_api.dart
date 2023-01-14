@@ -2,6 +2,7 @@ import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dar
 import 'package:five_on_4_by_packages/src/features/auth_feature/src/data/dtos/auth_db_api_dto/db_api_dto.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
 
+// TODO this
 class SecureStorageKeyStoreApi extends AuthKeyStoreApi {
   static const storageTokenKey = "auth_token";
   static const storageIdKey = "auth_id";
@@ -23,28 +24,47 @@ class SecureStorageKeyStoreApi extends AuthKeyStoreApi {
   }
 
   @override
-  Future<AuthDbApiDTO>? getAuth() async {
-    final List<String?> authValues = await Future.wait([
-      secureStorage.getKeyValue(key: storageIdKey),
-      secureStorage.getKeyValue(key: storageNameKey),
-      secureStorage.getKeyValue(key: storageTokenKey),
-    ]);
+  Future<AuthKeyStoreDTO?> getAuth() async {
+    final String? id = await secureStorage.getKeyValue(key: storageIdKey);
+    final String? name = await secureStorage.getKeyValue(key: storageNameKey);
+    final String? token = await secureStorage.getKeyValue(key: storageTokenKey);
 
-    // TODO make construcotor to make this from auth values
-    // final String? id = authValues
-
-    final bool isValidAuth = authValues.every((element) => element != null);
-
-    if (!isValidAuth) return null;
+    return _generateAuthKeyStoreDTO(
+      id: id,
+      name: name,
+      token: token,
+    );
   }
 
   @override
   Future<void> upsertAuth({
     required String id,
     required String name,
-    required String? token,
+    required String token,
   }) async {
-    // TODO: implement upsertAuth
-    throw UnimplementedError();
+    await Future.wait([
+      secureStorage.setKey(key: storageIdKey, value: id),
+      secureStorage.setKey(key: storageNameKey, value: name),
+      secureStorage.setKey(key: storageTokenKey, value: token),
+    ]);
+  }
+
+  // TODO test -
+  AuthKeyStoreDTO? _generateAuthKeyStoreDTO({
+    required String? id,
+    required String? name,
+    required String? token,
+  }) {
+    if (id == null) return null;
+    if (name == null) return null;
+    if (token == null) return null;
+
+    AuthKeyStoreDTO dto = AuthKeyStoreDTO(
+      id: id,
+      name: name,
+      token: token,
+    );
+
+    return dto;
   }
 }

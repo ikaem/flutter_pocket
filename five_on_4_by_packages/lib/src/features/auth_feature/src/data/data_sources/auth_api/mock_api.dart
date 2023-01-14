@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dart';
 import 'package:five_on_4_by_packages/src/features/auth_feature/src/data/dtos/auth_api_dto/api_dto.dart';
 
-class AuthMockApi implements AuthApi {
+class AuthMockRemoteApi implements AuthRemoteApi {
   @override
   Future<AuthApiDTO> login({
     required String email,

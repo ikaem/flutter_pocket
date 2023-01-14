@@ -8,7 +8,7 @@ class AuthMockApiRepository implements AuthApiRepository {
     required this.authApi,
   });
 
-  final AuthApi authApi;
+  final AuthRemoteApi authApi;
 
   @override
   Future<AuthApiDTO> login({
