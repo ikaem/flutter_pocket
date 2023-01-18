@@ -1,11 +1,13 @@
 import 'package:five_on_4_by_packages/src/features/core_feature/src/domain/domain.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/libraries/libraries.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/navigation/app_router_delegate.dart';
 import 'package:five_on_4_by_packages/src/features/players_feature/players_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import "package:flutter_bloc/flutter_bloc.dart";
+import 'package:routemaster/routemaster.dart';
 
 import 'features/auth_feature/src/presentation/stores/auth_status/cubit/cubit.dart';
 import 'features/core_feature/src/presentation/screens/screens.dart';
@@ -42,7 +44,9 @@ class MyApp extends StatelessWidget {
             },
           )
         ],
-        child: MaterialApp(
+        child: MaterialApp.router(
+          routeInformationParser: const RoutemasterParser(),
+          routerDelegate: appRouterDelegate,
           restorationScopeId: 'app',
           localizationsDelegates: const [
             AppLocalizations.delegate,
@@ -58,7 +62,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
           themeMode: ThemeMode.dark,
-          home: const HomeScreen(),
+          // home: const HomeScreen(),
         ),
       ),
     );
