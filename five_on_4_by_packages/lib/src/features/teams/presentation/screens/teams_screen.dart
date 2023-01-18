@@ -7,6 +7,15 @@ class TeamsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("This is teams screen"));
+    return Scaffold(
+      appBar: AppBar(
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.share))],
+      ),
+      body: Center(
+        child: Text(
+          "This is teams screen",
+        ),
+      ),
+    );
   }
 }
