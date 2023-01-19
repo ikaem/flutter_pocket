@@ -30,9 +30,10 @@ dependencies:
   infinite_scroll_pagination: ^3.2.0
   flutter_secure_storage: ^7.0.1
   bloc_concurrency: ^0.2.0
-  flutter_svg:
-    ^1.1.6
+  flutter_svg: ^1.1.6
   routemaster: ^1.0.1
+  firebase_dynamic_links:
+    ^5.0.11
 
     # TODO dont use this
   # core_feature:

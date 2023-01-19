@@ -42,8 +42,8 @@ class AppTabNavigationScreen extends StatelessWidget {
       bottomNavigationBar: TabBar(
         controller: tabPage.controller,
         tabs: [
-          Tab(text: 'Feed'),
-          Tab(text: 'Settings'),
+          Tab(text: 'Teams'),
+          Tab(text: 'Players'),
         ],
       ),
       body: TabBarView(

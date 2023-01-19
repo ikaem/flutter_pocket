@@ -34,18 +34,29 @@ Map<String, PageBuilder> buildRoutingTable({
   return {
     AppPaths.tabContainerPath: (route) {
       return TabPage(child: AppTabNavigationScreen(), paths: [
+        AppPaths.teamsPath,
         AppPaths.playersPath,
-        AppPaths.matchesPath,
       ]);
     },
-    AppPaths.playersPath: (route) {
+    AppPaths.teamsPath: (route) {
       return MaterialPage(
         child: TeamsScreen(),
       );
     },
-    AppPaths.matchesPath: (route) {
+    AppPaths.playersPath: (route) {
       return MaterialPage(
-        child: Center(child: Text("matches")),
+        child: Center(child: Text("players")),
+      );
+    },
+
+    AppPaths.teamPath(teamId: null): (route) {
+      // TODO probably not good
+      final int teamId = int.parse(route.pathParameters["id"]!);
+
+      return MaterialPage(
+        // TODO we could pass a name here - it would be greate if it was in some path config already
+        name: "match",
+        child: TeamScreen(teamId: teamId),
       );
     }
 

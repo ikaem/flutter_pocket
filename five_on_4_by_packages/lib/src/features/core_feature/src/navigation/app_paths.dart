@@ -3,7 +3,7 @@ abstract class AppPaths {
   // const PathConstants._();
 
   static String get tabContainerPath => "/";
-  static String get matchesPath => "/matches";
+  static String get teamsPath => "/teams";
   static String get playersPath => "/players";
 
   static String playerPath({required String? playerId}) {
@@ -12,9 +12,9 @@ abstract class AppPaths {
     return "$playersPath/$id";
   }
 
-  static String matchPath({required String? matchId}) {
-    final String id = matchId ?? "id";
+  static String teamPath({required String? teamId}) {
+    final String id = teamId ?? ":id";
 
-    return "$matchesPath/$id";
+    return "$teamsPath/$id";
   }
 }
