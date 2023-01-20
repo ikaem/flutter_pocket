@@ -6,7 +6,7 @@ export 'package:firebase_dynamic_links/firebase_dynamic_links.dart'
 
 class DynamicLinks {
   static const _domainUrlPrefix = "https://fiveon4bypackages.page.link";
-  static const _iOsBundleId = "com.example.five_o4_packaged_features";
+  static const _iOsBundleId = "com.example.fiveO4PackagedFeatures";
   static const _androidBundleId = "com.example.five_o4_packaged_features";
 
   final FirebaseDynamicLinks _dynamicLinks = FirebaseDynamicLinks.instance;

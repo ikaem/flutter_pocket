@@ -9,8 +9,8 @@ class FiveOnFourThemeProvider extends InheritedWidget {
   }) : super(key: key, child: child);
 
 // TODO these will be actual themes later
-  final String lightTheme;
-  final String darkTheme;
+  final FiveOnFourThemeData lightTheme;
+  final FiveOnFourThemeData darkTheme;
 
   @override
   bool updateShouldNotify(covariant FiveOnFourThemeProvider oldWidget) {
@@ -19,6 +19,24 @@ class FiveOnFourThemeProvider extends InheritedWidget {
     if (oldWidget.darkTheme == darkTheme) return false;
 
     return true;
+  }
+
+  static FiveOnFourThemeData of(BuildContext context) {
+    final FiveOnFourThemeProvider? inheritedTheme =
+        context.dependOnInheritedWidgetOfExactType<FiveOnFourThemeProvider>();
+
+    assert(
+        inheritedTheme != null, "No FiveOnFourThemeProvider found in context");
+
+    // TODO get brightness here
+    // TODO HOW DOES it know what is the current brightness - and how do we change it
+    final Brightness currentBrightness = Theme.of(context).brightness;
+
+    final FiveOnFourThemeData theme = currentBrightness == Brightness.dark
+        ? inheritedTheme!.darkTheme
+        : inheritedTheme!.lightTheme;
+
+    return theme;
   }
 
   // TODO also make here of function to be able tp get the provider data from here , based on

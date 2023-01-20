@@ -1,4 +1,5 @@
 import 'package:five_on_4_by_packages/src/features/core_feature/src/libraries/firebase/firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/navigation/app_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,7 +16,10 @@ class TeamScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.share))],
+        actions: [
+          IconButton(
+              onPressed: _generateTeamSharableLink, icon: Icon(Icons.share))
+        ],
       ),
       body: Center(
           child: Text("This is Team screen - and this is the id --> $teamId")),
@@ -23,12 +27,28 @@ class TeamScreen extends StatelessWidget {
   }
 
   // TODO normally, would not initialize it here
-  String _generateTeamSharableLink() async {
+  Future<String> _generateTeamSharableLink() async {
     final DynamicLinks dynamicLinks = DynamicLinks();
 
-    final path = 
+    final String path = AppPaths.teamPath(teamId: teamId.toString());
+    final SocialMetaTagParameters socialMetaTagParameters =
+        SocialMetaTagParameters(
+            title: "Some match name here",
+            description: "Again, some description here");
 
-    final String sharableLink = await dynamicLinks.generateDynamicLinkUrl(path: path);
+    try {
+      final String sharableLink = await dynamicLinks.generateDynamicLinkUrl(
+        path: path,
+        socialMetaTagParameters: socialMetaTagParameters,
+      );
+
+      return sharableLink;
+    } catch (e) {
+      // TODO test
+      final error = e;
+
+      rethrow;
+    }
   }
 }
 
