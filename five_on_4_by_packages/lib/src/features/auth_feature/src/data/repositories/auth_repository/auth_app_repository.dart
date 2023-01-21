@@ -17,6 +17,17 @@ class AuthAppRepository implements AuthRepository {
   Stream<Auth?> get observeAuth => _authSubject.stream;
 
   @override
+  Future<Auth?> getAuth() async {
+    final AuthKeyStoreDTO? dto = await authKeyStoreApi.getAuth();
+
+    if (dto == null) return null;
+
+    final Auth auth = _generateAuthFromKeyStoreDTO(dto);
+
+    return auth;
+  }
+
+  @override
   Future<void> login(LoginArgsValue args) async {
     // login
 
@@ -41,5 +52,9 @@ class AuthAppRepository implements AuthRepository {
 
   Auth _generateAuthFromRemoteDTO(AuthApiDTO dto) {
     return Auth.fromApiDTO(dto);
+  }
+
+  Auth _generateAuthFromKeyStoreDTO(AuthKeyStoreDTO dto) {
+    return Auth.fromKeyStoreDTO(dto);
   }
 }
