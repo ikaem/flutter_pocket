@@ -35,6 +35,7 @@ dependencies:
   routemaster: ^1.0.1
   firebase_dynamic_links:
     ^5.0.11
+  shared_preferences: ^2.0.17
 
     # TODO dont use this
   # core_feature:
@@ -65,3 +66,12 @@ flutter:
     # Add assets from the images directory to the application.
     - assets/images/
     - assets/svg/
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700
+    - family: Roboto Mono
+      fonts:
+        - asset: assets/fonts/RobotoMono-Variable.ttf

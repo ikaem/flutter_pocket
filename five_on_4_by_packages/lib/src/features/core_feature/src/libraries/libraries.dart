@@ -6,3 +6,4 @@ export "formz/formz.dart";
 export "bloc/bloc.dart";
 export "flutter-svg/flutter_svg.dart";
 export "flutter_secure_storage/flutter_secure_storage.dart";
+export "shared_preferences/shared_preferences.dart";
