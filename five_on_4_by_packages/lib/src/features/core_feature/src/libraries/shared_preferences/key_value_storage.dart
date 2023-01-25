@@ -13,8 +13,11 @@ class KeyValueStorage {
     return value;
   }
 
-  Future<void> setStringValue(String key, String value) async {}
+  Future<void> setStringValue(String key, String value) async {
+    await _storage.setString(key, value);
+  }
 
+// TODO dont forget to initialize
   void _initializeStorage() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     _storage = storage;

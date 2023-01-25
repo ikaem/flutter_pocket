@@ -30,6 +30,41 @@ class AppTabNavigationScreen extends StatelessWidget {
     final tabPage = TabPage.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          Row(
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Light",
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Dark",
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "System",
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
       // appBar: AppBar(
       //   bottom: TabBar(
       //     controller: tabPage.controller,
