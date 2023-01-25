@@ -1,21 +1,22 @@
-import 'package:sandbox/src/screens/animated_cross_fade_screen.dart';
-import 'package:sandbox/src/screens/automatic_keep_alive_client_mixin_screen.dart';
-import 'package:sandbox/src/screens/constrained_box_screen.dart';
-import 'package:sandbox/src/screens/enums_screen.dart';
-import 'package:sandbox/src/screens/fitted_box_screen.dart';
-import 'package:sandbox/src/screens/focus_node_screen.dart';
-import 'package:sandbox/src/screens/fractionally_sized_box_screen.dart';
-import 'package:sandbox/src/screens/inkwell_screen.dart';
-import 'package:sandbox/src/screens/intrinsic_width_height.dart';
-import 'package:sandbox/src/screens/keys_screen.dart';
-import 'package:sandbox/src/screens/layout_builder_screen.dart';
-import 'package:sandbox/src/screens/limited_box_screen.dart';
-import 'package:sandbox/src/screens/offstage_widget_screen.dart';
-import 'package:sandbox/src/screens/single_child_scroll_view_screen.dart';
-import 'package:sandbox/src/screens/stack_screen.dart';
-import 'package:sandbox/src/screens/text_span_screen.dart';
-import 'package:sandbox/src/screens/topics_list_screen.dart';
-import 'package:sandbox/src/screens/will_pop_scope_screen.dart';
+import 'package:sandbox/src/features/animated_cross_fade_screen.dart';
+import 'package:sandbox/src/features/automatic_keep_alive_client_mixin_screen.dart';
+import 'package:sandbox/src/features/constrained_box_screen.dart';
+import 'package:sandbox/src/features/enums_screen.dart';
+import 'package:sandbox/src/features/fitted_box_screen.dart';
+import 'package:sandbox/src/features/focus_node_screen.dart';
+import 'package:sandbox/src/features/form_validation_bloc_streams/presentation/screens/form_validation_bloc_streams_screen.dart';
+import 'package:sandbox/src/features/fractionally_sized_box_screen.dart';
+import 'package:sandbox/src/features/inkwell_screen.dart';
+import 'package:sandbox/src/features/intrinsic_width_height.dart';
+import 'package:sandbox/src/features/keys_screen.dart';
+import 'package:sandbox/src/features/layout_builder_screen.dart';
+import 'package:sandbox/src/features/limited_box_screen.dart';
+import 'package:sandbox/src/features/offstage_widget_screen.dart';
+import 'package:sandbox/src/features/single_child_scroll_view_screen.dart';
+import 'package:sandbox/src/features/stack_screen.dart';
+import 'package:sandbox/src/features/text_span_screen.dart';
+import 'package:sandbox/src/features/topics_list_screen.dart';
+import 'package:sandbox/src/features/will_pop_scope_screen.dart';
 
 const routes = [
   Route(
@@ -89,6 +90,10 @@ const routes = [
   Route(
     name: "OffstageWidget",
     path: OffstageWidgetScreen.routeName,
+  ),
+  Route(
+    name: "Screen valition with bloc and streams",
+    path: FormValidationBlocStreamsScreen.routeName,
   ),
 ];
 

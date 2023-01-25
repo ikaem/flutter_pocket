@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide Route;
-import 'package:sandbox/src/screens/automatic_keep_alive_client_mixin_screen.dart';
-import 'package:sandbox/src/screens/topics_list_screen.dart';
+import 'package:sandbox/src/features/automatic_keep_alive_client_mixin_screen.dart';
+import 'package:sandbox/src/features/topics_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
