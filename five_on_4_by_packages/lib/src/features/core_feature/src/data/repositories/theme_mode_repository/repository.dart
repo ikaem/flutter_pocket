@@ -19,7 +19,7 @@ class ThemeModeRepository {
     _themeModePreferenceSubject.add(mode);
   }
 
-// TODO THIS does not work
+// TODO THIS is good becauasae
   Stream<ThemeModePreference> getThemeMode() async* {
     final bool hasSubjectValue = _themeModePreferenceSubject.hasValue;
 

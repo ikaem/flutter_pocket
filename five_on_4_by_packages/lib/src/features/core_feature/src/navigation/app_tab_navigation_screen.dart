@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/domain/enums/theme_mode_preference.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/presentation/cubits/theme_mode/cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routemaster/routemaster.dart';
 
 class AppTabNavigationScreen extends StatelessWidget {
@@ -28,6 +28,7 @@ class AppTabNavigationScreen extends StatelessWidget {
     // );
 
     final tabPage = TabPage.of(context);
+    final ThemeModeCubit themeModeCubit = context.read<ThemeModeCubit>();
 
     return Scaffold(
       appBar: AppBar(
@@ -35,8 +36,11 @@ class AppTabNavigationScreen extends StatelessWidget {
           Row(
             children: [
               TextButton(
-                onPressed: () {},
-                child: Text(
+                onPressed: () async {
+                  await themeModeCubit
+                      .changeThemeMode(ThemeModePreference.useLight);
+                },
+                child: const Text(
                   "Light",
                   style: TextStyle(
                     color: Colors.red,
@@ -44,8 +48,11 @@ class AppTabNavigationScreen extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
-                child: Text(
+                onPressed: () async {
+                  await themeModeCubit
+                      .changeThemeMode(ThemeModePreference.useDark);
+                },
+                child: const Text(
                   "Dark",
                   style: TextStyle(
                     color: Colors.red,
@@ -53,8 +60,11 @@ class AppTabNavigationScreen extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
-                child: Text(
+                onPressed: () async {
+                  await themeModeCubit
+                      .changeThemeMode(ThemeModePreference.useSystem);
+                },
+                child: const Text(
                   "System",
                   style: TextStyle(
                     color: Colors.red,
@@ -76,7 +86,7 @@ class AppTabNavigationScreen extends StatelessWidget {
       // ),
       bottomNavigationBar: TabBar(
         controller: tabPage.controller,
-        tabs: [
+        tabs: const [
           Tab(text: 'Teams'),
           Tab(text: 'Players'),
         ],

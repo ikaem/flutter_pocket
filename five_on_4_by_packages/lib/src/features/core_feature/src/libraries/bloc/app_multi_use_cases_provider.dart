@@ -1,5 +1,6 @@
 import 'package:five_on_4_by_packages/src/features/auth_feature/src/domain/use_cases/auth_use_cases/auth_use_cases.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/domain/domain.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/domain/use_cases/theme_mode_use_cases.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/domain/use_cases/matches_use_cases.dart';
 import 'package:five_on_4_by_packages/src/features/players_feature/src/presentation/stores/players/exports.dart';
 import 'package:five_on_4_by_packages/src/features/weather_feature/src/presentation/stores/weather/weather.dart';
@@ -31,6 +32,9 @@ class AppMultiUseCasesProvider extends StatelessWidget {
         ),
         RepositoryProvider<MatchesUseCases>(
           create: (context) => appUseCases.matchesUseCases,
+        ),
+        RepositoryProvider<ThemeModeUseCases>(
+          create: (context) => appUseCases.themeModeUseCases,
         ),
       ],
       child: child,

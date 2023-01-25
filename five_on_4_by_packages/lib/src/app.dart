@@ -1,6 +1,8 @@
 import 'package:five_on_4_by_packages/src/features/core_feature/src/domain/domain.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/libraries/libraries.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/navigation/app_router_delegate.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/presentation/cubits/theme_mode/cubit.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/presentation/cubits/theme_mode/cubit_state.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/presentation/providers/five_on_four_theme_provider.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/src/theme/five_on_four_theme_data.dart';
 import 'package:five_on_4_by_packages/src/features/players_feature/players_feature.dart';
@@ -46,34 +48,52 @@ class MyApp extends StatelessWidget {
                 appLogger: appLogger,
               );
             },
+          ),
+          BlocProvider<ThemeModeCubit>(
+            create: (context) {
+              return ThemeModeCubit(
+                themeModeUseCases: appUseCases.themeModeUseCases,
+              );
+            },
           )
         ],
-        child: FiveOnFourThemeProvider(
-          lightTheme: lightTheme,
-          darkTheme: darkTheme,
-          child: MaterialApp.router(
-            routeInformationParser: const RoutemasterParser(),
-            routerDelegate: appRouterDelegate,
-            restorationScopeId: 'app',
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('en', ''), // English, no country code
-            ],
-            onGenerateTitle: (BuildContext context) =>
-                AppLocalizations.of(context)!.appTitle,
+        child: BlocBuilder<ThemeModeCubit, ThemeModeCubitState>(
+          builder: (context, state) {
+            return FiveOnFourThemeProvider(
+              lightTheme: lightTheme,
+              darkTheme: darkTheme,
+              child: MaterialApp.router(
+                routeInformationParser: const RoutemasterParser(),
+                routerDelegate: appRouterDelegate,
+                restorationScopeId: 'app',
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: const [
+                  Locale('en', ''), // English, no country code
+                ],
+                onGenerateTitle: (BuildContext context) =>
+                    AppLocalizations.of(context)!.appTitle,
 
-            theme: lightTheme.materialThemeData,
-            darkTheme: darkTheme.materialThemeData,
-            themeMode: ThemeMode.light,
-            // home: const HomeScreen(),
-          ),
+                theme: lightTheme.materialThemeData,
+                darkTheme: darkTheme.materialThemeData,
+                themeMode: _getThemeModeFromCubitState(state),
+                // home: const HomeScreen(),
+              ),
+            );
+          },
         ),
       ),
     );
   }
+}
+
+// TODO test
+ThemeMode _getThemeModeFromCubitState(ThemeModeCubitState state) {
+  if (state is ThemeModeCubitStateDark) return ThemeMode.dark;
+  if (state is ThemeModeCubitStateLight) return ThemeMode.light;
+  return ThemeMode.system;
 }

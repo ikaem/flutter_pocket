@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class KeyValueStorage {
   KeyValueStorage() {
-    _initializeStorage();
+    // _initializeStorage();
   }
 
   late final SharedPreferences _storage;
@@ -18,7 +18,7 @@ class KeyValueStorage {
   }
 
 // TODO dont forget to initialize
-  void _initializeStorage() async {
+  Future<void> initializeStorage() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     _storage = storage;
   }

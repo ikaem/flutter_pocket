@@ -1,5 +1,7 @@
 import 'package:five_on_4_by_packages/src/features/auth_feature/auth_feature.dart';
 import 'package:five_on_4_by_packages/src/features/core_feature/core_feature.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/data/data_sources/theme_mode_data_source/app_data_source.dart';
+import 'package:five_on_4_by_packages/src/features/core_feature/src/data/data_sources/theme_mode_data_source/data_source.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/matches_feature.dart';
 import 'package:five_on_4_by_packages/src/features/matches_feature/src/data/data_sources/matches_local_api/matches_app_local_api.dart';
 import 'package:five_on_4_by_packages/src/features/players_feature/players_feature.dart';
@@ -11,12 +13,14 @@ class AppDataSources {
     required this.fireStore,
     required this.database,
     required this.appLogger,
+    required this.keyValueStorage,
   });
 
   final HttpWrapper httpWrapper;
   final FireStore fireStore;
   final DB database;
   final AppLogger appLogger;
+  final KeyValueStorage keyValueStorage;
 
   late final AuthRemoteApi authApi = AuthMockRemoteApi();
   late final AuthDbApi authDbApi = AuthHiveDbApi(
@@ -43,5 +47,9 @@ class AppDataSources {
   late final MatchesAppRemoteApi matchesAppRemoteApi = MatchesAppRemoteApi(
     fireStore: fireStore,
     appLogger: appLogger,
+  );
+
+  late final ThemeModeDataSource themeModeDataSource = ThemeModeAppDataSource(
+    keyValueStorage: keyValueStorage,
   );
 }

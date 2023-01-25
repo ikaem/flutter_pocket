@@ -9,10 +9,12 @@ void main() async {
 
   final AppLogger appLogger = AppLogger();
   final InputsValidation inputsValidation = InputsValidation();
+  final KeyValueStorage keyValueStorage = KeyValueStorage();
   final DB database = DB(
     appLogger: appLogger,
   );
   await database.initialize();
+  await keyValueStorage.initializeStorage();
 
   final HttpWrapper httpWrapper = HttpWrapper(
     appLogger: appLogger,
@@ -24,6 +26,7 @@ void main() async {
     database: database,
     fireStore: fireStore,
     appLogger: appLogger,
+    keyValueStorage: keyValueStorage,
   );
 
   final AppRepositories appRepositories = AppRepositories(
