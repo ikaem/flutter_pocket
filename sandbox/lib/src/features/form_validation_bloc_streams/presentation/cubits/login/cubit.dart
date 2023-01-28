@@ -4,7 +4,13 @@ import 'package:rxdart/rxdart.dart';
 part "cubit_state.dart";
 
 class LoginCubit extends Cubit<LoginCubitState> {
-  LoginCubit() : super(LoginCubitStateInitial());
+  LoginCubit() : super(LoginCubitStateInitial()) {
+    // TODO sink could be used here as well
+    _userNameSubject.add("");
+    _passwordSubject.add("");
+    _passwordSubject.addError("Please enter at least 4 characters password");
+    _passwordSubject.addError("Please enter at least 4 characters username");
+  }
 
   // ok, so create two subjects  -w which are controlelrs it seems
 
@@ -27,8 +33,8 @@ class LoginCubit extends Cubit<LoginCubitState> {
       return;
     }
 
-    _passwordSubject.sink.add(password);
-    // _passwordSubject.add(password);
+    // _passwordSubject.sink.add(password);
+    _passwordSubject.add(password);
   }
 
   void updateUserName(String userName) {
@@ -38,15 +44,18 @@ class LoginCubit extends Cubit<LoginCubitState> {
       return;
     }
 
-    _passwordSubject.sink.add(userName);
+    _passwordSubject.add(userName);
     // _passwordSubject.add(password);
   }
 
   // how to validate this?
   // we have access to both streams, so i guess we just call the function
-  Stream<bool> get validateForm => Rx.combineLatest2(
+  Stream<bool> get validateForm => Rx.combineLatest2<String, String, bool>(
         userNameStream,
         passwordStream,
-        (a, b) => true,
+        (a, b) {
+          // TODO test
+          return true;
+        },
       );
 }

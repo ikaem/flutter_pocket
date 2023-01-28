@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sandbox/src/features/animated_cross_fade_screen.dart';
 import 'package:sandbox/src/features/automatic_keep_alive_client_mixin_screen.dart';
+import 'package:sandbox/src/features/call_method_after_build_executes/presentation/screens/call_method_after_build_executes_screen.dart';
 import 'package:sandbox/src/features/constrained_box_screen.dart';
 import 'package:sandbox/src/features/enums_screen.dart';
 import 'package:sandbox/src/features/fitted_box_screen.dart';
@@ -16,6 +17,7 @@ import 'package:sandbox/src/features/limited_box_screen.dart';
 import 'package:sandbox/src/features/offstage_widget_screen.dart';
 import 'package:sandbox/src/features/single_child_scroll_view_screen.dart';
 import 'package:sandbox/src/features/stack_screen.dart';
+import 'package:sandbox/src/features/streams_and_rx_dart/presentation/screens/streams_and_rx_dart_screen.dart';
 import 'package:sandbox/src/features/text_span_screen.dart';
 import 'package:sandbox/src/features/topics_list_screen.dart';
 import 'package:sandbox/src/features/will_pop_scope_screen.dart';
@@ -64,6 +66,10 @@ class AppRouter {
             return const OffstageWidgetScreen();
           case FormValidationBlocStreamsScreen.routeName:
             return const FormValidationBlocStreamsScreen();
+          case CallMethodAfterBuildExecutesScreen.routeName:
+            return const CallMethodAfterBuildExecutesScreen();
+          case StreamsAndRXDartScreen.routeName:
+            return const StreamsAndRXDartScreen();
 
           case HomeScreen.routeName:
           default:
