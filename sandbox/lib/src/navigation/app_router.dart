@@ -3,6 +3,7 @@ import 'package:sandbox/src/features/animated_cross_fade_screen.dart';
 import 'package:sandbox/src/features/automatic_keep_alive_client_mixin_screen.dart';
 import 'package:sandbox/src/features/call_method_after_build_executes/presentation/screens/call_method_after_build_executes_screen.dart';
 import 'package:sandbox/src/features/constrained_box_screen.dart';
+import 'package:sandbox/src/features/dependecy_injection_get_it_injectable/presentation/screens/dependecy_injection_get_it_injectable_screen.dart';
 import 'package:sandbox/src/features/enums_screen.dart';
 import 'package:sandbox/src/features/fitted_box_screen.dart';
 import 'package:sandbox/src/features/focus_node_screen.dart';
@@ -14,6 +15,7 @@ import 'package:sandbox/src/features/intrinsic_width_height.dart';
 import 'package:sandbox/src/features/keys_screen.dart';
 import 'package:sandbox/src/features/layout_builder_screen.dart';
 import 'package:sandbox/src/features/limited_box_screen.dart';
+import 'package:sandbox/src/features/more_rx_dart/presentation/screens/more_rx_dart.dart';
 import 'package:sandbox/src/features/offstage_widget_screen.dart';
 import 'package:sandbox/src/features/single_child_scroll_view_screen.dart';
 import 'package:sandbox/src/features/stack_screen.dart';
@@ -70,6 +72,10 @@ class AppRouter {
             return const CallMethodAfterBuildExecutesScreen();
           case StreamsAndRXDartScreen.routeName:
             return const StreamsAndRXDartScreen();
+          case MoreRxDartScreen.routeName:
+            return const MoreRxDartScreen();
+          case DependecyInjectioGetItInjectableScreen.routeName:
+            return const DependecyInjectioGetItInjectableScreen();
 
           case HomeScreen.routeName:
           default:

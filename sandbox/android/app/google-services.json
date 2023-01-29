@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "360638600571",
+    "project_id": "pocket-sandbox",
+    "storage_bucket": "pocket-sandbox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360638600571:android:2c79ac97ae24ca70f799de",
+        "android_client_info": {
+          "package_name": "com.example.sandbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360638600571-s84k75g11uvpm9rvdqaq13sddck90hq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdVSfVW6UIgJua_kpmZiYs0ZD2TTZw8Sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360638600571-s84k75g11uvpm9rvdqaq13sddck90hq7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
