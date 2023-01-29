@@ -1,4 +1,4 @@
-import 'package:sandbox/src/features/dependecy_injection_get_it_injectable/domain/dependencies/models/user/model.dart';
+import 'package:sandbox/src/features/dependecy_injection_get_it_injectable/domain/models/user/model.dart';
 
 abstract class AuthRepository {
   Future<void> login({
