@@ -1,0 +1,86 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "abstract_classes",
+      "cwd": "abstract_classes",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "anonymous_functions",
+      "cwd": "anonymous_functions",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "closures_and_scope",
+      "cwd": "closures_and_scope",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "enhanced_enums",
+      "cwd": "enhanced_enums",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "error_handling",
+      "cwd": "error_handling",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "extensions",
+      "cwd": "extensions",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "generics",
+      "cwd": "generics",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "inheritance",
+      "cwd": "inheritance",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "interfaces",
+      "cwd": "interfaces",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "mixins",
+      "cwd": "mixins",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "operator_overloading",
+      "cwd": "operator_overloading",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "strings",
+      "cwd": "strings",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "streams",
+      "cwd": "streams",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}

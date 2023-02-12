@@ -1,41 +1,56 @@
-void handleDay(BasicWeatherEnum day) {
+void handleDay(BasicDayEnum day) {
   switch (day) {
-    case BasicWeatherEnum.monday:
+    case BasicDayEnum.monday:
       print(day.name);
       break;
-    case BasicWeatherEnum.tuesday:
-      print(day.name);
-
-      break;
-    case BasicWeatherEnum.wednesday:
+    case BasicDayEnum.tuesday:
       print(day.name);
 
       break;
-    case BasicWeatherEnum.thursday:
+    case BasicDayEnum.wednesday:
       print(day.name);
 
       break;
-    case BasicWeatherEnum.friday:
+    case BasicDayEnum.thursday:
       print(day.name);
 
       break;
-    case BasicWeatherEnum.saturday:
+    case BasicDayEnum.friday:
       print(day.name);
 
       break;
-    case BasicWeatherEnum.sunday:
+    case BasicDayEnum.saturday:
+      print(day.name);
+
+      break;
+    case BasicDayEnum.sunday:
       print(day.name);
 
       break;
   }
 }
 
-enum BasicWeatherEnum {
+enum BasicDayEnum {
   monday,
   tuesday,
   wednesday,
   thursday,
   friday,
   saturday,
-  sunday,
+  sunday;
+
+  // we can create getters on enums
+  BasicDayEnum get next {
+    // this is the current selected day
+    return this + 1;
+  }
+
+  BasicDayEnum operator +(int days) {
+    final int numberOfItems = BasicDayEnum.values.length;
+
+    final int currentIndex = this.index;
+    final int addedIndex = (currentIndex + days) % numberOfItems;
+
+    return BasicDayEnum.values[addedIndex];
+  }
 }
