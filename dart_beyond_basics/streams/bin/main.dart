@@ -1,5 +1,5 @@
-import 'package:streams/src/cancelling_streams.dart';
+import 'package:streams/src/stream_controllers.dart';
 
 Future<void> main() async {
-  cancelStreamSubscriptionOnFirstEvent();
+  manageStreamWithController();
 }

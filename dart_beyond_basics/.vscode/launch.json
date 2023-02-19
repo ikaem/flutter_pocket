@@ -81,6 +81,12 @@
       "cwd": "streams",
       "request": "launch",
       "type": "dart"
+    },
+    {
+      "name": "isolates",
+      "cwd": "isolates",
+      "request": "launch",
+      "type": "dart"
     }
   ]
 }
