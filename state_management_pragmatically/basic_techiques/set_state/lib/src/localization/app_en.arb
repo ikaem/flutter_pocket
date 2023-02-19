@@ -1,0 +1,6 @@
+{
+  "appTitle": "set_state",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
