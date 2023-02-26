@@ -1,28 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:set_state/src/features/bloc/presentation/screens/bloc_screen.dart';
+import 'package:set_state/src/features/inherited_widget/presentation/screens/inherited_widget_screen.dart';
+import 'package:set_state/src/features/provider/presentation/screens/provider_screen.dart';
+import 'package:set_state/src/features/riverpod/presentation/screens/riverpod_screen.dart';
+import 'package:set_state/src/features/set_state/presentation/screens/set_state_screen.dart';
+import 'package:set_state/src/navigation/app_router.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
-
-  @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Text("Current counter value: $_counter"),
-      const SizedBox(
-        height: 24,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Hello"),
       ),
-      TextButton(
-        onPressed: () {
-          setState(() => _counter++);
-        },
-        child: const Text("Increment"),
-      )
-    ]);
+      body: ListView(
+        children: [
+          TextButton(
+            onPressed: () =>
+                AppRouter.toScreen(context, const SetStateScreen()),
+            child: const Text("To set state"),
+          ),
+          TextButton(
+            onPressed: () =>
+                AppRouter.toScreen(context, const InheritedWidgetScreen()),
+            child: const Text("To inherited widget"),
+          ),
+          TextButton(
+            onPressed: () =>
+                AppRouter.toScreen(context, const ProviderScreen()),
+            child: const Text("To provider screen"),
+          ),
+          TextButton(
+            onPressed: () =>
+                AppRouter.toScreen(context, const RiverpodScreen()),
+            child: const Text("To riverpod screen"),
+          ),
+          TextButton(
+            onPressed: () => AppRouter.toScreen(context, const BlocScreen()),
+            child: const Text("To bloc screen"),
+          ),
+        ],
+      ),
+    );
   }
 }
