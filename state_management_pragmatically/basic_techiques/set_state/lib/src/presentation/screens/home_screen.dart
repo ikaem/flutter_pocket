@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:set_state/src/features/bloc/presentation/screens/bloc_screen.dart';
+import 'package:set_state/src/features/cubit/presentation/screens/cubit_screen.dart';
 import 'package:set_state/src/features/inherited_widget/presentation/screens/inherited_widget_screen.dart';
+import 'package:set_state/src/features/mobx/presentation/screens/mobx_screen.dart';
 import 'package:set_state/src/features/provider/presentation/screens/provider_screen.dart';
+import 'package:set_state/src/features/redux/presentation/screens/redux_screen.dart';
 import 'package:set_state/src/features/riverpod/presentation/screens/riverpod_screen.dart';
 import 'package:set_state/src/features/set_state/presentation/screens/set_state_screen.dart';
 import 'package:set_state/src/navigation/app_router.dart';
@@ -40,6 +43,22 @@ class HomeScreen extends StatelessWidget {
           TextButton(
             onPressed: () => AppRouter.toScreen(context, const BlocScreen()),
             child: const Text("To bloc screen"),
+          ),
+          TextButton(
+            onPressed: () => AppRouter.toScreen(context, const CubitScreen()),
+            child: const Text("To cubit screen"),
+          ),
+          TextButton(
+            onPressed: () => AppRouter.toScreen(context, const ReduxScreen()),
+            child: const Text("To Redux screen"),
+          ),
+          TextButton(
+            onPressed: () => AppRouter.toScreen(context, const MobXScreen()),
+            child: const Text("To MobX screen"),
+          ),
+          TextButton(
+            onPressed: () => AppRouter.toScreen(context, const MobXScreen()),
+            child: const Text("To GetX screen"),
           ),
         ],
       ),

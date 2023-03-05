@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:set_state/src/features/bloc/presentation/screens/bloc_counter_screen.dart';
+import 'package:set_state/src/features/cubit/presentation/screens/cubit_counter_screen.dart';
 import 'package:set_state/src/navigation/app_router.dart';
 
-class BlocScreen extends StatelessWidget {
-  const BlocScreen({super.key});
+class CubitScreen extends StatelessWidget {
+  const CubitScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class BlocScreen extends StatelessWidget {
             TextButton(
               onPressed: () => AppRouter.toScreen(
                 context,
-                const BlocCounterScreen(),
+                const CubitCounterScreen(),
               ),
               child: const Text("To counter bloc screen"),
             ),

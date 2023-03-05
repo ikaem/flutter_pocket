@@ -1,0 +1,4 @@
+enum CounterReduxAction {
+  increment,
+  decrement,
+}

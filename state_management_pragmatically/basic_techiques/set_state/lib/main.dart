@@ -8,6 +8,7 @@ void main() async {
   // SettingsView.
   runApp(
     // const SetStateApp(),
-    const RiverpodApp(),
+    // const CubitApp(),
+    const GetXApp(),
   );
 }
