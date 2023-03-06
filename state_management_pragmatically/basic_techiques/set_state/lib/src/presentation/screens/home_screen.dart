@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:set_state/src/features/bloc/presentation/screens/bloc_screen.dart';
 import 'package:set_state/src/features/cubit/presentation/screens/cubit_screen.dart';
+import 'package:set_state/src/features/get_it/presentation/screens/get_it_screen.dart';
 import 'package:set_state/src/features/inherited_widget/presentation/screens/inherited_widget_screen.dart';
 import 'package:set_state/src/features/mobx/presentation/screens/mobx_screen.dart';
 import 'package:set_state/src/features/provider/presentation/screens/provider_screen.dart';
@@ -59,6 +60,10 @@ class HomeScreen extends StatelessWidget {
           TextButton(
             onPressed: () => AppRouter.toScreen(context, const MobXScreen()),
             child: const Text("To GetX screen"),
+          ),
+          TextButton(
+            onPressed: () => AppRouter.toScreen(context, const GetItScreen()),
+            child: const Text("To GetIt screen"),
           ),
         ],
       ),

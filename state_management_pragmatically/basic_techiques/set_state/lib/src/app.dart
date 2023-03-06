@@ -150,3 +150,16 @@ class GetXApp extends StatelessWidget {
     );
   }
 }
+
+class GetItApp extends StatelessWidget {
+  const GetItApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: HomeScreen(),
+    );
+  }
+}

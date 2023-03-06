@@ -20,6 +20,7 @@ dependencies:
   flutter_redux: ^0.10.0
   flutter_riverpod: ^2.2.0
   get: ^4.6.5
+  get_it: ^7.2.0
   mobx: ^2.1.4
   provider: ^6.0.5
   redux: ^5.0.0
