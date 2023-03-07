@@ -26,7 +26,7 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
   ) async {
     emitter(const CartBlocStateLoading());
 
-    _cartItems.remove(event.item);
+    _cartItems.add(event.item);
     emit(CartBlocCartItemsState(cartItems: cartItems));
   }
 

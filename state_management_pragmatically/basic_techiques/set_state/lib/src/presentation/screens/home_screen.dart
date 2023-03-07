@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:set_state/src/features/cart_app/cart_bloc/presentation/screens/items_screen.dart';
 import 'package:set_state/src/features/cart_app/cart_inherited_model/presentation/screens/items_screen.dart';
 import 'package:set_state/src/features/cart_app/cart_inherited_widget/presentation/screens/items_screen.dart';
 import 'package:set_state/src/features/cart_app/cart_set_state/presentation/screens/items_screen.dart';
@@ -84,6 +85,11 @@ class HomeScreen extends StatelessWidget {
             onPressed: () => AppRouter.toScreen(
                 context, const AppInheritedModelItemsScreen()),
             child: const Text("To AppInheritedModel screen"),
+          ),
+          TextButton(
+            onPressed: () =>
+                AppRouter.toScreen(context, const AppBlocItemsScreen()),
+            child: const Text("To AppBlocScreen screen"),
           ),
         ],
       ),
