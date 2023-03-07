@@ -15,6 +15,7 @@ import 'package:sandbox/src/features/layout_builder_screen.dart';
 import 'package:sandbox/src/features/limited_box_screen.dart';
 import 'package:sandbox/src/features/more_rx_dart/presentation/screens/more_rx_dart.dart';
 import 'package:sandbox/src/features/offstage_widget_screen.dart';
+import 'package:sandbox/src/features/overlays/presentation/screens/overlays_screen.dart';
 import 'package:sandbox/src/features/single_child_scroll_view_screen.dart';
 import 'package:sandbox/src/features/stack_screen.dart';
 import 'package:sandbox/src/features/streams_and_rx_dart/presentation/screens/streams_and_rx_dart_screen.dart';
@@ -114,6 +115,10 @@ const routes = [
   Route(
     name: "Dependency injection - Get It and Injectable",
     path: DependecyInjectioGetItInjectableScreen.routeName,
+  ),
+  Route(
+    name: "Overlays",
+    path: OverlaysScreen.routeName,
   ),
 ];
 
