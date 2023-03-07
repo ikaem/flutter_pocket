@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:set_state/src/features/get_it/presentation/providers/counter/counter_change_notifier.dart';
-import 'package:set_state/src/features/get_it/presentation/providers/counter/libraries/get_it/dependency_injection_wrapper.dart';
+import 'package:set_state/src/features/examples/get_it/presentation/providers/counter/counter_change_notifier.dart';
+import 'package:set_state/src/libraries/get_it/dependency_injection_wrapper.dart';
 
 import 'src/app.dart';
 
@@ -18,6 +18,6 @@ void main() async {
   runApp(
     // const SetStateApp(),
     // const CubitApp(),
-    const GetItApp(),
+    const CartBlocApp(),
   );
 }

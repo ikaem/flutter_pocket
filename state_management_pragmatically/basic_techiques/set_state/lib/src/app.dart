@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -5,12 +7,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart'
     hide ChangeNotifierProvider;
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:set_state/src/features/bloc/presentation/blocs/counter/bloc.dart';
-import 'package:set_state/src/features/cubit/presentation/cubits/counter/cubit.dart';
-import 'package:set_state/src/features/getx/presentation/stores/counter/controller.dart';
-import 'package:set_state/src/features/inherited_widget/presentation/providers/counter_inherited_widget.dart';
-import 'package:set_state/src/features/provider/presentation/controllers/counter/counter_notifier.dart';
-import 'package:set_state/src/features/redux/presentation/stores/counter/store.dart';
+import 'package:set_state/src/features/cart_app/cart_bloc/presentation/blocs/cart/bloc.dart';
+import 'package:set_state/src/features/cart_app/cart_inherited_model/presentation/providers/items_data_provider.dart';
+import 'package:set_state/src/features/cart_app/cart_inherited_widget/presentation/providers/items_data_provider.dart';
+import 'package:set_state/src/features/examples/bloc/presentation/blocs/counter/bloc.dart';
+import 'package:set_state/src/features/examples/cubit/presentation/cubits/counter/cubit.dart';
+import 'package:set_state/src/features/examples/getx/presentation/stores/counter/controller.dart';
+import 'package:set_state/src/features/examples/inherited_widget/presentation/providers/counter_inherited_widget.dart';
+import 'package:set_state/src/features/examples/provider/presentation/controllers/counter/counter_notifier.dart';
+import 'package:set_state/src/features/examples/redux/presentation/stores/counter/store.dart';
 import 'package:set_state/src/presentation/screens/home_screen.dart';
 
 class SetStateApp extends StatelessWidget {
@@ -34,6 +39,7 @@ class InheritedWidgetApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // data provider has to wrap the app - otherwise, on change route, context has no logner access the inherited widget, because we wrapped only home screen route
+    // but, on the other hand, with this approach we are rebuilding material app all the time
     return const CounterDataProvider(
       child: MaterialApp(home: HomeScreen()),
     );
@@ -160,6 +166,80 @@ class GetItApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: HomeScreen(),
+    );
+  }
+}
+
+class CartSetStateApp extends StatelessWidget {
+  const CartSetStateApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: HomeScreen(),
+    );
+  }
+}
+
+class CartInheritedWidgetApp extends StatelessWidget {
+  const CartInheritedWidgetApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const ItemsDataProvider(
+      child: MaterialApp(
+        // this does not work because of new routes
+        // home: ItemsDataProvider(
+        //   child: HomeScreen(),
+        // ),
+        home: HomeScreen(),
+      ),
+    );
+  }
+}
+
+class CartInheritedModelApp extends StatelessWidget {
+  const CartInheritedModelApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ItemsInheritedModelDataProvider(
+      child: Builder(builder: (context) {
+        // TODO test
+        return const MaterialApp(
+          // this does not work because of new routes
+          // home: ItemsDataProvider(
+          //   child: HomeScreen(),
+          // ),
+          home: HomeScreen(),
+        );
+      }),
+    );
+  }
+}
+
+class CartBlocApp extends StatelessWidget {
+  const CartBlocApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => CartBloc(),
+      child: Builder(builder: (context) {
+        // TODO test if this rebuilds on state emit
+        log("Does builder around material app rebuild on emit state by bloc");
+        return const MaterialApp(
+          home: HomeScreen(),
+        );
+      }),
     );
   }
 }

@@ -1,5 +1,5 @@
-class CartItemEntity {
-  const CartItemEntity({
+class ItemEntity {
+  const ItemEntity({
     required this.name,
     required this.price,
   });
