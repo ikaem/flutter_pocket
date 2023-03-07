@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part "key_store_dto.freezed.dart";
 
 @freezed
-class AuthKeyStoreDTO with _$AuthKeyStoreDTO {
+class dtoAuthKeyStoreDTO with _$AuthKeyStoreDTO {
   const factory AuthKeyStoreDTO({
     required String token,
     required String id,
