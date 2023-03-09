@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:sandbox/src/features/overlays/data/data_sources/todos/data_source.dart';
 import 'package:sandbox/src/features/overlays/domain/entities/todo/entity.dart';
 import 'package:sandbox/src/features/overlays/presentation/screens/kodeco_overlays_add_note.dart';
+import 'package:sandbox/src/features/overlays/presentation/widgets/kodeco_overlays_note_details.dart';
+import 'package:sandbox/src/features/overlays/utils/mixins/overlay_state_mixin.dart';
 import 'package:sandbox/src/features/overlays/utils/services/router_service/models/custom_popup_route.dart';
 
 enum SortType {
@@ -50,23 +52,32 @@ class _KodecoOverlaysScreenState extends State<KodecoOverlaysScreen> {
               itemCount: todos.length,
               itemBuilder: (context, index) {
                 final TodoEntity item = todos[index];
-
-                return ListTile(
-                  title: Text(item.title),
-                  subtitle: Text(
-                      "Created: ${DateTime.fromMillisecondsSinceEpoch(item.createdDate).toLocal()}"),
-                  trailing: IconButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return _buildDeleteConfirmationDialog(item.id);
-                        },
-                      );
-                    },
-                    icon: const Icon(Icons.delete),
-                  ),
+                return TodoItem(
+                  todo: item,
+                  onDeleteTodo: (int todoId) {
+                    todosDataSource.deleteTodo(todoId);
+                    setState(() {
+                      todos = todosDataSource.getTodos();
+                    });
+                  },
                 );
+
+                // return ListTile(
+                //   title: Text(item.title),
+                //   subtitle: Text(
+                //       "Created: ${DateTime.fromMillisecondsSinceEpoch(item.createdDate).toLocal()}"),
+                //   trailing: IconButton(
+                //     onPressed: () {
+                //       showDialog(
+                //         context: context,
+                //         builder: (context) {
+                //           return _buildDeleteConfirmationDialog(item.id);
+                //         },
+                //       );
+                //     },
+                //     icon: const Icon(Icons.delete),
+                //   ),
+                // );
               },
             ),
     );
@@ -89,8 +100,57 @@ class _KodecoOverlaysScreenState extends State<KodecoOverlaysScreen> {
       builder: (context) => const KodecoOverlaysAdd(),
     ));
   }
+}
 
-  Widget _buildDeleteConfirmationDialog(int todoId) {
+class TodoItem extends StatefulWidget {
+  const TodoItem({
+    super.key,
+    required this.todo,
+    required this.onDeleteTodo,
+  });
+
+  final TodoEntity todo;
+  final void Function(int todoId) onDeleteTodo;
+
+  @override
+  State<TodoItem> createState() => _TodoItemState();
+}
+
+class _TodoItemState extends State<TodoItem> with OverlayStateMixin<TodoItem> {
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        if (!isOverlayShown) return true;
+
+        removeOverlay();
+        return false;
+      },
+      child: ListTile(
+        onTap: () => toggleOverlay(
+          KodecoOverlaysNoteDetails(
+            onDetailsClose: removeOverlay,
+          ),
+        ),
+        title: Text(widget.todo.title),
+        subtitle: Text(
+            "Created: ${DateTime.fromMillisecondsSinceEpoch(widget.todo.createdDate).toLocal()}"),
+        trailing: IconButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return _buildDeleteConfirmationDialog();
+              },
+            );
+          },
+          icon: const Icon(Icons.delete),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDeleteConfirmationDialog() {
     final NavigatorState navigator = Navigator.of(context);
 
     final Widget cancelOption = IconButton(
@@ -102,10 +162,11 @@ class _KodecoOverlaysScreenState extends State<KodecoOverlaysScreen> {
 
     final Widget confirmOption = IconButton(
       onPressed: () {
-        todosDataSource.deleteTodo(todoId);
-        setState(() {
-          todos = todosDataSource.getTodos();
-        });
+        // todosDataSource.deleteTodo(todoId);
+        // setState(() {
+        //   todos = todosDataSource.getTodos();
+        // });
+        widget.onDeleteTodo(widget.todo.id);
 
         navigator.pop();
       },

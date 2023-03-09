@@ -5,6 +5,7 @@ import 'package:sandbox/src/features/constrained_box_screen.dart';
 import 'package:sandbox/src/features/dependecy_injection_get_it_injectable/presentation/screens/dependecy_injection_get_it_injectable_screen.dart';
 import 'package:sandbox/src/features/enums_screen.dart';
 import 'package:sandbox/src/features/fitted_box_screen.dart';
+import 'package:sandbox/src/features/flutter_hooks/presentation/screens/flutter_hooks_screen.dart';
 import 'package:sandbox/src/features/focus_node_screen.dart';
 import 'package:sandbox/src/features/form_validation_bloc_streams/presentation/screens/form_validation_bloc_streams_screen.dart';
 import 'package:sandbox/src/features/fractionally_sized_box_screen.dart';
@@ -119,6 +120,10 @@ const routes = [
   Route(
     name: "Overlays",
     path: OverlaysScreen.routeName,
+  ),
+  Route(
+    name: "Flutter hooks",
+    path: FlutterHooksScreen.routeName,
   ),
 ];
 
