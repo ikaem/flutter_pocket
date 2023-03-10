@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:sandbox/src/features/flutter_hooks/domain/entities/person/entity.dart';
-import 'package:sandbox/src/features/flutter_hooks/presentation/hooks/use_debug_value.dart';
+import 'package:sandbox/src/features/flutter_hooks/presentation/hooks/use_debug_value_function.dart';
 
 class FlutterHooksScreen extends HookWidget {
   static const routeName = "flutter_hooks";
@@ -19,7 +19,7 @@ class FlutterHooksScreen extends HookWidget {
         useState<PersonEntity?>(null);
 
     final ValueNotifier<int?> customHook =
-        useDebugValue<int>("Score of some sort", 0);
+        useDebugValueWithFunction<int>("Score of some sort", 0);
 
     final String randomString =
         useMemoized(() => _getStringOfCounterLength(counter.value), [

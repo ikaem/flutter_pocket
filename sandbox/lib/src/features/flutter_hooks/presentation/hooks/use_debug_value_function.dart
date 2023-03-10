@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-ValueNotifier<T?> useDebugValue<T>(
+ValueNotifier<T?> useDebugValueWithFunction<T>(
   String debugLabel, [
   T? initialState,
 ]) {
