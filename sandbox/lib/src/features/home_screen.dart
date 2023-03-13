@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide Route;
+import 'package:sandbox/app_config.dart';
 import 'package:sandbox/src/features/automatic_keep_alive_client_mixin_screen.dart';
 import 'package:sandbox/src/features/topics_list_screen.dart';
 
@@ -30,9 +31,11 @@ class _HomeScreenState extends State<HomeScreen> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
+    final String appTitle = AppConfig.of(context).appTitle;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Topics'),
+        title: Text(appTitle),
         actions: const [],
       ),
       bottomNavigationBar: BottomNavigationBar(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sandbox/app_config.dart';
 import 'package:sandbox/src/features/dependecy_injection_get_it_injectable/libraries/get_it/configure_get_it_dependencies/configure_get_it_dependencies.dart';
 import 'package:sandbox/src/libraries/firebase/firebase_core/firebase_core_wrapper.dart';
 
@@ -11,7 +12,13 @@ void main() async {
   // final FirebaseCoreWrapper firebaseCoreWrapper =
   //     dependencyLocator<FirebaseCoreWrapper>();
 
-  runApp(const MyApp());
+  const configuredApp = AppConfig(
+    environment: Environment.prod,
+    appTitle: "Sandbox",
+    child: MyApp(),
+  );
+
+  runApp(configuredApp);
 }
 
 // TODO how to expose this to rest of the app via get it
