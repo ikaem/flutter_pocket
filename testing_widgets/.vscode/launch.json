@@ -29,6 +29,17 @@
       "type": "dart",
       "program": "lib/main_production.dart",
       "args": ["--flavor", "production", "--target", "lib/main_production.dart"]
+    },
+    {
+      "name": "Flutter Test (Debug)",
+      "type": "dart",
+      "request": "launch",
+      "program": "test/presentation/blocs/cars_list/bloc_test.dart",
+      "console": "debugConsole",
+      "env": {
+          "FLUTTER_TEST": "true"
+      },
     }
+
   ]
 }

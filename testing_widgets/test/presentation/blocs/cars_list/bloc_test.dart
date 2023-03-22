@@ -11,6 +11,9 @@ import '../../../data/data_sources/cars_local/mock_data_sources.dart';
 void main() {
   setupLocator();
 
+  const tester = 'BAGRA !!!!!!!!!!!!!!!!!!!!';
+  print('test - $tester');
+
 // get cars list bloc from injected dependencies
   final CarsListBloc carsListBloc = locator<CarsListBloc>();
 
@@ -30,10 +33,10 @@ void main() {
     final CarsListValue databaseCarsList =
         await CarsMockDataSource().loadCars();
 
-    final List<CarEntity> databaseCarsList =
-        databaseCarsList.cars?.first.cars ?? [];
+    final List<CarEntity> databaseCars = databaseCarsList.cars ?? [];
 
-    databaseCarsList.cars?.sort(carsListBloc.sortAlphabetically);
+    databaseCars.sort(carsListBloc.sortAlphabetically);
+    carsList.sort(carsListBloc.sortAlphabetically);
 
     // now we test
 
@@ -41,6 +44,9 @@ void main() {
 // now wea want to check each element
       final CarEntity loadedCar = carsList.elementAt(i);
       final CarEntity databaseCar = carsList.elementAt(i);
+
+      expect(loadedCar.title, equals(databaseCar.title));
+      // expect(loadedCar.title, isNot(equals(databaseCar.title)));
     }
   });
 }
