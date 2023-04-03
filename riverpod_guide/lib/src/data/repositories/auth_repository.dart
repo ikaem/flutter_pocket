@@ -10,6 +10,10 @@ class AuthRepository {
 
   Stream<String> get authStream => _controller.stream;
 
+  Future<void> singInAnonymously() async {
+    _controller.add("anonymous user");
+  }
+
 // possibly no need to close? because stream provider might do it?
   void dispose() {
     _controller.close();

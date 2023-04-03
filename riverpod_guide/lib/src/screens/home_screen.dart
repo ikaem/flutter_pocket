@@ -4,6 +4,10 @@ import 'package:riverpod_guide/src/screens/consumer.dart';
 import 'package:riverpod_guide/src/screens/consumer_stateful_widget.dart';
 import 'package:riverpod_guide/src/screens/consumer_widget.dart';
 import 'package:riverpod_guide/src/screens/future_provider_screen.dart';
+import 'package:riverpod_guide/src/screens/generated/sw_person_future_screen.dart';
+import 'package:riverpod_guide/src/screens/notifier_async_notifier/counter/with_async_initialized_async_notifier_screen.dart';
+import 'package:riverpod_guide/src/screens/notifier_async_notifier/counter/with_notifier_screen.dart';
+import 'package:riverpod_guide/src/screens/notifier_async_notifier/counter/with_state_provider_screen.dart';
 import 'package:riverpod_guide/src/screens/provider_screen.dart';
 import 'package:riverpod_guide/src/screens/scoped_provider_screen.dart';
 import 'package:riverpod_guide/src/screens/select_state_field_screen.dart';
@@ -20,9 +24,39 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
+          const Text("notifier and async notifer classes"),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamed(CounterWithStateProviderScreen.routeName);
+            },
+            child: const Text("CounterWithStateProviderScreen - legacy"),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamed(CounterWithNotifierProviderScreen.routeName);
+            },
+            child: const Text("CounterWithNotifierProviderScreen - new"),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                  WithAsyncInitializedAsyncInitializerScreen.routeName);
+            },
+            child:
+                const Text("WithAsyncInitializedAsyncInitializerScreen - new"),
+          ),
+          const Text("Generated providers"),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(SwPersonFutureScreen.routeName);
+            },
+            child: const Text("Sw Person Screen"),
+          ),
           Text(
             "Consuming state",
-            style: textTheme.bodyText1,
+            style: textTheme.bodyLarge,
           ),
           TextButton(
             onPressed: () {
@@ -51,7 +85,7 @@ class HomeScreen extends StatelessWidget {
           ),
           Text(
             "Providers",
-            style: textTheme.bodyText1,
+            style: textTheme.bodyLarge,
           ),
           TextButton(
             onPressed: () {

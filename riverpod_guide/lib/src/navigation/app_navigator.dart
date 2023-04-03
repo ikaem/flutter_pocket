@@ -4,7 +4,11 @@ import 'package:riverpod_guide/src/screens/consumer.dart';
 import 'package:riverpod_guide/src/screens/consumer_stateful_widget.dart';
 import 'package:riverpod_guide/src/screens/consumer_widget.dart';
 import 'package:riverpod_guide/src/screens/future_provider_screen.dart';
+import 'package:riverpod_guide/src/screens/generated/sw_person_future_screen.dart';
 import 'package:riverpod_guide/src/screens/home_screen.dart';
+import 'package:riverpod_guide/src/screens/notifier_async_notifier/counter/with_async_initialized_async_notifier_screen.dart';
+import 'package:riverpod_guide/src/screens/notifier_async_notifier/counter/with_notifier_screen.dart';
+import 'package:riverpod_guide/src/screens/notifier_async_notifier/counter/with_state_provider_screen.dart';
 import 'package:riverpod_guide/src/screens/provider_screen.dart';
 import 'package:riverpod_guide/src/screens/scoped_provider_screen.dart';
 import 'package:riverpod_guide/src/screens/select_state_field_screen.dart';
@@ -70,6 +74,26 @@ class AppNavigator {
           case ScopedProvidersScreen.routeName:
             {
               return const ScopedProvidersScreen();
+            }
+
+          case SwPersonFutureScreen.routeName:
+            {
+              return const SwPersonFutureScreen();
+            }
+
+          case CounterWithStateProviderScreen.routeName:
+            {
+              return const CounterWithStateProviderScreen();
+            }
+
+          case CounterWithNotifierProviderScreen.routeName:
+            {
+              return const CounterWithNotifierProviderScreen();
+            }
+
+          case WithAsyncInitializedAsyncInitializerScreen.routeName:
+            {
+              return const WithAsyncInitializedAsyncInitializerScreen();
             }
 
           // default

@@ -15,15 +15,21 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_riverpod: ^2.0.2
+  flutter_riverpod: ^2.3.2
+  riverpod_annotation: ^2.0.2
   intl: ^0.17.0
   shared_preferences: ^2.0.15
+  mocktail: ^0.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.3
+  riverpod_generator: ^2.1.4
+  riverpod_lint: ^1.1.6
+  custom_lint: ^0.3.2
 
 flutter:
   uses-material-design: true
