@@ -18,7 +18,9 @@ class SignInController extends StateNotifier<AsyncValue<void>> {
 
   Future<void> anonymouslyWithGuard() async {
     state = const AsyncLoading<void>();
-    state =
-        await AsyncValue.guard<void>(() => authRepository.signInAnonimously());
+    state = await AsyncValue.guard<void>(
+      () => authRepository.signInAnonimously(),
+      onError: () => AsyncError("Hello", StackTrace.current),
+    );
   }
 }
